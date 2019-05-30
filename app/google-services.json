@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "211665086040",
+    "firebase_url": "https://gtraderprototypedb.firebaseio.com",
+    "project_id": "gtraderprototypedb",
+    "storage_bucket": "gtraderprototypedb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211665086040:android:f0b4fedf56d9a96a",
+        "android_client_info": {
+          "package_name": "com.example.gtraderprototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211665086040-3c6c2u36g4tnv26fvq0jgl9ok03evk15.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gtraderprototype",
+            "certificate_hash": "c45c39eb7e4aecefd9f22d7f295741b705b8564e"
+          }
+        },
+        {
+          "client_id": "211665086040-m6un5bg8gqmb1e2kqqj1qo23ass5bhm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gtraderprototype",
+            "certificate_hash": "8ab51be7cea91d1aac455de93e6e6cd81ed5a4e2"
+          }
+        },
+        {
+          "client_id": "211665086040-1fbqs5nqdre62agka5i3iqnec305dmia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK61QPzmoVdpMgxQuXHfTxvQo8w1z6ZxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211665086040-1fbqs5nqdre62agka5i3iqnec305dmia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
