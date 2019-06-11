@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GTraderPrototype</string>
+    <string name="title_activity_configuration">ConfigurationActivity</string>
 </resources>

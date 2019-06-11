@@ -1,4 +1,4 @@
-package com.example.gtraderprototype;
+package com.example.gtraderprototype.entity;
 
 import java.util.HashMap;
 import java.util.Map;
