@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
 
     implementation 'com.firebase:firebase-client-android:2.5.0'
+    implementation 'com.android.support:design:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
