@@ -37,8 +37,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name"
-                android:textColor="#808080"
-                app:layout_position="left" />
+                android:textColor="#808080" />
 
             <TextView
                 android:id="@+id/skillPoints"
@@ -58,7 +57,6 @@
                 android:paddingBottom="10sp"
                 android:text="Remaining Points: 16"
                 android:textSize="20sp"
-                android:textStyle="normal"
                 android:textStyle="normal|italic" />
 
             <LinearLayout
@@ -71,7 +69,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight=".31"
-                    android:gravity="center left"
                     android:text="Pilot:"
                     android:textSize="20sp"
                     android:textStyle="normal" />
@@ -111,7 +108,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight=".24"
-                    android:gravity="center left"
                     android:text="Fighter:"
                     android:textSize="20sp"
                     android:textStyle="normal" />
@@ -151,7 +147,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight=".25"
-                    android:gravity="center left"
                     android:text="Trader:"
                     android:textSize="20sp"
                     android:textStyle="normal" />
@@ -192,7 +187,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight=".18"
-                    android:gravity="center left"
                     android:text="Engineer:"
                     android:textSize="20sp"
                     android:textStyle="normal" />
