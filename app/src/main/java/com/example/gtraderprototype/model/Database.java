@@ -38,6 +38,11 @@ public class Database {
         stateref.setValue(instance);
     }
 
+    public static void removeState(GameInstance instance){
+        DatabaseReference ref = database.getReference("Save States");
+        ref.child(instance.getGameID()).removeValue();
+    }
+
     public static void retrieveGameFromDB(String gameID){
         DatabaseReference ref = database.getReference("Save States/"+gameID);
         ref.addValueEventListener(new ValueEventListener() {
@@ -56,6 +61,8 @@ public class Database {
             }
         });
     }
+
+
 
 
 }

@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -34,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newGame();
+        GameInstance inst1 = newGame();
+        GameInstance inst2 = newGame();
+        GameInstance inst3 = newGame();
+
+        removeGame(inst2);
 
     }
 
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return gameIDs;
     }
-    void newGame(){
+    public GameInstance newGame(){
         GameInstance newinst = new GameInstance();
         try{
                 FileOutputStream outputStream;
@@ -69,12 +74,32 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> oldergames = getLocalGames();
                 outputStream = openFileOutput(localStateFilename, Context.MODE_APPEND);
                 outputStream.write((fileContents+"\r\n").getBytes());
-                Log.d("GTrader", fileContents);
                 outputStream.close();
         }catch (Exception e) {
             e.printStackTrace();
         }
         Database.saveState(newinst);
+        return newinst;
+    }
 
+    void removeGame(GameInstance instance){
+        ArrayList<String> currentsaves = getLocalGames();
+        Context context = this;
+        File file = new File(context.getFilesDir(), localStateFilename);
+        file.delete();
+
+        try{
+            FileOutputStream outputStream;
+            outputStream = openFileOutput(localStateFilename, Context.MODE_APPEND);
+            for(String save: currentsaves){
+                if(save!=instance.getGameID()){
+                    outputStream.write((save+"\r\n").getBytes());
+                }
+            }
+            outputStream.close();
+            Database.removeState(instance);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
