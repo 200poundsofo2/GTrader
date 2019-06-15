@@ -8,8 +8,11 @@ public class Player { //singleton design pattern: Player.getPlayer()
     public static  volatile Player player = null;
 
     private String name;
-    private int difficulty;
-    private Map<String, Double> skillSet = new HashMap<>();
+    private Difficulty difficulty;
+    private int pioltSkillPoints;
+    private int engineerSkiilPoints;
+    private int fighterSkillPoints;
+    private int traderSkillPoints;
     private List<String> Inventory;
     private boolean isPirate;
     private int money;
@@ -29,14 +32,15 @@ public class Player { //singleton design pattern: Player.getPlayer()
         return player;
     }
 
-    public void addSkill(String skillName, double skillValue){
-        if(getPlayer().skillSet.get(skillName)!=null){
-            getPlayer().skillSet.remove(skillName);
-        }
-        getPlayer().skillSet.put(skillName, skillValue);
-    }
-    public Map<String, Double> getSkills(){
-        return getPlayer().skillSet;
+    public Player (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Difficulty difficulty){
+        this.name = name;
+        pioltSkillPoints = pilotPoints;
+        engineerSkiilPoints = engineerPoints;
+        fighterSkillPoints = fighterPoints;
+        traderSkillPoints = traderPoints;
+        this.difficulty = difficulty;
+        money = 1000;
+        spaceship = "Gnat";
     }
 
     public void setName(String name) {
@@ -45,12 +49,13 @@ public class Player { //singleton design pattern: Player.getPlayer()
     public String getName(){
         return getPlayer().name;
     }
-
-    public void setDifficulty(int d) {
-        getPlayer().difficulty = d;
-    }
-    public int getDifficulty(){
-        return getPlayer().difficulty;
+    public int getPioltSkillPoints(){return pioltSkillPoints;};
+    public int getEngineerSkillPoints(){return  engineerSkiilPoints;};
+    public int getFighterSkillPoints(){return fighterSkillPoints;};
+    public int getTraderSkillPoints(){return traderSkillPoints;};
+    public void setDifficulty(Difficulty d) {  difficulty = d;}
+    public Difficulty getDifficulty(){
+        return difficulty;
     }
     public void setPirate(boolean pirate){
         getPlayer().isPirate=pirate;
@@ -58,8 +63,9 @@ public class Player { //singleton design pattern: Player.getPlayer()
     public boolean checkIsPirate(){
         return getPlayer().isPirate;
     }
-
-
-
+    public String toString(){return "Player Name: " + name + ", Pilot Skill Points: " + pioltSkillPoints +
+            ", Engineer Skill Points: " + engineerSkiilPoints + ", Fighter Skill Points: " +
+            ", Trader Skill Points: " + traderSkillPoints + ", Difficulty:" + difficulty +
+            ", Money: " + money + ", SpaceShip: "+ spaceship;}
 }
 

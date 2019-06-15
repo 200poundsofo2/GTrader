@@ -242,12 +242,14 @@
 
                 <Button
                     android:id="@+id/back"
+                    android:onClick="loadMainMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Back" />
 
                 <Button
                     android:id="@+id/create"
+                    android:onClick="createPlayer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#A69B6EBB"
