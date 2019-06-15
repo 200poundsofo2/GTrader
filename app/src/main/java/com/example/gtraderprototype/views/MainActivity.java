@@ -1,105 +1,41 @@
 package com.example.gtraderprototype.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.gtraderprototype.R;
-import com.example.gtraderprototype.entity.GameInstance;
-import com.example.gtraderprototype.entity.Player;
-import com.example.gtraderprototype.model.Database;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.gtraderprototype.model.GameInstanceInteractor;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    final String localStateFilename = "states";
-
+    private Button createNewGame;
+    private Button exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        GameInstance inst1 = newGame();
-        GameInstance inst2 = newGame();
-        GameInstance inst3 = newGame();
-
-        removeGame(inst2);
-
+        createNewGame = findViewById(R.id.button_new_game);
+        exit = findViewById(R.id.button_exit);
     }
-
-    private ArrayList<String> getLocalGames(){
-        Context context = this;
-        File file = new File(context.getFilesDir(), localStateFilename);
-        ArrayList<String> gameIDs = new ArrayList<>();
-        try{
-
-            if(file.exists()){
-                Log.d("GTrader", "Retrieving games...");
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String temp = "";
-                temp = br.readLine();
-                while(temp!=null){
-                    gameIDs.add(temp);
-                    temp = br.readLine();
-                    Database.retrieveGameFromDB(temp);
-                }
-                Log.d("GTrader", gameIDs.toString());
+    public void loadConfigurationPage(View view){
+        createNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+                startActivity(intent);
             }
-        }catch(Exception e){
-            Log.d("ERR", e.toString());
-        }
-        return gameIDs;
+        });
     }
-    public GameInstance newGame(){
-        GameInstance newinst = new GameInstance();
-        try{
-                FileOutputStream outputStream;
-                String fileContents = newinst.getGameID();
-                ArrayList<String> oldergames = getLocalGames();
-                outputStream = openFileOutput(localStateFilename, Context.MODE_APPEND);
-                outputStream.write((fileContents+"\r\n").getBytes());
-                outputStream.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        Database.saveState(newinst);
-        return newinst;
+    public void closeApp(View view){
+        finish();
+        moveTaskToBack(true);
     }
 
-    void removeGame(GameInstance instance){
-        ArrayList<String> currentsaves = getLocalGames();
-        Context context = this;
-        File file = new File(context.getFilesDir(), localStateFilename);
-        file.delete();
-
-        try{
-            FileOutputStream outputStream;
-            outputStream = openFileOutput(localStateFilename, Context.MODE_APPEND);
-            for(String save: currentsaves){
-                if(save!=instance.getGameID()){
-                    outputStream.write((save+"\r\n").getBytes());
-                }
-            }
-            outputStream.close();
-            Database.removeState(instance);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
