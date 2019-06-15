@@ -21,6 +21,7 @@
 
     <Button
         android:id="@+id/button_new_game"
+        android:onClick="loadConfigurationPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
@@ -31,6 +32,7 @@
 
     <Button
         android:id="@+id/button_exit"
+        android:onClick="closeApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
