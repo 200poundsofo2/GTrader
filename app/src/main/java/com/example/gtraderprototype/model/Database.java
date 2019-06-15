@@ -36,6 +36,7 @@ public class Database {
     public static void saveState(GameInstance instance){
         DatabaseReference stateref = database.getReference("Save States/"+instance.getGameID());
         stateref.setValue(instance);
+        Log.d("Gtrader", instance.getGameID()+" Saved to DB");
     }
 
     public static void removeState(GameInstance instance){
@@ -52,7 +53,7 @@ public class Database {
                 Post post = dataSnapshot.getValue(Post.class);
                 System.out.println(post);
                  */
-                Log.d("GTraderDB", dataSnapshot.toString());
+                Log.d("GTraderDB", "DB Change: "+dataSnapshot.toString());
             }
 
             @Override

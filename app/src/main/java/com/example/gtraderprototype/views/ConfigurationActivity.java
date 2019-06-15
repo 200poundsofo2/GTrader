@@ -3,6 +3,7 @@ package com.example.gtraderprototype.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,12 +16,14 @@ import android.widget.Toast;
 import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
 import java.util.Arrays;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
-    private Player player;
+    private ConfigurationViewModel viewmodel;
+
     private TextView remainingPoints;
     private EditText playerName;
     private Spinner difficultySpinner;
@@ -78,6 +81,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         ArrayAdapter<Difficulty> difficultyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Arrays.asList(Difficulty.values()));
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
+
+        viewmodel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
     public void decrementSkillPointsForPilot(View view){
         if(canDecrement(pilotPoints)) {
@@ -188,14 +193,14 @@ public class ConfigurationActivity extends AppCompatActivity {
     }
     public void createPlayer(View view){
         if(!doSkillPointsRemainUnallocated()) {
-            String playerName = this.playerName.getText().toString();
+            String playerNamevar = playerName.getText().toString();
             int pointsAllocatedForPilot = Integer.parseInt(pilotPoints.getText().toString());
             int pointsAllocatedForEngineer = Integer.parseInt(engineerPoints.getText().toString());
             int pointsAllocatedForFighter = Integer.parseInt(fighterPoints.getText().toString());
             int pointsAllocatedForTrader = Integer.parseInt(traderPoints.getText().toString());
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
-            player = new Player(playerName, pointsAllocatedForPilot, pointsAllocatedForEngineer, pointsAllocatedForFighter, pointsAllocatedForTrader, difficulty);
-            Log.d("Player Configuration: ", player.toString());
+            Player player = new Player(playerNamevar, pointsAllocatedForPilot, pointsAllocatedForEngineer, pointsAllocatedForFighter, pointsAllocatedForTrader);
+            viewmodel.newGame(player, difficulty, this);
         }else{
             Toast.makeText(ConfigurationActivity.this, "all of your skill points have not been allocated.", Toast.LENGTH_LONG).show();
         }
