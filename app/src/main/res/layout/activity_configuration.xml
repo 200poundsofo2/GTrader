@@ -75,6 +75,7 @@
 
                 <Button
                     android:id="@+id/removePilot"
+                    android:onClick="decrementSkillPointsForPilot"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -82,6 +83,7 @@
 
                 <TextView
                     android:id="@+id/pilotPoints"
+                    android:inputType="number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -91,6 +93,7 @@
 
                 <Button
                     android:id="@+id/addPilot"
+                    android:onClick="incrementSkillPointsForPilot"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -114,6 +117,7 @@
 
                 <Button
                     android:id="@+id/removeFighter"
+                    android:onClick="decrementSkillPointsForFighter"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -130,6 +134,7 @@
 
                 <Button
                     android:id="@+id/addFighter"
+                    android:onClick="incrementSkillPointsForFighter"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -153,6 +158,7 @@
 
                 <Button
                     android:id="@+id/removeTrader"
+                    android:onClick="decrementSkillPointsForTrader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -169,6 +175,7 @@
 
                 <Button
                     android:id="@+id/addTrader"
+                    android:onClick="incrementSkillPointsForTrader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -193,6 +200,7 @@
 
                 <Button
                     android:id="@+id/removeEngineer"
+                    android:onClick="decrementSkillPointsForEngineer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -209,6 +217,7 @@
 
                 <Button
                     android:id="@+id/addEngineer"
+                    android:onClick="incrementSkillPointsForEngineer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".25"
@@ -217,7 +226,7 @@
             </LinearLayout>
 
             <Spinner
-                android:id="@+id/difficulty"
+                android:id="@+id/difficultySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="20sp"
@@ -233,12 +242,14 @@
 
                 <Button
                     android:id="@+id/back"
+                    android:onClick="loadMainMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Back" />
 
                 <Button
                     android:id="@+id/create"
+                    android:onClick="createPlayer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#A69B6EBB"
