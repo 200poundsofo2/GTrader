@@ -21,4 +21,8 @@ public class Model {
         interactorMap.put("GameInstance", new GameInstanceInteractor(gtDB));
     }
 
+    public GameInstanceInteractor getGameInstanceInteractor(){
+        return (GameInstanceInteractor) interactorMap.get("GameInstance");
+    }
+
 }
