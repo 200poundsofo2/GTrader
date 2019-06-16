@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.GameInstance;
+import com.example.gtraderprototype.entity.Player;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,13 +17,11 @@ import java.util.ArrayList;
 public class GameInstanceInteractor extends Interactor{
 
     final String localStateFilename = "states";
-    Activity activity = new Activity();
-    Context context = activity.getApplication();
     public GameInstanceInteractor(Database db){
         super(db);
 
     }
-    private ArrayList<String> getLocalGames(){
+    private ArrayList<String> getLocalGames(Context context){
 
         File file = new File(context.getFilesDir(), localStateFilename);
         ArrayList<String> gameIDs = new ArrayList<>();
@@ -44,8 +44,8 @@ public class GameInstanceInteractor extends Interactor{
         }
         return gameIDs;
     }
-    public GameInstance newGame(){
-        GameInstance newinst = new GameInstance();
+    public GameInstance newGame(Player player, Difficulty difficulty, Context context){
+        GameInstance newinst = new GameInstance(player, difficulty);
         try{
             FileOutputStream outputStream;
             String fileContents = newinst.getGameID();
@@ -59,8 +59,8 @@ public class GameInstanceInteractor extends Interactor{
         return newinst;
     }
 
-    void removeGame(GameInstance instance){
-        ArrayList<String> currentsaves = getLocalGames();
+    void removeGame(GameInstance instance, Context context){
+        ArrayList<String> currentsaves = getLocalGames(context);
         File file = new File(context.getFilesDir(), localStateFilename);
         file.delete();
 
