@@ -11,6 +11,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/playerCreationToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3F51B5"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Player Creation" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,16 +27,6 @@
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingRight="15dp">
-
-            <TextView
-                android:id="@+id/createCharacter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10sp"
-                android:paddingBottom="15sp"
-                android:text="Player Creation"
-                android:textSize="30sp"
-                android:textStyle="normal" />
 
             <EditText
                 android:id="@+id/playerName"
@@ -249,10 +248,10 @@
 
                 <Button
                     android:id="@+id/create"
-                    android:onClick="createPlayer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#A69B6EBB"
+                    app:backgroundTint="#A69B6EBB"
+                    android:onClick="createPlayer"
                     android:text="Create" />
             </LinearLayout>
 
