@@ -48,7 +48,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Button create;
     private int concurrentPoints = 16;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -222,7 +222,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+                Intent intent = new Intent(ConfigurationActivity.this, ConfigurationActivity.class);
                 startActivity(intent);
             }
         });
