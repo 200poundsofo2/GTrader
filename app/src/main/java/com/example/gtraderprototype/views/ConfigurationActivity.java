@@ -222,7 +222,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ConfigurationActivity.this, ConfigurationActivity.class);
+                Intent intent = new Intent(ConfigurationActivity.this, SpacePortActivity.class);
                 startActivity(intent);
             }
         });

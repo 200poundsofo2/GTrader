@@ -11,10 +11,12 @@ import android.widget.Button;
 
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.model.GameInstanceInteractor;
+import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
 
 public class MainActivity extends AppCompatActivity {
     private Button createNewGame;
+    private Button savedGames;
     private Button exit;
 
     @Override
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createNewGame = findViewById(R.id.button_new_game);
+        savedGames = findViewById(R.id.button_saved_games);
         exit = findViewById(R.id.button_exit);
     }
     public void loadConfigurationPage(View view){
@@ -33,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void loadSavedGamesPage(View view) {
+        savedGames.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SavedGamesActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void closeApp(View view){
         finish();
         moveTaskToBack(true);
