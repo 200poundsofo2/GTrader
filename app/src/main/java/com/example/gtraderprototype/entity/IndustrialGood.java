@@ -1,6 +1,6 @@
 package com.example.gtraderprototype.entity;
 
-enum IndustrialGood {
+enum IndustrialGood implements TradeGood{
 
     games(180),firearms(725),medicine(510),narcotics(2625),robots(3950 );
     //the basic credit, may vary according to tech level and circumstances
@@ -22,5 +22,15 @@ enum IndustrialGood {
     }
     public void setOwner(String owner){
         this.owner=owner;
+    }
+
+    @Override
+    public void adjustCreditTechLevel(){
+        System.out.println("to be implemented later");
+    }
+
+    @Override
+    public void adjustCreditCircumstance(){
+        System.out.println("to be implemented later");
     }
 }

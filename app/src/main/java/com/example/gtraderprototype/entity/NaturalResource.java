@@ -1,6 +1,6 @@
 package com.example.gtraderprototype.entity;
 
-enum NaturalResource {
+enum NaturalResource implements TradeGood{
 
     water(30),furs(250),food(105),ore(390);
     //the basic credit, may vary according to tech level and circumstances
@@ -21,5 +21,15 @@ enum NaturalResource {
     }
     public void setOwner(String owner){
         this.owner=owner;
+    }
+
+    @Override
+    public void adjustCreditTechLevel(){
+        System.out.println("to be implemented later");
+    }
+
+    @Override
+    public void adjustCreditCircumstance(){
+        System.out.println("to be implemented later");
     }
 }

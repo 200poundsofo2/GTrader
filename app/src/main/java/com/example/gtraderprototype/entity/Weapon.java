@@ -1,31 +1,12 @@
 package com.example.gtraderprototype.entity;
 
-public  class Weapon {
-    private String owner;
-    private int price;
-    private int power;
-
-    public void setPower(int power) {
-        this.power = power;
+public  class Weapon extends Equipment{
+    @Override
+    public void powerUp(){
+        System.out.println("Weapon powerup");
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public int getPower() {
-        return power;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getOwner() {
-        return owner;
+    public Weapon(String name, String owner, int credit, int strength, int health){
+        super(name,owner,credit,strength,health);
     }
 }
