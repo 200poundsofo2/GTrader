@@ -17,8 +17,8 @@
         android:title="travel" />
 
     <item
-        android:id="@+id/inventory"
-        android:icon="@drawable/ic_inventory"
-        android:title="inventory" />
+        android:id="@+id/save"
+        android:icon="@drawable/ic_save"
+        android:title="save" />
 
 </menu>
