@@ -3,6 +3,7 @@ package com.example.gtraderprototype.entity;
 import android.util.Log;
 
 import com.example.gtraderprototype.model.Database;
+import com.example.gtraderprototype.model.UniverseInteractor;
 
 public class GameInstance {
     //Game Instance Reference
@@ -12,7 +13,7 @@ public class GameInstance {
     private Player userPlayer;
 
     private Difficulty difficulty;
-
+    private System[] system;
 
     public Player getUserPlayer(){
         return userPlayer;
@@ -30,6 +31,7 @@ public class GameInstance {
         this.userPlayer = player;
         this.difficulty = difficulty;
         Log.d("GTrader", "Created Local Game Instance: "+this.toString());
+
     }
 
     public String toString(){
