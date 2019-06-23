@@ -1,9 +1,11 @@
 package com.example.gtraderprototype.entity;
 
+import android.util.Log;
+
 public class Gadget extends Equipment {
     @Override
     public void powerUp(){
-        System.out.println("Gadget powerup");
+        Log.d("Gtrader", "Gadget powerup");
     }
 
     public Gadget(String name, String owner, int credit, int strength, int health){

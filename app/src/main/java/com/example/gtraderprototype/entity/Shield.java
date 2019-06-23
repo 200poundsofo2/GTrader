@@ -3,7 +3,7 @@ package com.example.gtraderprototype.entity;
 public class Shield extends Equipment{
     @Override
     public void powerUp(){
-        System.out.println("Shield powerup");
+        //("Shield powerup");
     }
 
     public Shield(String name, String owner, int credit, int strength, int health){
