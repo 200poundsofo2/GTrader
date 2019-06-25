@@ -2,8 +2,8 @@ package com.example.gtraderprototype.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.arch.lifecycle.ViewModelProviders;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,9 +11,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
-import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
 import java.util.Arrays;
@@ -46,7 +46,9 @@ public class ConfigurationActivity extends AppCompatActivity {
         traderPoints = findViewById(R.id.traderPoints);
         difficultySpinner = findViewById(R.id.difficultySpinner);
 
-        ArrayAdapter<Difficulty> difficultyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Arrays.asList(Difficulty.values()));
+        ArrayAdapter<Difficulty> difficultyAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                        Arrays.asList(Difficulty.values()));
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
 
@@ -59,7 +61,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             pilotPoints.setText(getString(R.string.points, pointsAllocated - 1));
             incrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -69,7 +72,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             engineerPoints.setText(getString(R.string.points, pointsAllocated - 1));
             incrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -79,7 +83,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             fighterPoints.setText(getString(R.string.points, pointsAllocated - 1));
             incrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "The lowest point allocation is 0", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "The lowest point allocation is 0", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -89,7 +94,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             traderPoints.setText(getString(R.string.points, pointsAllocated - 1));
             incrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -99,7 +105,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             pilotPoints.setText(getString(R.string.points, pointsAllocated + 1));
             decrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -109,7 +116,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             engineerPoints.setText(getString(R.string.points, pointsAllocated + 1));
             decrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -119,7 +127,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             fighterPoints.setText(getString(R.string.points, pointsAllocated + 1));
             decrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -129,18 +138,21 @@ public class ConfigurationActivity extends AppCompatActivity {
             traderPoints.setText(getString(R.string.points, pointsAllocated + 1));
             decrementRemainingSkillPoints();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
 
     private void decrementRemainingSkillPoints() {
         concurrentPoints--;
-        remainingPoints.setText("Remaining Skill points: " + getString(R.string.points, concurrentPoints));
+        remainingPoints.setText("Remaining Skill points: "
+                + getString(R.string.points, concurrentPoints));
     }
 
     private void incrementRemainingSkillPoints() {
         concurrentPoints++;
-        remainingPoints.setText("Remaining Skill points: " + getString(R.string.points, concurrentPoints));
+        remainingPoints.setText("Remaining Skill points: "
+                + getString(R.string.points, concurrentPoints));
     }
 
     private boolean canDecrement(TextView skillPoints) {
@@ -167,16 +179,18 @@ public class ConfigurationActivity extends AppCompatActivity {
     public void createPlayer(View view) {
         if (!doSkillPointsRemainUnallocated()) {
             String name = playerName.getText().toString();
-            int pointsForPilot = Integer.parseInt(pilotPoints.getText().toString());
-            int pointsForEngineer = Integer.parseInt(engineerPoints.getText().toString());
-            int pointsForFighter = Integer.parseInt(fighterPoints.getText().toString());
-            int pointsForTrader = Integer.parseInt(traderPoints.getText().toString());
+            int pointsPilot = Integer.parseInt(pilotPoints.getText().toString());
+            int pointsEngineer = Integer.parseInt(engineerPoints.getText().toString());
+            int pointsFighter = Integer.parseInt(fighterPoints.getText().toString());
+            int pointsTrader = Integer.parseInt(traderPoints.getText().toString());
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
-            Player player = new Player(name, pointsForPilot, pointsForEngineer, pointsForFighter, pointsForTrader);
+            Player player =
+                    new Player(name, pointsPilot, pointsEngineer, pointsFighter, pointsTrader);
             viewmodel.newGame(player, difficulty, this);
             loadSpacePortPage();
         } else {
-            Toast.makeText(ConfigurationActivity.this, "all of your skill points have not been allocated.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConfigurationActivity.this,
+                    "all of your skill points have not been allocated.", Toast.LENGTH_LONG).show();
         }
     }
 
