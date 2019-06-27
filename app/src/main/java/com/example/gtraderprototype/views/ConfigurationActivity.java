@@ -3,6 +3,7 @@ package com.example.gtraderprototype.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.arch.lifecycle.ViewModelProviders;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -145,13 +146,13 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private void decrementRemainingSkillPoints() {
         concurrentPoints--;
-        remainingPoints.setText("Remaining Skill points: "
+        remainingPoints.setText("Remaining Points: "
                 + getString(R.string.points, concurrentPoints));
     }
 
     private void incrementRemainingSkillPoints() {
         concurrentPoints++;
-        remainingPoints.setText("Remaining Skill points: "
+        remainingPoints.setText("Remaining Points: "
                 + getString(R.string.points, concurrentPoints));
     }
 
