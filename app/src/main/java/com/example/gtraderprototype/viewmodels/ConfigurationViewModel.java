@@ -20,7 +20,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
         interactor = Model.getInstance().getGameInstanceInteractor();
     }
     public void newGame(Player player, Difficulty difficulty, Context context){
-        Log.d("GTrader", "New player created: "+player.toString());
+        Log.d("GTrader", "New player created: " + player.toString());
         interactor.newGame(player, difficulty, context);
     }
 }

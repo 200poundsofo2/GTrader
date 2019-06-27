@@ -36,14 +36,17 @@ public class SpacePortActivity extends AppCompatActivity {
                         //fragment = new ShipFragment();
                         break;
                     case R.id.travel:
-                        //TODO: travel alert implementation
+                        //TODO: travel map
+                        break;
+                    case R.id.market:
+                        fragment = new MarketFragment();
                         break;
                     case R.id.save:
                         //TODO: save game implementation
                         break;
                 }
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.skills, fragment).commit();
+                transaction.replace(R.id.main, fragment).commit();
                 return true;
             }
         });

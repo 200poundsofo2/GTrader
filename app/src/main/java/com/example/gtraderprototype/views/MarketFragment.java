@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 
 import com.example.gtraderprototype.R;
 
-public class SkillsFragment extends Fragment {
+public class MarketFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (container != null) {
             container.removeAllViews();
         }
-        return inflater.inflate(R.layout.fragment_skills, container, false);
+        return inflater.inflate(R.layout.fragment_market, container, false);
     }
 }
