@@ -19,10 +19,13 @@ public class Model {
     }
     private void registerInteractors(){
         interactorMap.put("GameInstance", new GameInstanceInteractor(gtDB));
+        interactorMap.put("Universe", new UniverseInteractor(gtDB));
     }
 
     public GameInstanceInteractor getGameInstanceInteractor(){
         return (GameInstanceInteractor) interactorMap.get("GameInstance");
     }
-
+    public UniverseInteractor getUniverseInteractor(){
+        return (UniverseInteractor) interactorMap.get("Universe");
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.gtraderprototype.model;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -56,6 +55,7 @@ public class GameInstanceInteractor extends Interactor{
             e.printStackTrace();
         }
         Database.saveState(newinst);
+
         return newinst;
     }
 

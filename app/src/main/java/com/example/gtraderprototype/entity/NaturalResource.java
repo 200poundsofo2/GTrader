@@ -25,11 +25,11 @@ enum NaturalResource implements TradeGood{
 
     @Override
     public void adjustCreditTechLevel(){
-        System.out.println("to be implemented later");
+        //("to be implemented later");
     }
 
     @Override
     public void adjustCreditCircumstance(){
-        System.out.println("to be implemented later");
+        //("to be implemented later");
     }
 }

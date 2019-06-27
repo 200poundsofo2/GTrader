@@ -10,17 +10,20 @@ import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.model.GameInstanceInteractor;
 import com.example.gtraderprototype.model.Model;
+import com.example.gtraderprototype.model.UniverseInteractor;
 
 public class ConfigurationViewModel extends AndroidViewModel {
 
-    private GameInstanceInteractor interactor;
+    private GameInstanceInteractor gameInteractor;
+    private UniverseInteractor universeInteractor;
 
     public ConfigurationViewModel(@NonNull Application application) {
         super(application);
-        interactor = Model.getInstance().getGameInstanceInteractor();
+        gameInteractor = Model.getInstance().getGameInstanceInteractor();
+        universeInteractor = Model.getInstance().getUniverseInteractor();
     }
     public void newGame(Player player, Difficulty difficulty, Context context){
         Log.d("GTrader", "New player created: " + player.toString());
-        interactor.newGame(player, difficulty, context);
+        gameInteractor.newGame(player, difficulty, context);
     }
 }
