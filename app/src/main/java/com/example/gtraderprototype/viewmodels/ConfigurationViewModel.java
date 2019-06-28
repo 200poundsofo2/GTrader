@@ -23,9 +23,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
         universeInteractor = Model.getInstance().getUniverseInteractor();
     }
     public void newGame(Player player, Difficulty difficulty, Context context){
-        Log.d("GTrader", "New player created: "+player.toString());
+        Log.d("GTrader", "New player created: " + player.toString());
         gameInteractor.newGame(player, difficulty, context);
-
-
     }
 }

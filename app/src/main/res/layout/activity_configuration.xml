@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     tools:context=".views.ConfigurationActivity">
 
     <LinearLayout
@@ -11,225 +12,304 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/playerCreationToolBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#3F51B5"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:title="Player Creation" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="15dp">
+            android:paddingLeft="30dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp">
 
-            <EditText
-                android:id="@+id/playerName"
+            <TextView
+                android:id="@+id/playerCreation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="fill_vertical"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name"
-                android:textColor="#808080" />
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Player Creation"
+                android:textSize="40sp"
+                android:paddingBottom="15sp"/>
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="25sp"
+                android:paddingBottom="10sp"
+                android:text="Player Name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_border"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/playerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_gravity="fill_vertical"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10sp"
+                    android:textColor="#fff"
+                    android:textColorHint="#EAAA00" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/skillPoints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="35sp"
+                android:paddingTop="25sp"
                 android:paddingBottom="10sp"
-                android:text="Skill Points"
-                android:textSize="23sp"
-                android:textStyle="normal" />
+                android:text="Skill Points" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/remainingPoints"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp"
+                    android:text="Remaining Points: 16"
+                    android:textStyle="normal|italic"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pilot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".38"
+                        android:text="Pilot:"
+                        android:textStyle="normal" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/removePilot"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="decrementSkillPointsForPilot"
+                        android:text="-"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                    <TextView
+                        android:id="@+id/pilotPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="15sp" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/addPilot"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="incrementSkillPointsForPilot"
+                        android:text="+"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/fighter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".25"
+                        android:text="Fighter:"
+                        android:textStyle="normal" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/removeFighter"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="decrementSkillPointsForFighter"
+                        android:text="-"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                    <TextView
+                        android:id="@+id/fighterPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="15sp" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/addFighter"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="incrementSkillPointsForFighter"
+                        android:text="+"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/trader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".25"
+                        android:text="Trader:"
+                        android:textStyle="normal" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/removeTrader"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="decrementSkillPointsForTrader"
+                        android:text="-"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                    <TextView
+                        android:id="@+id/traderPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="15sp" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/addTrader"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="incrementSkillPointsForTrader"
+                        android:text="+"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/engineer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".17"
+                        android:text="Engineer:"
+                        android:textStyle="normal" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/removeEngineer"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="decrementSkillPointsForEngineer"
+                        android:text="-"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp"/>
+
+                    <TextView
+                        android:id="@+id/engineerPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="15sp" />
+
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/addEngineer"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:onClick="incrementSkillPointsForEngineer"
+                        android:text="+"
+                        app:backgroundTint="#00000000"
+                        app:cornerRadius="10dp"
+                        app:rippleColor="#EAAA00"
+                        app:strokeColor="#fff"
+                        app:strokeWidth="2dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/remainingPoints"
+                android:id="@+id/selectDifficulty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:text="Remaining Points: 16"
-                android:textSize="20sp"
-                android:textStyle="normal|italic" />
+                android:text="Select Diffuculty"
+                android:paddingTop="25sp"
+                android:paddingBottom="10sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:background="@drawable/ic_border">
 
-                <TextView
-                    android:id="@+id/pilot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".31"
-                    android:text="Pilot:"
-                    android:textSize="20sp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/removePilot"
-                    android:onClick="decrementSkillPointsForPilot"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="-" />
-
-                <TextView
-                    android:id="@+id/pilotPoints"
-                    android:inputType="number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/addPilot"
-                    android:onClick="incrementSkillPointsForPilot"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="+" />
-
+                <Spinner
+                    android:id="@+id/difficultySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/fighter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".24"
-                    android:text="Fighter:"
-                    android:textSize="20sp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/removeFighter"
-                    android:onClick="decrementSkillPointsForFighter"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="-" />
-
-                <TextView
-                    android:id="@+id/fighterPoints"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/addFighter"
-                    android:onClick="incrementSkillPointsForFighter"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="+" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/trader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".25"
-                    android:text="Trader:"
-                    android:textSize="20sp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/removeTrader"
-                    android:onClick="decrementSkillPointsForTrader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="-" />
-
-                <TextView
-                    android:id="@+id/traderPoints"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/addTrader"
-                    android:onClick="incrementSkillPointsForTrader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="+" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="20sp">
-
-                <TextView
-                    android:id="@+id/engineer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".18"
-                    android:text="Engineer:"
-                    android:textSize="20sp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/removeEngineer"
-                    android:onClick="decrementSkillPointsForEngineer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="-" />
-
-                <TextView
-                    android:id="@+id/engineerPoints"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/addEngineer"
-                    android:onClick="incrementSkillPointsForEngineer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="+" />
-
-            </LinearLayout>
-
-            <Spinner
-                android:id="@+id/difficultySpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20sp"
-                android:paddingBottom="30sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -239,20 +319,31 @@
                 android:orientation="vertical"
                 android:paddingBottom="20sp">
 
-                <Button
+                <android.support.design.button.MaterialButton
                     android:id="@+id/back"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:onClick="loadMainMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Back" />
+                    android:text="Back"
+                    app:backgroundTint="#00000000"
+                    app:cornerRadius="10dp"
+                    app:rippleColor="#EAAA00"
+                    app:strokeColor="#fff"
+                    app:strokeWidth="2dp"/>
 
-                <Button
+                <android.support.design.button.MaterialButton
                     android:id="@+id/create"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:backgroundTint="#A69B6EBB"
                     android:onClick="createPlayer"
-                    android:text="Create" />
+                    android:text="Create"
+                    app:backgroundTint="#00000000"
+                    app:cornerRadius="10dp"
+                    app:rippleColor="#EAAA00"
+                    app:strokeColor="#fff"
+                    app:strokeWidth="2dp" />
             </LinearLayout>
 
         </LinearLayout>

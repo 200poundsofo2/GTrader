@@ -5,8 +5,10 @@ import com.example.gtraderprototype.model.Database;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.HashSet;
 
 enum TechLevel{
     PRE_AGRICULTURE(0), AGRICULTURE(1), MEDIEVAL(2), RENAISSANCE(3), EARLY_INDUSTRIAL(4), INDUSTRIAL(5), POST_INDUSTRIAL(6), HI_TECH(7);
@@ -22,7 +24,6 @@ enum TechLevel{
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 }
-
 public class Region {
     public String getRegionName() {
         return regionName;
@@ -54,6 +55,14 @@ public class Region {
 
     public void setResources(Resources resources) {
         this.resources = resources;
+    }
+
+    public void addCondition(Condition condition){
+        conditionSet.add(condition);
+    }
+
+    public HashSet<Condition> getConditionSet() {
+        return conditionSet;
     }
 
     //public Police[] police;
