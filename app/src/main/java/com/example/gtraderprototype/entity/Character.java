@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Character { //singleton design pattern: Player.getPlayer()
     protected String name;
-    private int pilotSkillPoints;
-    private int engineerSkillPoints;
-    private int fighterSkillPoints;
-    private int traderSkillPoints;
-    private List<String> Inventory;
+    protected int pilotSkillPoints;
+    protected int engineerSkillPoints;
+    protected int fighterSkillPoints;
+    protected int traderSkillPoints;
+    protected List<String> Inventory;
     protected boolean isPirate;
-    private int money;
-    private Ship spaceship;
-    private String currentLocation;
+    protected int money;
+    protected Ship spaceship;
+    protected String currentLocation;
 
     public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
         this.name = name;
@@ -43,9 +43,5 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public boolean getIsPirate(){
         return isPirate;
     }
-    public String toString(){return "Player Name: " + name + ", Pilot Skill Points: " + pilotSkillPoints +
-            ", Engineer Skill Points: " + engineerSkillPoints + ", Fighter Skill Points: " + fighterSkillPoints +
-            ", Trader Skill Points: " + traderSkillPoints +
-            ", Money: " + money + ", SpaceShip: "+ spaceship.getName();}
 }
 

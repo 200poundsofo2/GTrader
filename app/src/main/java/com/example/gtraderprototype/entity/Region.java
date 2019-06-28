@@ -71,6 +71,8 @@ public class Region {
         this.coordinates = new int[]{(int)(Math.random()*90), (int)(Math.random()*90)};
         this.techLevel = TechLevel.getRandomLevel();
         this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
+        this.sellableItems = new ArrayList<>();
+        this.buyableItems = new ArrayList<>();
         this.resources = Resources.getRandomResources();
         Item[] Items = Item.values();
         for (Item item: Items) {

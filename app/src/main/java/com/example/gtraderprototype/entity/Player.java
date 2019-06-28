@@ -24,4 +24,8 @@ public class Player extends Character {
     public void setPirate(boolean pirate){
         getPlayer().isPirate=pirate;
     }
+    public String toString(){return "Player Name: " + name + ", Pilot Skill Points: " + pilotSkillPoints +
+            ", Engineer Skill Points: " + engineerSkillPoints + ", Fighter Skill Points: " + fighterSkillPoints +
+            ", Trader Skill Points: " + traderSkillPoints +
+            ", Money: " + money + ", SpaceShip: "+ spaceship.getName();}
 }
