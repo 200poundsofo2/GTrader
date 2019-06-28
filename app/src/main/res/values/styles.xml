@@ -23,7 +23,7 @@
 
     <style name="mainTextViewStyle" parent="android:Widget.TextView">
         <item name="android:textColor">#EAAA00</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">23sp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
