@@ -57,14 +57,6 @@ public class Region {
         this.resources = resources;
     }
 
-    public void addCondition(Condition condition){
-        conditionSet.add(condition);
-    }
-
-    public HashSet<Condition> getConditionSet() {
-        return conditionSet;
-    }
-
     //public Police[] police;
     //public Trader[] traders;
     public String regionName;
