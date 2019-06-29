@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import com.example.gtraderprototype.entity.Player;
 
 import com.example.gtraderprototype.R;
 
@@ -15,6 +18,7 @@ public class SpacePortActivity extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    private Player player = Player.getPlayer();
 
 
     @Override
@@ -31,6 +35,9 @@ public class SpacePortActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.skills:
                         fragment = new SkillsFragment();
+                        ArrayAdapter adapter = new ArrayAdapter<String>(SpacePortActivity.this, R.layout.fragment_market, player.getInventory());
+                        ListView listView = (ListView) findViewById(R.id.inventoryList);
+                        listView.setAdapter(adapter);
                         break;
                     case R.id.ship:
                         //fragment = new ShipFragment();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="30dp"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:paddingRight="20dp">
 
             <TextView
@@ -26,14 +27,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Player Creation"
-                android:textSize="40sp"
-                android:paddingBottom="15sp"/>
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/nameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="25sp"
+                android:paddingTop="23sp"
                 android:paddingBottom="10sp"
                 android:text="Player Name" />
 
@@ -46,7 +46,7 @@
                 <EditText
                     android:id="@+id/playerName"
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="fill_vertical"
                     android:ems="10"
                     android:hint="Name"
@@ -60,7 +60,7 @@
                 android:id="@+id/skillPoints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="25sp"
+                android:paddingTop="23sp"
                 android:paddingBottom="10sp"
                 android:text="Skill Points" />
 
@@ -97,7 +97,7 @@
                         android:id="@+id/removePilot"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForPilot"
                         android:text="-"
@@ -120,7 +120,7 @@
                         android:id="@+id/addPilot"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForPilot"
                         android:text="+"
@@ -149,7 +149,7 @@
                         android:id="@+id/removeFighter"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForFighter"
                         android:text="-"
@@ -172,7 +172,7 @@
                         android:id="@+id/addFighter"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForFighter"
                         android:text="+"
@@ -201,7 +201,7 @@
                         android:id="@+id/removeTrader"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForTrader"
                         android:text="-"
@@ -224,7 +224,7 @@
                         android:id="@+id/addTrader"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForTrader"
                         android:text="+"
@@ -253,7 +253,7 @@
                         android:id="@+id/removeEngineer"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForEngineer"
                         android:text="-"
@@ -261,7 +261,7 @@
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
                         app:strokeColor="#fff"
-                        app:strokeWidth="2dp"/>
+                        app:strokeWidth="2dp" />
 
                     <TextView
                         android:id="@+id/engineerPoints"
@@ -276,7 +276,7 @@
                         android:id="@+id/addEngineer"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForEngineer"
                         android:text="+"
@@ -295,8 +295,8 @@
                 android:id="@+id/selectDifficulty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Diffuculty"
-                android:paddingTop="25sp"
+                android:text="Select Difficulty"
+                android:paddingTop="23sp"
                 android:paddingBottom="10sp" />
 
             <LinearLayout
