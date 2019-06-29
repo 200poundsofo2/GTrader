@@ -30,12 +30,12 @@ public class GameInstance {
         this.gameID = Database.getNewGameID();
         this.userPlayer = player;
         this.difficulty = difficulty;
-        Log.d("GTrader", "Created Local Game Instance: "+this.toString());
+        Log.d("GTrader", "Created Local Game Instance: " + this.toString());
 
     }
 
     public String toString(){
-        return "INSTANCE: "+"Game ID: "+gameID+"Difficulty: "+ difficulty+"| PLAYER INFO: "+userPlayer.toString();
+        return "INSTANCE: " + "Game ID: " + gameID + "Difficulty: " + difficulty + "| PLAYER INFO: " + userPlayer.toString();
     }
 }
 
