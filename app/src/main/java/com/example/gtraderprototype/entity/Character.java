@@ -41,6 +41,9 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public void pay(int cost){
         money-=cost;
     }
+    public void getPaid(int credit){
+        money+=credit;
+    }
     public void setPirate(boolean pirate){
         this.isPirate = pirate;
     }

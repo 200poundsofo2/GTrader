@@ -46,10 +46,32 @@ public enum Ship {
 public boolean canAddCargo(){
         return numberOfUsedCargoBays != cargoBays.length;
 }
+public boolean hasCargo(){
+        return numberOfUsedCargoBays > 0;
+}
     public void addCargo(Item cargo) {
             this.cargoBays[numberOfUsedCargoBays++] = cargo;
     }
-
+    public void sellCargo(Item soldItem){
+        for (int i = 0; i < cargoBays.length; i++) {
+            if(cargoBays[i].equals(soldItem)){
+                cargoBays[i] = null;
+            }
+        }
+        if(hasCargo()) {
+            int tempPosition = -1;
+            for (int i = 0; i < cargoBays.length; i++) {
+                if(tempPosition != -1 && cargoBays[i] != null){
+                    cargoBays[tempPosition] = cargoBays[i];
+                    cargoBays[i] = null;
+                    break;
+                }
+                if(cargoBays[i] == null){
+                    tempPosition = i;
+                }
+            }
+        }
+    }
     public Equipment[] getWeapons() {
         return this.weaponSlots;
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gtraderprototype.entity.Item;
 import com.example.gtraderprototype.entity.Marketplace;
@@ -54,24 +55,45 @@ public class MarketFragment extends Fragment {
         player.getShip().addCargo(listOfItems[randomCargo1]);
         player.getShip().addCargo(listOfItems[randomCargo2]);
         Marketplace marketplace = new Marketplace(player);
-        buyAdapter = new MarketplaceBuyAdapter(marketplace.getPlayerBuyableItems());
+        buyAdapter = new MarketplaceBuyAdapter(marketplace.getPlayerBuyableItems(), new RecyclerViewClickListener() {
+            @Override
+            public void recyclerViewListClicked(View v, int position) {
+                Ship playerShip = player.getShip();
+                Item item = buyAdapter.getItemAt(position);
+                if (player.getMoney() < item.getRegionPrice()) {
+                    if (playerShip.canAddCargo()) {
+                        playerShip.addCargo(item);
+                        player.pay(item.getRegionPrice());
+                        moneyView.setText("Money: $" + player.getMoney());
+                    } else {
+                        Toast.makeText(getActivity(),
+                                "You have no space", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(),
+                            "You do not have enough money", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         buyRecyclerView.setAdapter(buyAdapter);
-        sellAdapter = new MarketplaceSellAdapter(marketplace.getPlayerSellableItems());
+        sellAdapter = new MarketplaceSellAdapter(marketplace.getPlayerSellableItems(), new RecyclerViewClickListener() {
+            @Override
+            public void recyclerViewListClicked(View v, int position) {
+                Ship playerShip = player.getShip();
+                Item item = sellAdapter.getItemAt(position);
+                if (playerShip.hasCargo()) {
+                    player.getPaid(item.getRegionPrice());
+                    playerShip.sellCargo(item);
+                    moneyView.setText("Money: $" + player.getMoney());
+                } else {
+                    Toast.makeText(getActivity(),
+                            "You have no cargo", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         sellRecyclerView.setAdapter(sellAdapter);
         return rootView;
     }
-
-   /* public void buy_item(View view) {
-        buyAdapter.getItemAt()
-        Ship playerShip = player.getShip();
-        if(player.getMoney()< item.getRegionPrice()){
-            if(playerShip.canAddCargo()) {
-                playerShip.addCargo(item);
-                player.pay(item.getRegionPrice());
-                moneyView.setText("Money: $"+player.getMoney());
-            }
-        }
-    }*/
 
     public void sell_item(View view) {
     }

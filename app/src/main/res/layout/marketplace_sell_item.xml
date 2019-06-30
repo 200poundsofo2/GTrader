@@ -76,7 +76,6 @@
                 android:layout_width="20dp"
                 android:layout_height="45dp"
                 android:layout_weight=".25"
-                android:onClick="sell_item"
                 android:text="Sell"
                 app:cornerRadius="10dp"
                 app:rippleColor="#EAAA00"
