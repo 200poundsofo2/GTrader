@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -24,53 +23,41 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/nameText"
+            android:id="@+id/money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Money: $"
+            android:textStyle="bold" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="23sp"
             android:paddingBottom="10sp"
             android:text="Buy" />
 
-        <ScrollView
-            android:id="@+id/buy"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/buying_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/seller_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></ListView>
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="196dp"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/marketplace_buy_item" />
 
         <TextView
-            android:id="@+id/nameText"
+            android:id="@+id/sellText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="23sp"
-            android:paddingBottom="10sp"
+            android:layout_height="40dp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
             android:text="Sell" />
-        <ScrollView
-            android:id="@+id/sell"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/selling_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/inventoryList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></ListView>
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="196dp"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/marketplace_sell_item" />
 
     </LinearLayout>
 

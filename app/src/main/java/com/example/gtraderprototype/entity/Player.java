@@ -4,6 +4,7 @@ public class Player extends Character {
     public static volatile Player player = null;
     public Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints){
         super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.Gnatt);
+        player = this;
     }
     public Player (){}
     public static Player getPlayer(){

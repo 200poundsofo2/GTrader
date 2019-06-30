@@ -43,61 +43,51 @@ public enum Ship {
     public Item[] getCargo() {
         return cargoBays;
     }
-
-    public boolean addCargo(Item cargo) {
-        if( numberOfUsedCargoBays != cargoBays.length ) {
-            this.cargoBays[++numberOfUsedCargoBays] = cargo;
-            return true;
-        }
-        return false;
+public boolean canAddCargo(){
+        return numberOfUsedCargoBays != cargoBays.length;
+}
+    public void addCargo(Item cargo) {
+            this.cargoBays[numberOfUsedCargoBays++] = cargo;
     }
 
     public Equipment[] getWeapons() {
         return this.weaponSlots;
     }
-
-    public boolean addWeapon(Equipment weapon) {
-        if( numberOfUsedWeaponSlots != weaponSlots.length ) {
-            this.weaponSlots[++numberOfUsedWeaponSlots] = weapon;
-            return true;
-        }
-        return false;
+    public boolean canAddWeapon() {
+        return numberOfUsedWeaponSlots != weaponSlots.length;
+    }
+    public void addWeapon(Equipment weapon) {
+            this.weaponSlots[numberOfUsedWeaponSlots++] = weapon;
     }
 
     public Equipment[] getShields() {
         return shieldSlots;
     }
-
-    public boolean addShield(Equipment shield) {
-        if( numberOfUsedShieldSlots != shieldSlots.length) {
-            this.shieldSlots[++numberOfUsedShieldSlots] = shield;
-            return true;
-        }
-        return false;
+public boolean canAddShield(){
+        return numberOfUsedShieldSlots != shieldSlots.length;
+}
+    public void addShield(Equipment shield) {
+            this.shieldSlots[numberOfUsedShieldSlots++] = shield;
     }
 
     public Equipment[] getGadgets() {
         return gadgetSlots;
     }
-
-    public boolean addGadget(Equipment gadget) {
-        if( numberOfUsedGadgetSlots != gadgetSlots.length) {
-            this.gadgetSlots[++numberOfUsedGadgetSlots] = gadget;
-            return true;
-        }
-        return false;
+    public boolean canAddGadget(){
+        return numberOfUsedGadgetSlots != gadgetSlots.length;
+    }
+    public void addGadget(Equipment gadget) {
+            this.gadgetSlots[numberOfUsedGadgetSlots++] = gadget;
     }
 
     public NPC[] getCrewMembers() {
         return crewQuarters;
     }
-
-    public boolean addCrewMember(NPC crewMember) {
-        if( numberOfUsedCrewQuarters != crewQuarters.length ) {
-            this.crewQuarters[++numberOfUsedCrewQuarters] = crewMember;
-            return true;
-        }
-        return false;
+    public boolean canAddCrewMember(){
+        return numberOfUsedCrewQuarters != crewQuarters.length;
+    }
+    public void addCrewMember(NPC crewMember) {
+            this.crewQuarters[numberOfUsedCrewQuarters++] = crewMember;
     }
 
     public int getTravelRange() {

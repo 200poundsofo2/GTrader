@@ -34,10 +34,6 @@ public class SpacePortActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.skills:
-                        fragment = new SkillsFragment();
-                        ArrayAdapter adapter = new ArrayAdapter<String>(SpacePortActivity.this, R.layout.fragment_market, player.getInventory());
-                        ListView listView = (ListView) findViewById(R.id.inventoryList);
-                        listView.setAdapter(adapter);
                         break;
                     case R.id.ship:
                         //fragment = new ShipFragment();

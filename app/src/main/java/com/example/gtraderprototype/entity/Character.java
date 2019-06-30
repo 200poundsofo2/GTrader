@@ -8,11 +8,10 @@ public class Character { //singleton design pattern: Player.getPlayer()
     protected int engineerSkillPoints;
     protected int fighterSkillPoints;
     protected int traderSkillPoints;
-    protected List<String> Inventory;
     protected boolean isPirate;
     protected int money;
     protected Ship spaceship;
-    protected String currentLocation;
+    protected Region currentLocation;
 
     public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
         this.name = name;
@@ -36,7 +35,12 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public int getFighterSkillPoints(){return fighterSkillPoints;}
     public int getTraderSkillPoints(){return traderSkillPoints;}
     public Ship getShip(){ return spaceship ; }
-
+    public Region getRegion() { return currentLocation;}
+    public void setRegion(Region location) { currentLocation = location;}
+    public int getMoney(){ return money;}
+    public void pay(int cost){
+        money-=cost;
+    }
     public void setPirate(boolean pirate){
         this.isPirate = pirate;
     }

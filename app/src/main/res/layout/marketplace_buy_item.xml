@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
+    android:background="#000">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/buy_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:text="ItemName"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".10"
+                    android:text="Price:"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/price_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".10"
+                    android:text="Value"
+                    android:textStyle="normal" />
+                <!-- <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+            <TextView
+                android:id="@+id/numberOwned"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight=".05"
+                android:text="Owned:"
+                android:textStyle="normal"/>
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="@+id/numberOwned"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".05"
+                    android:gravity="center_horizontal"
+                    android:text="n"
+                    android:textStyle="normal" />
+                </LinearLayout>-->
+            </LinearLayout>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/buy"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight=".25"
+                android:onClick="buy_item"
+                android:text="Buy"
+                app:cornerRadius="10dp"
+                app:rippleColor="#EAAA00"
+                app:strokeColor="#fff"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
