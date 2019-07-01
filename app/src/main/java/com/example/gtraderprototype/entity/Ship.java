@@ -1,7 +1,7 @@
 package com.example.gtraderprototype.entity;
 
 public enum Ship {
-    Gnatt("Gnatt", 50, 3, 3, 3, 3, 1, 50 );
+    Gnatt("Gnatt", 50, 1, 3, 3, 3, 1, 50 );
     private String name;
     private int hullStrength;
     private int numberOfUsedCargoBays;
@@ -40,6 +40,7 @@ public enum Ship {
     public void setHullStrength(int hullStrength) {
         this.hullStrength = hullStrength;
     }
+    public int getNumberOfUsedCargoBays(){return numberOfUsedCargoBays;}
     public Item[] getCargo() {
         return cargoBays;
     }
@@ -50,25 +51,18 @@ public boolean hasCargo(){
         return numberOfUsedCargoBays > 0;
 }
     public void addCargo(Item cargo) {
-            this.cargoBays[numberOfUsedCargoBays++] = cargo;
-    }
-    public void sellCargo(Item soldItem){
         for (int i = 0; i < cargoBays.length; i++) {
-            if(cargoBays[i].equals(soldItem)){
-                cargoBays[i] = null;
+            if (cargoBays[i] == null) {
+                cargoBays[i] = cargo;
+                numberOfUsedCargoBays++;
             }
         }
-        if(hasCargo()) {
-            int tempPosition = -1;
-            for (int i = 0; i < cargoBays.length; i++) {
-                if(tempPosition != -1 && cargoBays[i] != null){
-                    cargoBays[tempPosition] = cargoBays[i];
-                    cargoBays[i] = null;
-                    break;
-                }
-                if(cargoBays[i] == null){
-                    tempPosition = i;
-                }
+    }
+    public void dropCargo(Item soldItem){
+        for (int i = 0; i < cargoBays.length; i++) {
+            if(soldItem.equals(cargoBays[i])){
+                cargoBays[i] = null;
+                numberOfUsedCargoBays--;
             }
         }
     }

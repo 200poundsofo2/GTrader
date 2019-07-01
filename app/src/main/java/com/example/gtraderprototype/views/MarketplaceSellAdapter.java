@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MarketplaceSellAdapter extends RecyclerView.Adapter<MarketplaceSellAdapter.MarketplaceViewHolder> {
-    private List<Item> itemList;
+    public List<Item> itemList;
     private RecyclerViewClickListener itemListener;
     public MarketplaceSellAdapter (ArrayList<Item> itemList,RecyclerViewClickListener itemListener){
         this.itemList = itemList;
