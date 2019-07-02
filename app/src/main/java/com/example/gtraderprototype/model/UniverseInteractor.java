@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.model;
 
+import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Universe;
 
 public class UniverseInteractor extends Interactor {
@@ -18,6 +19,7 @@ public class UniverseInteractor extends Interactor {
     public void setUniverse(Universe universe){
         this.universe = universe;
         addSystems(10);
+        Universe.universe = universe;
     }
 
     public void addSystems(int numSystems){
