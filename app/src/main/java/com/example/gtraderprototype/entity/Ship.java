@@ -1,7 +1,7 @@
 package com.example.gtraderprototype.entity;
 
 public enum Ship {
-    Gnatt("Gnatt", 50, 1, 3, 3, 3, 1, 50 );
+    Gnatt("Gnatt", 50, 1, 3, 3, 3, 1, 50);
     private String name;
     private int hullStrength;
     private int numberOfUsedCargoBays;
@@ -15,7 +15,9 @@ public enum Ship {
     private int numberOfUsedCrewQuarters;
     private NPC[] crewQuarters;
     private int travelRange;
-    Ship(String name, int hullStrength, int numberOfAvailableCargoBays, int numberOfAvailableWeaponSlots, int numberOfAvailableShieldSlots, int numberOfAvailableGadgetSlots, int numberOfAvailableCrewQuarters, int travelRange){
+    private int fuel;
+
+    Ship(String name, int hullStrength, int numberOfAvailableCargoBays, int numberOfAvailableWeaponSlots, int numberOfAvailableShieldSlots, int numberOfAvailableGadgetSlots, int numberOfAvailableCrewQuarters, int travelRange) {
         this.name = name;
         this.hullStrength = hullStrength;
         this.cargoBays = new Item[numberOfAvailableCargoBays];
@@ -24,7 +26,9 @@ public enum Ship {
         this.gadgetSlots = new Equipment[numberOfAvailableGadgetSlots];
         this.crewQuarters = new NPC[numberOfAvailableCrewQuarters];
         this.travelRange = travelRange;
+        this.fuel = travelRange;
     }
+
     public String getName() {
         return name;
     }
@@ -40,16 +44,23 @@ public enum Ship {
     public void setHullStrength(int hullStrength) {
         this.hullStrength = hullStrength;
     }
-    public int getNumberOfUsedCargoBays(){return numberOfUsedCargoBays;}
+
+    public int getNumberOfUsedCargoBays() {
+        return numberOfUsedCargoBays;
+    }
+
     public Item[] getCargo() {
         return cargoBays;
     }
-public boolean canAddCargo(){
+
+    public boolean canAddCargo() {
         return numberOfUsedCargoBays != cargoBays.length;
-}
-public boolean hasCargo(){
+    }
+
+    public boolean hasCargo() {
         return numberOfUsedCargoBays > 0;
-}
+    }
+
     public void addCargo(Item cargo) {
         for (int i = 0; i < cargoBays.length; i++) {
             if (cargoBays[i] == null) {
@@ -58,52 +69,62 @@ public boolean hasCargo(){
             }
         }
     }
-    public void dropCargo(Item soldItem){
+
+    public void dropCargo(Item soldItem) {
         for (int i = 0; i < cargoBays.length; i++) {
-            if(soldItem.equals(cargoBays[i])){
+            if (soldItem.equals(cargoBays[i])) {
                 cargoBays[i] = null;
                 numberOfUsedCargoBays--;
             }
         }
     }
+
     public Equipment[] getWeapons() {
         return this.weaponSlots;
     }
+
     public boolean canAddWeapon() {
         return numberOfUsedWeaponSlots != weaponSlots.length;
     }
+
     public void addWeapon(Equipment weapon) {
-            this.weaponSlots[numberOfUsedWeaponSlots++] = weapon;
+        this.weaponSlots[numberOfUsedWeaponSlots++] = weapon;
     }
 
     public Equipment[] getShields() {
         return shieldSlots;
     }
-public boolean canAddShield(){
+
+    public boolean canAddShield() {
         return numberOfUsedShieldSlots != shieldSlots.length;
-}
+    }
+
     public void addShield(Equipment shield) {
-            this.shieldSlots[numberOfUsedShieldSlots++] = shield;
+        this.shieldSlots[numberOfUsedShieldSlots++] = shield;
     }
 
     public Equipment[] getGadgets() {
         return gadgetSlots;
     }
-    public boolean canAddGadget(){
+
+    public boolean canAddGadget() {
         return numberOfUsedGadgetSlots != gadgetSlots.length;
     }
+
     public void addGadget(Equipment gadget) {
-            this.gadgetSlots[numberOfUsedGadgetSlots++] = gadget;
+        this.gadgetSlots[numberOfUsedGadgetSlots++] = gadget;
     }
 
     public NPC[] getCrewMembers() {
         return crewQuarters;
     }
-    public boolean canAddCrewMember(){
+
+    public boolean canAddCrewMember() {
         return numberOfUsedCrewQuarters != crewQuarters.length;
     }
+
     public void addCrewMember(NPC crewMember) {
-            this.crewQuarters[numberOfUsedCrewQuarters++] = crewMember;
+        this.crewQuarters[numberOfUsedCrewQuarters++] = crewMember;
     }
 
     public int getTravelRange() {
@@ -112,6 +133,14 @@ public boolean canAddShield(){
 
     public void setTravelRange(int travelRange) {
         this.travelRange = travelRange;
+    }
+
+    public int getFuel() {
+        return this.fuel;
+    }
+
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
     }
 
 }

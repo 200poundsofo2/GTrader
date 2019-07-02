@@ -19,8 +19,31 @@
             android:background="#3F51B5"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="visible"
-            app:title="Space Port" />
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/nameofRegion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spaceport"
+                android:layout_gravity="left"
+                android:textColor="#fff" />
+            <TextView
+                android:id="@+id/nameofShip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ship"
+                android:layout_gravity="center"
+                android:textColor="#fff"/>
+            <TextView
+                android:id="@+id/fuelAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fuel: 0/0"
+                android:layout_gravity="right"
+                android:paddingRight="10dp"
+                android:textColor="#fff"/>
+        </android.support.v7.widget.Toolbar>
 
         <fragment
             android:id="@+id/main"

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.example.gtraderprototype.entity.Player;
 
 import com.example.gtraderprototype.R;
@@ -19,6 +20,9 @@ public class SpacePortActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private Player player = Player.getPlayer();
+    private TextView region;
+    private TextView shipName;
+    private TextView fuelAmount;
 
 
     @Override
@@ -28,12 +32,21 @@ public class SpacePortActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         fragmentManager = getSupportFragmentManager();
 
+        region = findViewById(R.id.nameofRegion);
+        shipName = findViewById(R.id.nameofShip);
+        fuelAmount = findViewById(R.id.fuelAmount);
+
+        region.setText(player.getRegion().getRegionName());
+        shipName.setText(player.getShip().getName());
+        fuelAmount.setText("Fuel: " + player.getShip().getFuel() + "/" + player.getShip().getTravelRange());
+
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.skills:
+                        fragment = new SkillsFragment();
                         break;
                     case R.id.ship:
                         //fragment = new ShipFragment();
