@@ -1,7 +1,7 @@
 package com.example.gtraderprototype.entity;
 
 public enum Ship {
-    Gnatt("Gnatt", 50, 1, 3, 3, 3, 1, 50 );
+    Gnatt("Gnatt", 50, 3, 3, 3, 3, 1, 50 );
     private String name;
     private int hullStrength;
     private int numberOfUsedCargoBays;
@@ -55,6 +55,7 @@ public boolean hasCargo(){
             if (cargoBays[i] == null) {
                 cargoBays[i] = cargo;
                 numberOfUsedCargoBays++;
+                break;
             }
         }
     }
@@ -63,6 +64,7 @@ public boolean hasCargo(){
             if(soldItem.equals(cargoBays[i])){
                 cargoBays[i] = null;
                 numberOfUsedCargoBays--;
+                break;
             }
         }
     }

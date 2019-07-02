@@ -51,6 +51,7 @@ public class MarketFragment extends Fragment {
         int randomCargo2 = rand.nextInt(10);
         Item[] listOfItems = Item.values();
         player.getShip().addCargo(listOfItems[0]);
+        player.getShip().addCargo(listOfItems[randomCargo1]);
         Marketplace marketplace = new Marketplace(player);
         buyable = marketplace.getPlayerBuyableItems();
         buyAdapter = new MarketplaceBuyAdapter(buyable, new RecyclerViewClickListener() {
