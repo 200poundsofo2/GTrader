@@ -1,15 +1,13 @@
 package com.example.gtraderprototype.views;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.example.gtraderprototype.entity.Player;
 
@@ -52,7 +50,7 @@ public class SpacePortActivity extends AppCompatActivity {
                         //fragment = new ShipFragment();
                         break;
                     case R.id.travel:
-                        //TODO: travel map
+                        fragment = new fragment_map();
                         break;
                     case R.id.market:
                         fragment = new MarketFragment();

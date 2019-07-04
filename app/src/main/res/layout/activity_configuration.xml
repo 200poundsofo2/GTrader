@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -93,7 +93,7 @@
                         android:text="Pilot:"
                         android:textStyle="normal" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/removePilot"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -116,7 +116,7 @@
                         android:text="0"
                         android:textSize="15sp" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/addPilot"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -145,7 +145,7 @@
                         android:text="Fighter:"
                         android:textStyle="normal" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/removeFighter"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -168,7 +168,7 @@
                         android:text="0"
                         android:textSize="15sp" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/addFighter"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -197,7 +197,7 @@
                         android:text="Trader:"
                         android:textStyle="normal" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/removeTrader"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -220,7 +220,7 @@
                         android:text="0"
                         android:textSize="15sp" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/addTrader"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -249,7 +249,7 @@
                         android:text="Engineer:"
                         android:textStyle="normal" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/removeEngineer"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -272,7 +272,7 @@
                         android:text="0"
                         android:textSize="15sp" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/addEngineer"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
@@ -319,7 +319,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="20sp">
 
-                <android.support.design.button.MaterialButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/back"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
@@ -332,7 +332,7 @@
                     app:strokeColor="#fff"
                     app:strokeWidth="2dp"/>
 
-                <android.support.design.button.MaterialButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/create"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
@@ -350,4 +350,4 @@
 
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

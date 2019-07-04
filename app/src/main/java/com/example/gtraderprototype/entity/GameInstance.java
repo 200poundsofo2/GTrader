@@ -3,7 +3,6 @@ package com.example.gtraderprototype.entity;
 import android.util.Log;
 
 import com.example.gtraderprototype.model.Database;
-import com.example.gtraderprototype.model.UniverseInteractor;
 
 public class GameInstance {
     //Game Instance Reference

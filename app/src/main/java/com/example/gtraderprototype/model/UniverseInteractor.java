@@ -1,6 +1,5 @@
 package com.example.gtraderprototype.model;
 
-import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Universe;
 
 public class UniverseInteractor extends Interactor {

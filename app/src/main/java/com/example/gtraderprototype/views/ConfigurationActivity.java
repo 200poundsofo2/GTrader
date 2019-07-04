@@ -2,9 +2,8 @@ package com.example.gtraderprototype.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;

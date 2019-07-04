@@ -2,4 +2,7 @@
     <string name="app_name">GTraderPrototype</string>
     <string name="title_activity_configuration">ConfigurationActivity</string>
     <string name="points">%d</string>
+    <string name="title_activity_map_fragment">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_fragment_map">Map</string>
 </resources>
