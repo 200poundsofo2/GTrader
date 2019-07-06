@@ -33,11 +33,11 @@ public class Region {
         this.regionName = regionName;
     }
 
-    public int[] getCoordinates() {
+    public double[] getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(int[] coordinates) {
+    public void setCoordinates(double[] coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -60,15 +60,37 @@ public class Region {
     //public Police[] police;
     //public Trader[] traders;
     public String regionName;
-    public int[] coordinates;
+    public double[] coordinates;
     public TechLevel techLevel;
     public Resources resources;
     public RegionBasedEvent regionBasedEvent;
-    public ArrayList<Item> sellableItems;
-    public ArrayList<Item> buyableItems;
+    public ArrayList<Item> sellableItems = new ArrayList<>();
+    public ArrayList<Item> buyableItems = new ArrayList<>();
     public Region(){
         this.regionName = Database.getRandomName();
-        this.coordinates = new int[]{(int)(Math.random()*90), (int)(Math.random()*90)};
+        this.coordinates = new double[]{(Math.random()*90), (Math.random()*90)};
+        this.techLevel = TechLevel.getRandomLevel();
+        this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
+        this.resources = Resources.getRandomResources();
+        Item[] Items = Item.values();
+        for (Item item: Items) {
+            int numericTechLevel = techLevel.getTechLevel();
+            boolean regionCanSell = numericTechLevel >= item.getMinimumTechLevelToProduce();
+            boolean regionCanBuy = numericTechLevel >= item.getMinimumTechLevelToUse();
+            if ( regionCanSell ){
+                Item sellableItem = item;
+                sellableItem.setRegionPrice(numericTechLevel, resources, regionBasedEvent);
+                sellableItems.add(sellableItem);
+            }
+            if ( regionCanBuy ){
+                buyableItems.add(item);
+            }
+        }
+    }
+
+    public Region(String name, double lat, double lng){
+        this.regionName = name;
+        this.coordinates = new double[]{lat,lng};
         this.techLevel = TechLevel.getRandomLevel();
         this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
         this.sellableItems = new ArrayList<>();

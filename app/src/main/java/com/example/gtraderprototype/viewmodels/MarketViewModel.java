@@ -1,10 +1,11 @@
 package com.example.gtraderprototype.viewmodels;
 
 import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 
 import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
@@ -13,20 +14,17 @@ import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
 
-public class ConfigurationViewModel extends AndroidViewModel {
+public class MarketViewModel extends AndroidViewModel {
 
     private GameInstanceInteractor gameInteractor;
     private UniverseInteractor universeInteractor;
     private PlayerInteractor playerInteractor;
 
-    public ConfigurationViewModel(@NonNull Application application) {
+    public MarketViewModel(@NonNull Application application) {
         super(application);
         gameInteractor = Model.getInstance().getGameInstanceInteractor();
         universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }
-    public void newGame(Difficulty difficulty, Context context){
-        gameInteractor.newGame(difficulty, context);
-        playerInteractor.getPlayer().setRegion(universeInteractor.getRandomSystem().getRandomRegion());
-    }
+
 }

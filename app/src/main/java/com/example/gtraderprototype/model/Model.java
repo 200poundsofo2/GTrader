@@ -6,6 +6,7 @@ import java.util.Map;
 public class Model {
     private Database gtDB;
 
+
     private Map<String, Object> interactorMap;
 
     private static Model instance = new Model();
@@ -16,10 +17,12 @@ public class Model {
         gtDB = new Database();
         interactorMap = new HashMap<>();
         registerInteractors();
+        gtDB.getGlobalUniverse();
     }
     private void registerInteractors(){
         interactorMap.put("GameInstance", new GameInstanceInteractor(gtDB));
         interactorMap.put("Universe", new UniverseInteractor(gtDB));
+        interactorMap.put("Player", new PlayerInteractor(gtDB));
     }
 
     public GameInstanceInteractor getGameInstanceInteractor(){
@@ -27,5 +30,8 @@ public class Model {
     }
     public UniverseInteractor getUniverseInteractor(){
         return (UniverseInteractor) interactorMap.get("Universe");
+    }
+    public PlayerInteractor getPlayerInteractor(){
+        return (PlayerInteractor) interactorMap.get("Player");
     }
 }

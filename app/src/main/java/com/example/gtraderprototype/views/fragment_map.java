@@ -1,13 +1,22 @@
 package com.example.gtraderprototype.views;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.gtraderprototype.R;
+
+import com.example.gtraderprototype.entity.Region;
+import com.example.gtraderprototype.entity.Universe;
+import com.example.gtraderprototype.entity.System;
+
+import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -15,17 +24,34 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
-public class fragment_map extends Fragment implements OnMapReadyCallback {
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     MapView mapView;
     View mView;
+    ArrayList<LatLng> markersList = new ArrayList<>();
+    private MapViewModel viewmodel;
+    HashMap<String, System> systems = new HashMap<>();
+    HashMap<String, Region> regions = new HashMap<>();
+    Marker selectedMarker;
 
+    private TextView region;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewmodel = ViewModelProviders.of(this).get(MapViewModel.class);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +78,16 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    public void setMarker(String name, double lat, double lng){
+
+        Marker newMarker = mMap.addMarker(new MarkerOptions()
+        .position(new LatLng(lat,lng))
+                .title(name)
+        );
+        newMarker.setTag(0);
+
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
@@ -67,5 +103,42 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(centerCampus));
         mMap.setMaxZoomPreference(20);
         mMap.setMinZoomPreference(15);
+        mMap.setOnMarkerClickListener(this);
+        Universe uni = viewmodel.getUniverse();
+        for(System sys: uni.systems){
+            systems.put(sys.getSystemName(), sys);
+            //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1]);
+            for(Region reg: sys.getRegions()){
+                setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1]);
+                markersList.add(new LatLng(reg.coordinates[0], reg.coordinates[1]));
+            }
+        }
+        addHeatMap();
     }
+
+    public void addHeatMap(){
+        HeatmapTileProvider mProvider = new HeatmapTileProvider.Builder()
+                .data(markersList)
+                .radius(35)
+                .build();
+        // Add a tile overlay to the map, using the heat map tile provider.
+        TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+
+    }
+    public boolean onMarkerClick(Marker marker) {
+        // TODO Auto-generated method stub
+            if(marker.equals(selectedMarker)&&!(viewmodel.getPlayerLocationName().equals(marker.getTitle()))){
+                viewmodel.travelToRegion(selectedMarker.getTitle());
+
+            }
+            selectedMarker = marker;
+            Log.w("Click", marker.getTitle());
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 17.0f));
+            marker.showInfoWindow();
+            return true;
+
+    }
+
+
+
 }
