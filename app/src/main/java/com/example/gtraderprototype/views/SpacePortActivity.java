@@ -25,7 +25,6 @@ public class SpacePortActivity extends AppCompatActivity {
     private TextView fuelAmount;
     private MapViewModel mapviewmodel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +34,9 @@ public class SpacePortActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         fragmentManager = getSupportFragmentManager();
 
-        region = findViewById(R.id.nameofRegion);
-        shipName = findViewById(R.id.nameofShip);
-        fuelAmount = findViewById(R.id.fuelAmount);
+        TextView region = findViewById(R.id.nameofRegion);
+        TextView shipName = findViewById(R.id.nameofShip);
+        TextView fuelAmount = findViewById(R.id.fuelAmount);
 
         //Set text
         region.setText(mapviewmodel.getPlayerLocationName());
@@ -53,7 +52,7 @@ public class SpacePortActivity extends AppCompatActivity {
                         fragment = new SkillsFragment();
                         break;
                     case R.id.ship:
-                        //fragment = new ShipFragment();
+                        fragment = new ShipFragment();
                         break;
                     case R.id.travel:
                         fragment = new fragment_map();

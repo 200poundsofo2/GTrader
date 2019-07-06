@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3F51B5"
+            android:background="#003057"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             android:visibility="visible">
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:background="#3F51B5"
+        android:background="#003057"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#FFFFFF"
         app:labelVisibilityMode="labeled"
