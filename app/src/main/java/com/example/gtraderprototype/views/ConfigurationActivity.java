@@ -2,9 +2,10 @@ package com.example.gtraderprototype.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
+import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
 import java.util.Arrays;
@@ -185,9 +187,14 @@ public class ConfigurationActivity extends AppCompatActivity {
             int pointsFighter = Integer.parseInt(fighterPoints.getText().toString());
             int pointsTrader = Integer.parseInt(traderPoints.getText().toString());
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
-            Player player =
-                    new Player(name, pointsPilot, pointsEngineer, pointsFighter, pointsTrader);
-            viewmodel.newGame(player, difficulty, this);
+
+            Log.d("GTrader", "Setting up player");
+            Model.getInstance().getPlayerInteractor().getPlayer().setName((name.contains("[a-zA-Z]+")) ? name : "Default");
+            Model.getInstance().getPlayerInteractor().getPlayer().setEngineerSkillPoints(pointsEngineer);
+            Model.getInstance().getPlayerInteractor().getPlayer().setPilotSkillPoints(pointsPilot);
+            Model.getInstance().getPlayerInteractor().getPlayer().setFighterSkillPoints(pointsFighter);
+            Model.getInstance().getPlayerInteractor().getPlayer().setTraderSkillPoints(pointsTrader);
+            viewmodel.newGame(difficulty, this);
             loadSpacePortPage();
         } else {
             Toast.makeText(ConfigurationActivity.this,

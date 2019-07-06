@@ -43,8 +43,8 @@ public class GameInstanceInteractor extends Interactor{
         }
         return gameIDs;
     }
-    public GameInstance newGame(Player player, Difficulty difficulty, Context context){
-        GameInstance newinst = new GameInstance(player, difficulty);
+    public GameInstance newGame(Difficulty difficulty, Context context){
+        GameInstance newinst = new GameInstance(difficulty);
         try{
             FileOutputStream outputStream;
             String fileContents = newinst.getGameID();
@@ -55,7 +55,6 @@ public class GameInstanceInteractor extends Interactor{
             e.printStackTrace();
         }
         Database.saveState(newinst);
-
         return newinst;
     }
 

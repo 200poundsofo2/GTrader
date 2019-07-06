@@ -1,5 +1,7 @@
 package com.example.gtraderprototype.entity;
 
+import android.util.Log;
+
 import java.util.List;
 
 public class Character { //singleton design pattern: Player.getPlayer()
@@ -12,6 +14,7 @@ public class Character { //singleton design pattern: Player.getPlayer()
     protected int money;
     protected Ship spaceship;
     protected Region currentLocation;
+
 
     public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
         this.name = name;
@@ -34,9 +37,16 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public int getEngineerSkillPoints(){return  engineerSkillPoints;}
     public int getFighterSkillPoints(){return fighterSkillPoints;}
     public int getTraderSkillPoints(){return traderSkillPoints;}
+    public void setPilotSkillPoints(int points){this.pilotSkillPoints = points;}
+    public void setEngineerSkillPoints(int points){this.engineerSkillPoints = points;}
+    public void setFighterSkillPoints(int points){this.fighterSkillPoints = points;}
+    public void setTraderSkillPoints(int points){this.traderSkillPoints = points;}
     public Ship getShip(){ return spaceship ; }
     public Region getRegion() { return currentLocation;}
-    public void setRegion(Region location) { currentLocation = location;}
+    public void setRegion(Region location) {
+        currentLocation = location;
+        Log.d("GTrader", "Updated location for "+name+" to "+currentLocation.regionName);
+    }
     public int getMoney(){ return money;}
     public void pay(int cost){
         money-=cost;

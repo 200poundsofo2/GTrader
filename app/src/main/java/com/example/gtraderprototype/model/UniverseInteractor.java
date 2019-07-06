@@ -1,13 +1,12 @@
 package com.example.gtraderprototype.model;
 
-import com.example.gtraderprototype.entity.Player;
+import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Universe;
+import com.example.gtraderprototype.entity.System;
 
 public class UniverseInteractor extends Interactor {
     public UniverseInteractor(Database db){
         super(db);
-        db.getNames();
-
     }
 
     private Universe universe;
@@ -16,9 +15,16 @@ public class UniverseInteractor extends Interactor {
     public Universe getUniverse(){
         return universe;
     }
+
+
+    public void addSystem(System system){
+
+        universe.addSystem(system);
+
+    }
     public void setUniverse(Universe universe){
         this.universe = universe;
-        addSystems(10);
+        //addSystems(10);
         Universe.universe = universe;
     }
 
@@ -26,6 +32,20 @@ public class UniverseInteractor extends Interactor {
         for(int s =0; s<numSystems; s++){
             universe.addRandomSystem();
         }
+    }
+
+    public System getRandomSystem(){
+        return universe.systems.get((int)(Math.random()*universe.systems.size()));
+    }
+    public Region getRegionByName(String regionname){
+        for(System system: universe.systems){
+            for(Region region: system.getRegions()){
+                if(region.regionName.equals(regionname)){
+                    return region;
+                }
+            }
+        }
+        return null;
     }
 
 

@@ -1,7 +1,5 @@
 package com.example.gtraderprototype.entity;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Universe {
@@ -12,6 +10,9 @@ public class Universe {
 
     public Universe(){
 
+    }
+    public void addSystem(System system){
+        systems.add(system);
     }
     public void addRandomSystem(){
         systems.add(new System(size));

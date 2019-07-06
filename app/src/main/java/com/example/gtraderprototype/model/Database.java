@@ -1,16 +1,17 @@
 package com.example.gtraderprototype.model;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+
 import android.util.Log;
 
 import com.example.gtraderprototype.entity.GameInstance;
+import com.example.gtraderprototype.entity.Region;
+import com.example.gtraderprototype.entity.System;
 import com.example.gtraderprototype.entity.Universe;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -25,25 +26,7 @@ public class Database {
     public Database(){
 
     }
-    public void getNames(){
 
-        DatabaseReference ref = database.getReference("INDEX/NAMES/LOCATIONS");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    names.add(postSnapshot.getValue().toString());
-                }
-                getGlobalUniverse();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
     public static String getNewGameID(){
 
                 String tempID;
@@ -81,22 +64,41 @@ public class Database {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
+                //System.out.println("The read failed: " + databaseError.getCode());
             }
         });
     }
-
     public void getGlobalUniverse(){
-        DatabaseReference ref = database.getReference("Universe");
+        DatabaseReference ref = database.getReference("INDEX/SYSTEMS");
+
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue()==null){
-                    Log.d("GTrader", "Universe not created");
+                if(dataSnapshot.getValue()!=null){
+                    Log.d("GTraderFirebaseWhole", dataSnapshot.getValue().toString());
 
+                    //Make new Universe
                     Model.getInstance().getUniverseInteractor().setUniverse(new Universe());
+                    for(DataSnapshot systemSnapshot : dataSnapshot.getChildren()){
+                        Log.d("GTraderFirebaseSys", systemSnapshot.toString());
+                        System subSystem = new System(systemSnapshot.getKey(), systemSnapshot.child("/location/lat").getValue(Double.class), systemSnapshot.child("/location/lng").getValue(Double.class));
+                        for(DataSnapshot regionSnapshot : systemSnapshot.child("REGIONS").getChildren()){
+                            Log.d("GTraderFirebaseRegion", regionSnapshot.toString());
+                            Region newRegion = new Region(regionSnapshot.getKey(), regionSnapshot.child("/location/lat").getValue(Double.class), regionSnapshot.child("/location/lng").getValue(Double.class));
+
+                            //Add region to system
+                            subSystem.addRegion(newRegion);
+                        }
+
+                        //Add system to Universe
+                        Model.getInstance().getUniverseInteractor().addSystem(subSystem);
+
+                    }
+
+                    //Log Universe
                     Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse().toString());
                 }else{
+
                     /*-- TODO
                     Universe universe = dataSnapshot.getValue(Universe.class);
                     Model.getInstance().getUniverseInteractor().setUniverse(universe);
@@ -108,7 +110,7 @@ public class Database {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
+               // System.out.println("The read failed: " + databaseError.getCode());
             }
         });
 

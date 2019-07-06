@@ -1,6 +1,5 @@
 package com.example.gtraderprototype.entity;
 
-import android.provider.ContactsContract;
 
 import com.example.gtraderprototype.model.Database;
 
@@ -11,7 +10,7 @@ public class System {
     private ArrayList<Region> regions = new ArrayList<>();
     private int systemSize;
     private String systemName;
-    public int[] coordinates;
+    public double[] coordinates;
 
     public System(){
         this.systemSize = (int) Math.floor(Math.random()*15)+ 5;
@@ -20,10 +19,20 @@ public class System {
     public System(int universeSize){
         this.systemName = Database.getRandomName();
         this.systemSize = (int) Math.floor(Math.random()*15)+ 5;
-        this.coordinates = new int[]{(int)(Math.random()*universeSize), (int)(Math.random()*universeSize)};
-        for(int r = 0; r<universeSize/40||(Math.random()*1<0.3); r++){
-            regions.add(new Region());
-        }
+        this.coordinates = new double[]{(Math.random()*universeSize), (Math.random()*universeSize)};
+    }
+    public System(String name, double lat, double lng){
+        this.systemName = name;
+        this.systemSize = (int) Math.floor(Math.random()*15)+ 5;
+        this.coordinates = new double[]{lat, lng};
+    }
+
+    public void addRegion(Region region){
+        regions.add(region);
+    }
+
+    public Region getRandomRegion(){
+        return regions.get((int)(Math.random()*regions.size()));
     }
     public ArrayList<Region> getRegions(){
         return regions;
@@ -34,9 +43,11 @@ public class System {
     public int getSystemSize(){
         return systemSize;
     }
-    public int[] getcoordinates(){
+    public double[] getcoordinates(){
         return coordinates;
     }
+
+
     public String toString(){
         String str = " Sys "+this.systemName+'('+this.coordinates[0]+','+this.coordinates[1]+") with Regions: ";
         StringBuilder strb = new StringBuilder();

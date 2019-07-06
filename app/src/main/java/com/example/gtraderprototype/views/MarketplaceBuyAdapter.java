@@ -1,6 +1,6 @@
 package com.example.gtraderprototype.views;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Item;
-import com.example.gtraderprototype.entity.Player;
-import com.example.gtraderprototype.entity.Ship;
 
 import java.util.ArrayList;
 import java.util.List;
