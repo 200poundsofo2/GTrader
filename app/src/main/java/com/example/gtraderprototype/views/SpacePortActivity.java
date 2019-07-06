@@ -8,8 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.example.gtraderprototype.entity.Player;
 
@@ -20,10 +18,6 @@ public class SpacePortActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private Player player = Player.getPlayer();
-    private TextView region;
-    private TextView shipName;
-    private TextView fuelAmount;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +26,9 @@ public class SpacePortActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         fragmentManager = getSupportFragmentManager();
 
-        region = findViewById(R.id.nameofRegion);
-        shipName = findViewById(R.id.nameofShip);
-        fuelAmount = findViewById(R.id.fuelAmount);
+        TextView region = findViewById(R.id.nameofRegion);
+        TextView shipName = findViewById(R.id.nameofShip);
+        TextView fuelAmount = findViewById(R.id.fuelAmount);
 
         region.setText(player.getRegion().getRegionName());
         shipName.setText(player.getShip().getName());
@@ -49,10 +43,10 @@ public class SpacePortActivity extends AppCompatActivity {
                         fragment = new SkillsFragment();
                         break;
                     case R.id.ship:
-                        //fragment = new ShipFragment();
+                        fragment = new ShipFragment();
                         break;
                     case R.id.travel:
-                        //TODO: travel map
+                        fragment = new TravelFragment();
                         break;
                     case R.id.market:
                         fragment = new MarketFragment();
