@@ -36,6 +36,8 @@ public class MarketFragment extends Fragment {
     private ArrayList<Item> buyable;
     private ArrayList<Item> sellable;
     private MapViewModel mapviewmodel;
+    private Player player;
+    private Ship playerShip;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,25 +63,29 @@ public class MarketFragment extends Fragment {
         int randomCargo1 = rand.nextInt(10);
         int randomCargo2 = rand.nextInt(10);
         Item[] listOfItems = Item.values();
-        Model.getInstance().getPlayerInteractor().getPlayer().getShip().addCargo(listOfItems[0]);
-        Marketplace marketplace = new Marketplace();
+        player = Model.getInstance().getPlayerInteractor().getPlayer();
+        playerShip =  Model.getInstance().getPlayerInteractor().getPlayer().getShip();
+        playerShip.addCargo(listOfItems[0]);
+        playerShip.addCargo(listOfItems[randomCargo1]);
+        Marketplace marketplace = new Marketplace(player);
         buyable = marketplace.getPlayerBuyableItems();
         buyAdapter = new MarketplaceBuyAdapter(buyable, new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                Ship playerShip =  Model.getInstance().getPlayerInteractor().getPlayer().getShip();
+                player = Model.getInstance().getPlayerInteractor().getPlayer();
+                playerShip =  Model.getInstance().getPlayerInteractor().getPlayer().getShip();
                 Item item = buyAdapter.getItemAt(position);
-                if ( Model.getInstance().getPlayerInteractor().getPlayer().getMoney() >= item.getRegionPrice()) {
+                if ( player.getMoney() >= item.getRegionPrice()) {
                     if (playerShip.canAddCargo()) {
-                        Log.d("GTrader", "Player Contents: Money:" +  Model.getInstance().getPlayerInteractor().getPlayer().getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                        Log.d("GTrader", "Player Contents: Money:" +  player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                         playerShip.addCargo(item);
-                        Model.getInstance().getPlayerInteractor().getPlayer().pay(item.getRegionPrice());
-                        moneyView.setText("Money: $" +  Model.getInstance().getPlayerInteractor().getPlayer().getMoney());
+                        player.pay(item.getRegionPrice());
+                        moneyView.setText("Money: $" +  player.getMoney());
                         Marketplace marketplace = new Marketplace();
                         sellable.clear();
                         sellable.addAll(marketplace.getPlayerSellableItems());
                         sellAdapter.notifyDataSetChanged();
-                        Log.d("GTrader", "Player Contents: Money:" +  Model.getInstance().getPlayerInteractor().getPlayer().getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                        Log.d("GTrader", "Player Contents: Money:" +  player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                     } else {
                         Toast.makeText(getActivity(),
                                 "You have no space", Toast.LENGTH_LONG).show();
@@ -95,13 +101,14 @@ public class MarketFragment extends Fragment {
         sellAdapter = new MarketplaceSellAdapter(sellable, new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                Ship playerShip =  Model.getInstance().getPlayerInteractor().getPlayer().getShip();
+                player = Model.getInstance().getPlayerInteractor().getPlayer();
+                playerShip =  Model.getInstance().getPlayerInteractor().getPlayer().getShip();
                 Item item = sellAdapter.getItemAt(position);
                 if (playerShip.hasCargo()) {
-                    Log.d("GTrader", "Player Contents: Money:" +  Model.getInstance().getPlayerInteractor().getPlayer().getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
-                    Model.getInstance().getPlayerInteractor().getPlayer().getPaid(item.getRegionPrice());
+                    Log.d("GTrader", "Player Contents: Money:" +  player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                    player.getPaid(item.getRegionPrice());
                     playerShip.dropCargo(item);
-                    moneyView.setText("Money: $" +  Model.getInstance().getPlayerInteractor().getPlayer().getMoney());
+                    moneyView.setText("Money: $" +  player.getMoney());
                     Marketplace marketplace = new Marketplace();
                     sellable.clear();
                     sellable.addAll(marketplace.getPlayerSellableItems());
