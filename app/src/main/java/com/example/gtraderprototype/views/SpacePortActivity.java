@@ -1,20 +1,19 @@
 package com.example.gtraderprototype.views;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-
-import com.example.gtraderprototype.viewmodels.MapViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.viewmodels.MapViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SpacePortActivity extends AppCompatActivity {
 
@@ -34,9 +33,9 @@ public class SpacePortActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         fragmentManager = getSupportFragmentManager();
 
-        TextView region = findViewById(R.id.nameofRegion);
+        TextView region = findViewById(R.id.name_of_region);
         TextView shipName = findViewById(R.id.nameofShip);
-        TextView fuelAmount = findViewById(R.id.fuelAmount);
+        TextView fuelAmount = findViewById(R.id.fuel_amount);
 
         //Set text
         region.setText(mapviewmodel.getPlayerLocationName());

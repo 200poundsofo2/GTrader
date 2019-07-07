@@ -1,8 +1,5 @@
 package com.example.gtraderprototype.views;
 
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.content.Intent;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.gtraderprototype.R;
-
 import com.example.gtraderprototype.entity.Region;
-import com.example.gtraderprototype.entity.Universe;
 import com.example.gtraderprototype.entity.System;
-
+import com.example.gtraderprototype.entity.Universe;
 import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,8 +29,6 @@ import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,6 +41,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     View mView;
     private TextView travelInfo;
     private Button button;
+    private TextView spacePort;
+    private TextView fuelAmount;
 
     ArrayList<LatLng> markersList = new ArrayList<>();
     private MapViewModel viewmodel;
@@ -68,6 +66,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_fragment_map, container, false);
+        spacePort = getActivity().findViewById(R.id.name_of_region);
+        fuelAmount =  getActivity().findViewById(R.id.fuel_amount);
         travelInfo =  mView.findViewById(R.id.travel);
         button = mView.findViewById(R.id.button);
 
@@ -80,6 +80,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                         travelInfo.setText("not enough fuel");
                     } else {
                         fuel = fuel - fuelCost;
+                        spacePort.setText(selectedMarker.getTitle());
+                        fuelAmount.setText(fuel+"//50");
                         travelInfo.setText("Arrived");
                     }
                     destination=null;
@@ -183,7 +185,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                             Math.sin(dLong / 2) * Math.sin(dLong / 2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             double d = R * c;
-            fuelCost = (int)(d/10);
+            this.fuelCost = (int)(d/10);
             String text = "fuel cost:" + fuelCost;
             travelInfo.setText(text);
 
