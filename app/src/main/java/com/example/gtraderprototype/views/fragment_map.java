@@ -8,8 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
-
+import android.content.Intent;
 import com.example.gtraderprototype.R;
 
 import com.example.gtraderprototype.entity.Region;
@@ -35,16 +36,27 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener{
 
     private GoogleMap mMap;
+
     MapView mapView;
+
     View mView;
+    private TextView travelInfo;
+    private Button button;
+
     ArrayList<LatLng> markersList = new ArrayList<>();
     private MapViewModel viewmodel;
+
     HashMap<String, System> systems = new HashMap<>();
     HashMap<String, Region> regions = new HashMap<>();
+    HashMap<String, LatLng> places = new HashMap<>();
     Marker selectedMarker;
+    int fuelCost = 0;
+    int fuel=50;
+    Marker destination = null;
+
 
     private TextView region;
     @Override
@@ -56,6 +68,28 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_fragment_map, container, false);
+        travelInfo =  mView.findViewById(R.id.travel);
+        button = mView.findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(destination!=null){
+                    viewmodel.travelToRegion(selectedMarker.getTitle());
+                    if(fuel - fuelCost < 0){
+                        travelInfo.setText("not enough fuel");
+                    } else {
+                        fuel = fuel - fuelCost;
+                        travelInfo.setText("Arrived");
+                    }
+                    destination=null;
+                }
+
+
+            }
+        });
+
+        travelInfo.setText(viewmodel.getPlayerLocationName());
         return mView;
     }
 
@@ -82,10 +116,9 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
 
         Marker newMarker = mMap.addMarker(new MarkerOptions()
         .position(new LatLng(lat,lng))
-                .title(name)
+                .title(name).snippet("click here to travel")
         );
         newMarker.setTag(0);
-
     }
 
     @Override
@@ -104,16 +137,20 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         mMap.setMaxZoomPreference(20);
         mMap.setMinZoomPreference(15);
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
         Universe uni = viewmodel.getUniverse();
         for(System sys: uni.systems){
             systems.put(sys.getSystemName(), sys);
             //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1]);
             for(Region reg: sys.getRegions()){
                 setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1]);
-                markersList.add(new LatLng(reg.coordinates[0], reg.coordinates[1]));
+                LatLng curr = new LatLng(reg.coordinates[0], reg.coordinates[1]);
+                markersList.add(curr);
+                places.put(reg.regionName,curr);
             }
         }
         addHeatMap();
+
     }
 
     public void addHeatMap(){
@@ -127,17 +164,38 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     }
     public boolean onMarkerClick(Marker marker) {
         // TODO Auto-generated method stub
-            if(marker.equals(selectedMarker)&&!(viewmodel.getPlayerLocationName().equals(marker.getTitle()))){
-                viewmodel.travelToRegion(selectedMarker.getTitle());
-
-            }
-            selectedMarker = marker;
-            Log.w("Click", marker.getTitle());
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 17.0f));
             marker.showInfoWindow();
             return true;
 
     }
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        if(marker.equals(selectedMarker)&&!(viewmodel.getPlayerLocationName().equals(marker.getTitle()))){
+            destination = marker;
+            //Haversine formula
+            int R = 6378137;
+            LatLng p1 = places.get(marker.getTitle());
+            LatLng p2 = places.get(viewmodel.getPlayerLocationName());
+            double dLat = (p1.latitude-p2.latitude)*Math.PI/180;
+            double dLong = (places.get(marker.getTitle()).longitude-places.get(viewmodel.getPlayerLocationName()).longitude)*Math.PI/180;
+            double a = Math.sin(dLat/2) * Math.sin(dLat / 2) +
+                    Math.cos((p1.latitude)*Math.PI/180) * Math.cos((p2.latitude)*Math.PI/180) *
+                            Math.sin(dLong / 2) * Math.sin(dLong / 2);
+            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            double d = R * c;
+            fuelCost = (int)(d/10);
+            String text = "fuel cost:" + fuelCost;
+            travelInfo.setText(text);
+
+
+        }
+        selectedMarker = marker;
+        Log.w("Click", marker.getTitle());
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 17.0f));
+        marker.showInfoWindow();
+    }
+
+
 
 
 
