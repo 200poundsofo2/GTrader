@@ -12,9 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
+import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.System;
 import com.example.gtraderprototype.entity.Universe;
+import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -51,8 +54,11 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     HashMap<String, Region> regions = new HashMap<>();
     HashMap<String, LatLng> places = new HashMap<>();
     Marker selectedMarker;
-    int fuelCost = 0;
-    int fuel=50;
+    Player player;
+    Ship playerShip;
+    int fuelCost;
+    int fuel;
+    int fuelCapacity;
     Marker destination = null;
 
 
@@ -70,7 +76,9 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         fuelAmount =  getActivity().findViewById(R.id.fuel_amount);
         travelInfo =  mView.findViewById(R.id.travel);
         button = mView.findViewById(R.id.button);
-
+        player = Model.getInstance().getPlayerInteractor().getPlayer();
+        fuel = player.getShip().getFuel();
+        fuelCapacity = player.getShip().getFuelCapacity();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +89,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                     } else {
                         fuel = fuel - fuelCost;
                         spacePort.setText(selectedMarker.getTitle());
-                        fuelAmount.setText(fuel+"//50");
+                        fuelAmount.setText(fuel+"//"+fuelCapacity);
                         travelInfo.setText("Arrived");
                     }
                     destination=null;

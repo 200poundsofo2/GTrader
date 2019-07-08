@@ -1,10 +1,6 @@
 package com.example.gtraderprototype.views;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +8,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Item;
 import com.example.gtraderprototype.entity.Marketplace;
 import com.example.gtraderprototype.entity.Player;
-import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.MapViewModel;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static com.example.gtraderprototype.entity.Universe.universe;
 
 public class MarketFragment extends Fragment {
     private TextView moneyView;
@@ -61,7 +60,6 @@ public class MarketFragment extends Fragment {
 
         Random rand = new Random();
         int randomCargo1 = rand.nextInt(10);
-        int randomCargo2 = rand.nextInt(10);
         Item[] listOfItems = Item.values();
         player = Model.getInstance().getPlayerInteractor().getPlayer();
         playerShip =  Model.getInstance().getPlayerInteractor().getPlayer().getShip();
@@ -81,7 +79,7 @@ public class MarketFragment extends Fragment {
                         playerShip.addCargo(item);
                         player.pay(item.getRegionPrice());
                         moneyView.setText("Money: $" +  player.getMoney());
-                        Marketplace marketplace = new Marketplace();
+                        Marketplace marketplace = new Marketplace(player);
                         sellable.clear();
                         sellable.addAll(marketplace.getPlayerSellableItems());
                         sellAdapter.notifyDataSetChanged();
@@ -109,7 +107,7 @@ public class MarketFragment extends Fragment {
                     player.getPaid(item.getRegionPrice());
                     playerShip.dropCargo(item);
                     moneyView.setText("Money: $" +  player.getMoney());
-                    Marketplace marketplace = new Marketplace();
+                    Marketplace marketplace = new Marketplace(player);
                     sellable.clear();
                     sellable.addAll(marketplace.getPlayerSellableItems());
                     sellAdapter.notifyDataSetChanged();

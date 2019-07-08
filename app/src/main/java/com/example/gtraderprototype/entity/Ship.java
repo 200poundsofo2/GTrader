@@ -16,6 +16,7 @@ public enum Ship {
     private NPC[] crewQuarters;
     private int travelRange;
     private int fuel;
+    private int fuelCapacity;
 
     Ship(String name, int hullStrength, int numberOfAvailableCargoBays, int numberOfAvailableWeaponSlots, int numberOfAvailableShieldSlots, int numberOfAvailableGadgetSlots, int numberOfAvailableCrewQuarters, int travelRange) {
         this.name = name;
@@ -27,6 +28,7 @@ public enum Ship {
         this.crewQuarters = new NPC[numberOfAvailableCrewQuarters];
         this.travelRange = travelRange;
         this.fuel = travelRange;
+        this.fuelCapacity = travelRange;
     }
 
     public String getName() {
@@ -139,6 +141,12 @@ public enum Ship {
 
     public int getFuel() {
         return this.fuel;
+    }
+    public int getFuelCapacity() {
+        return this.fuelCapacity;
+    }
+    public void setFuelCapacity(int fuelCapacity) {
+        this.fuelCapacity = fuelCapacity;
     }
 
     public void setFuel(int fuel) {
