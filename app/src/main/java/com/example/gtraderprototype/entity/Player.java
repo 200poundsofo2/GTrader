@@ -9,13 +9,13 @@ public class Player extends Character {
         super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.Gnatt);
         player = this;
 
-        Log.d("bitch", this.toString());
+        Log.d("Woah", this.toString());
     }
     public static Player getPlayer(){
         if (player == null){
             synchronized (Player.class){
                 if(player == null){
-                    player = new Player("Null", 0, 0, 0, 0);
+                    player = new Player("No Name", 0, 0, 0, 0);
                 }
             }
         }

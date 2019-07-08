@@ -1,11 +1,7 @@
 package com.example.gtraderprototype.viewmodels;
 
 import android.app.Application;
-import android.content.Context;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -33,34 +29,41 @@ public class MapViewModel extends AndroidViewModel {
         universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }
-    public void getMarkers(){
+
+    public void getMarkers() {
         Universe universe = universeInteractor.getUniverse();
     }
-    public Universe getUniverse(){
+
+    public Universe getUniverse() {
         return universeInteractor.getUniverse();
     }
 
-    public int getPlayerFuel(){
+    public int getPlayerFuel() {
         return playerInteractor.getPlayer().getShip().getFuel();
     }
-    public int getPlayerShipRange(){
+
+    public int getPlayerShipRange() {
         return playerInteractor.getPlayer().getShip().getTravelRange();
     }
-    public String getPlayerShipName(){
+
+    public String getPlayerShipName() {
         return playerInteractor.getPlayer().getShip().getName();
     }
-    public String getPlayerLocationName(){
+
+    public String getPlayerLocationName() {
         return playerInteractor.getLocation().regionName;
     }
-    public int getPlayerMoney(){
+
+    public int getPlayerMoney() {
         return playerInteractor.getPlayer().getMoney();
     }
-    public void travelToRegion(String regionname, int fuelCost){
+
+    public void travelToRegion(String regionname, int fuelCost) {
         Region region = universeInteractor.getRegionByName(regionname);
-        if(region!=null){
+        if (region != null) {
             playerInteractor.setLocation(region);
             playerInteractor.deductFuel(fuelCost);
-            Log.d("GTrader", "Entered region: "+region.toString());
+            Log.d("GTrader", "Entered region: " + region.toString());
         }
     }
 
