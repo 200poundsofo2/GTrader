@@ -55,10 +55,11 @@ public class MapViewModel extends AndroidViewModel {
     public int getPlayerMoney(){
         return playerInteractor.getPlayer().getMoney();
     }
-    public void travelToRegion(String regionname){
+    public void travelToRegion(String regionname, int fuelCost){
         Region region = universeInteractor.getRegionByName(regionname);
         if(region!=null){
             playerInteractor.setLocation(region);
+            playerInteractor.deductFuel(fuelCost);
         }
     }
 

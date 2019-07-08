@@ -83,14 +83,16 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
             @Override
             public void onClick(View v) {
                 if(destination!=null){
-                    viewmodel.travelToRegion(selectedMarker.getTitle());
                     if(fuel - fuelCost < 0){
                         travelInfo.setText("not enough fuel");
                     } else {
+                        viewmodel.travelToRegion(selectedMarker.getTitle(), fuelCost);
                         fuel = fuel - fuelCost;
                         spacePort.setText(selectedMarker.getTitle());
-                        fuelAmount.setText(fuel+"//"+fuelCapacity);
+                        fuelAmount.setText(fuel+"/"+viewmodel.getPlayerShipRange());
                         travelInfo.setText("Arrived");
+                        Log.d("GTrader", viewmodel.getPlayerFuel()+" fuel remaining");
+                        button.setEnabled(false);
                     }
                     destination=null;
                 }
@@ -100,6 +102,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         });
 
         travelInfo.setText(viewmodel.getPlayerLocationName());
+        button.setEnabled(false);
         return mView;
     }
 
@@ -122,13 +125,16 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    public void setMarker(String name, double lat, double lng){
+    public void setMarker(String name, double lat, double lng, boolean isCurrentLocation){
 
         Marker newMarker = mMap.addMarker(new MarkerOptions()
         .position(new LatLng(lat,lng))
                 .title(name).snippet("click here to travel")
         );
         newMarker.setTag(0);
+        if(isCurrentLocation){
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 17.0f));
+        }
     }
 
     @Override
@@ -141,9 +147,9 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         LatLngBounds CampusBounds = new LatLngBounds(lowerLeftBoundary, upperRightBoundary);
         mMap.setLatLngBoundsForCameraTarget(CampusBounds);
 
-        LatLng centerCampus = new LatLng(33.777129, -84.398231);
-        mMap.addMarker(new MarkerOptions().position(centerCampus).title("Center of campus"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(centerCampus));
+       //LatLng centerCampus = new LatLng(33.777129, -84.398231);
+        //mMap.addMarker(new MarkerOptions().position(centerCampus).title("Center of campus"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(centerCampus));
         mMap.setMaxZoomPreference(20);
         mMap.setMinZoomPreference(15);
         mMap.setOnMarkerClickListener(this);
@@ -151,16 +157,20 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         Universe uni = viewmodel.getUniverse();
         for(System sys: uni.systems){
             systems.put(sys.getSystemName(), sys);
-            //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1]);
+            //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1], false);
             for(Region reg: sys.getRegions()){
-                setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1]);
                 LatLng curr = new LatLng(reg.coordinates[0], reg.coordinates[1]);
                 markersList.add(curr);
                 places.put(reg.regionName,curr);
+                if(reg.regionName.equals(viewmodel.getPlayerLocationName())){
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(curr));
+                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], true);
+                }else{
+                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], false);
+                }
             }
         }
         addHeatMap();
-
     }
 
     public void addHeatMap(){
@@ -180,7 +190,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     }
     @Override
     public void onInfoWindowClick(Marker marker) {
-        if(marker.equals(selectedMarker)&&!(viewmodel.getPlayerLocationName().equals(marker.getTitle()))){
+        if(!(viewmodel.getPlayerLocationName().equals(marker.getTitle()))){
             destination = marker;
             //Haversine formula
             int R = 6378137;
@@ -195,10 +205,17 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
             double d = R * c;
             this.fuelCost = (int)(d/10);
             String text = "fuel cost:" + fuelCost;
+            if(fuelCost>fuel){
+                button.setEnabled(false);
+            }else{
+                button.setEnabled(true);
+            }
             travelInfo.setText(text);
-
-
+        }else{
+            travelInfo.setText("Already docked.");
+            button.setEnabled(false);
         }
+
         selectedMarker = marker;
         Log.w("Click", marker.getTitle());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 17.0f));
