@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.views;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -17,15 +18,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SpacePortActivity extends AppCompatActivity {
 
-    private Fragment fragment;
+    private Fragment newFragment;
     private FragmentManager fragmentManager;
     private TextView region;
     private TextView shipName;
     private TextView fuelAmount;
     private MapViewModel mapviewmodel;
+    private int oldFragment = R.id.main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("GTrader", "creating activity fragment");
         super.onCreate(savedInstanceState);
         mapviewmodel = ViewModelProviders.of(this).get(MapViewModel.class);
 
@@ -42,29 +45,39 @@ public class SpacePortActivity extends AppCompatActivity {
         shipName.setText(mapviewmodel.getPlayerShipName());
         fuelAmount.setText("Fuel: " + mapviewmodel.getPlayerFuel() + "/" + mapviewmodel.getPlayerShipRange());
 
+        newFragment = new MarketFragment();
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(oldFragment, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 int id = item.getItemId();
+                if(newFragment!=null)
+                    oldFragment = newFragment.getId();
                 switch (id) {
                     case R.id.skills:
-                        fragment = new SkillsFragment();
+                        newFragment = new SkillsFragment();
                         break;
                     case R.id.ship:
-                        fragment = new ShipFragment();
+                        newFragment = new ShipFragment();
                         break;
                     case R.id.travel:
-                        fragment = new fragment_map();
+                        newFragment = new fragment_map();
                         break;
                     case R.id.market:
-                        fragment = new MarketFragment();
+                        newFragment = new MarketFragment();
                         break;
                     case R.id.save:
                         //TODO: save game implementation
                         break;
                 }
-                final FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main, fragment).commit();
+                final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(oldFragment, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 return true;
             }
         });

@@ -66,38 +66,16 @@ public class Region {
     public RegionBasedEvent regionBasedEvent;
     public ArrayList<Item> sellableItems = new ArrayList<>();
     public ArrayList<Item> buyableItems = new ArrayList<>();
-    public Region(){
-        this.regionName = Database.getRandomName();
-        this.coordinates = new double[]{(Math.random()*90), (Math.random()*90)};
-        this.techLevel = TechLevel.getRandomLevel();
-        this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
-        this.resources = Resources.getRandomResources();
-        Item[] Items = Item.values();
-        for (Item item: Items) {
-            int numericTechLevel = techLevel.getTechLevel();
-            boolean regionCanSell = numericTechLevel >= item.getMinimumTechLevelToProduce();
-            boolean regionCanBuy = numericTechLevel >= item.getMinimumTechLevelToUse();
-            if ( regionCanSell ){
-                Item sellableItem = item;
-                sellableItem.setRegionPrice(numericTechLevel, resources, regionBasedEvent);
-                sellableItems.add(sellableItem);
-            }
-            if ( regionCanBuy ){
-                buyableItems.add(item);
-            }
-        }
-    }
+    public Marketplace marketplace;
 
     public Region(String name, double lat, double lng){
         this.regionName = name;
         this.coordinates = new double[]{lat,lng};
         this.techLevel = TechLevel.getRandomLevel();
         this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
-        this.sellableItems = new ArrayList<>();
-        this.buyableItems = new ArrayList<>();
         this.resources = Resources.getRandomResources();
-        Item[] Items = Item.values();
-        for (Item item: Items) {
+        Item[] items = Item.values();
+        for (Item item: items) {
             int numericTechLevel = techLevel.getTechLevel();
             boolean regionCanSell = numericTechLevel >= item.getMinimumTechLevelToProduce();
             boolean regionCanBuy = numericTechLevel >= item.getMinimumTechLevelToUse();
@@ -113,7 +91,7 @@ public class Region {
     }
 
     public String toString(){
-        return "REGION "+this.regionName+"("+coordinates[0]+","+coordinates[1]+") tech:"+this.techLevel+",rsc:"+this.resources;
+        return "REGION "+this.regionName+"("+coordinates[0]+","+coordinates[1]+") tech:"+this.techLevel+",rsc:"+this.resources+", Sellable: "+sellableItems.toString()+ ", Buyable: "+buyableItems.toString();
     }
 
 }

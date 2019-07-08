@@ -47,7 +47,7 @@
 
         <fragment
             android:id="@+id/main"
-            android:name="com.example.gtraderprototype.views.MarketFragment"
+            android:name="com.example.gtraderprototype.views.blank"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
