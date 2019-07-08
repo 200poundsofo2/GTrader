@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_new_game"
-        app:rippleColor="#33AAAAAA"
+        app:rippleColor="#EAAA00"
         app:strokeColor="#fff"
         app:strokeWidth="2dp" />
 
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_saved_games"
-        app:rippleColor="#33AAAAAA"
+        app:rippleColor="#EAAA00"
         app:strokeColor="#fff"
         app:strokeWidth="2dp" />
 
