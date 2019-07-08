@@ -23,6 +23,9 @@ public class PlayerInteractor extends Interactor {
 
     }
 
+    public void deductFuel(int fuelAmt){
+        player.getShip().deductFuel(fuelAmt);
+    }
     public Region getLocation(){
         return player.getRegion();
     }

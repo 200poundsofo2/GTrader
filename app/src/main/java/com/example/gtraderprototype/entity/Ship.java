@@ -143,4 +143,8 @@ public enum Ship {
         this.fuel = fuel;
     }
 
+    public void deductFuel(int fuel){
+        this.fuel -= fuel;
+    }
+
 }

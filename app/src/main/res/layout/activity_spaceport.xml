@@ -22,7 +22,7 @@
             android:visibility="visible">
 
             <TextView
-                android:id="@+id/nameofRegion"
+                android:id="@+id/name_of_region"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Spaceport"
@@ -36,7 +36,7 @@
                 android:layout_gravity="center"
                 android:textColor="#fff"/>
             <TextView
-                android:id="@+id/fuelAmount"
+                android:id="@+id/fuel_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fuel: 0/0"

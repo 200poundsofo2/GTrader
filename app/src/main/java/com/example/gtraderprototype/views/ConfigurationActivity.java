@@ -188,8 +188,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             int pointsTrader = Integer.parseInt(traderPoints.getText().toString());
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
 
-            Log.d("GTrader", "Setting up player");
-            Model.getInstance().getPlayerInteractor().getPlayer().setName((name.contains("[a-zA-Z]+")) ? name : "Default");
+            Log.d("GTrader", "Setting up player |"+name+"|");
+            Model.getInstance().getPlayerInteractor().getPlayer().setName((name.equals("")) ? "Default" : name);
             Model.getInstance().getPlayerInteractor().getPlayer().setEngineerSkillPoints(pointsEngineer);
             Model.getInstance().getPlayerInteractor().getPlayer().setPilotSkillPoints(pointsPilot);
             Model.getInstance().getPlayerInteractor().getPlayer().setFighterSkillPoints(pointsFighter);
