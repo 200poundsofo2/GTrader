@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.entity.Marketplace;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 
@@ -14,13 +15,14 @@ public class PlayerInteractor extends Interactor {
 
     private Player player = Player.getPlayer();
 
+    Marketplace marketplace = new Marketplace(player);
+
     public Player getPlayer(){
         return player;
     }
     public void setLocation(Region region){
         player.setRegion(region);
-
-
+        marketplace = new Marketplace(Player.getPlayer());
     }
 
     public void deductFuel(int fuelAmt){
@@ -28,6 +30,10 @@ public class PlayerInteractor extends Interactor {
     }
     public Region getLocation(){
         return player.getRegion();
+    }
+
+    public Marketplace getMarketplace(){
+        return marketplace;
     }
 
 }

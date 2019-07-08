@@ -60,6 +60,7 @@ public class MapViewModel extends AndroidViewModel {
         if(region!=null){
             playerInteractor.setLocation(region);
             playerInteractor.deductFuel(fuelCost);
+            Log.d("GTrader", "Entered region: "+region.toString());
         }
     }
 
