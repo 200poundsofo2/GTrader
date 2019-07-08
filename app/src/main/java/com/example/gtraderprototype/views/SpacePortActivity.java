@@ -50,6 +50,7 @@ public class SpacePortActivity extends AppCompatActivity {
         transaction.replace(oldFragment, newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
