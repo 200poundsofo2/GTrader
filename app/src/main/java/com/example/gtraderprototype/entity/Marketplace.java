@@ -1,19 +1,16 @@
 package com.example.gtraderprototype.entity;
 
-import android.util.Log;
-
-import com.example.gtraderprototype.model.Model;
-
 import java.util.ArrayList;
 
 public class Marketplace {
-    public Marketplace(){
-
+    private Player player;
+    public Marketplace(Player player){
+        this.player = player;
     }
     public ArrayList<Item> getPlayerSellableItems(){
-        Region region = Player.getPlayer().getRegion();
+        Region region = player.getRegion();
         ArrayList<Item> allowablePlayerItemList = new ArrayList<>();
-        Item[] playerItems = Player.getPlayer().getShip().getCargo();
+        Item[] playerItems = player.getShip().getCargo();
         for (Item regionItem : region.buyableItems) {
             for(Item playerItem : playerItems){
                 if( regionItem.equals(playerItem) ){
@@ -24,8 +21,7 @@ public class Marketplace {
         return allowablePlayerItemList;
     }
     public ArrayList<Item> getPlayerBuyableItems(){
-        Log.d("GTraderBuyable", Player.getPlayer().toString());
-        Region region = Model.getInstance().getPlayerInteractor().getPlayer().getRegion();
+        Region region = player.getRegion();
         return region.sellableItems;
     }
 }
