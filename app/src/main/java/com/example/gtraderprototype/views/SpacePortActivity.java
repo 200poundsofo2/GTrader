@@ -19,22 +19,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class SpacePortActivity extends AppCompatActivity {
 
     private Fragment newFragment;
-    private FragmentManager fragmentManager;
-    private TextView region;
-    private TextView shipName;
-    private TextView fuelAmount;
-    private MapViewModel mapviewmodel;
     private int oldFragment = R.id.main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("GTrader", "creating activity fragment");
         super.onCreate(savedInstanceState);
-        mapviewmodel = ViewModelProviders.of(this).get(MapViewModel.class);
+        MapViewModel mapviewmodel = ViewModelProviders.of(this).get(MapViewModel.class);
 
         setContentView(R.layout.activity_spaceport);
         BottomNavigationView navigation = findViewById(R.id.navigation);
-        fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         TextView region = findViewById(R.id.name_of_region);
         TextView shipName = findViewById(R.id.nameofShip);
@@ -43,7 +38,8 @@ public class SpacePortActivity extends AppCompatActivity {
         //Set text
         region.setText(mapviewmodel.getPlayerLocationName());
         shipName.setText(mapviewmodel.getPlayerShipName());
-        fuelAmount.setText("Fuel: " + mapviewmodel.getPlayerFuel() + "/" + mapviewmodel.getPlayerShipRange());
+        fuelAmount.setText("Fuel: " + mapviewmodel.getPlayerFuel()
+                + "/" + mapviewmodel.getPlayerShipRange());
 
         newFragment = new MarketFragment();
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -51,38 +47,40 @@ public class SpacePortActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
 
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        navigation.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                int id = item.getItemId();
-                if(newFragment!=null)
-                    oldFragment = newFragment.getId();
-                switch (id) {
-                    case R.id.skills:
-                        newFragment = new SkillsFragment();
-                        break;
-                    case R.id.ship:
-                        newFragment = new ShipFragment();
-                        break;
-                    case R.id.travel:
-                        newFragment = new fragment_map();
-                        break;
-                    case R.id.market:
-                        newFragment = new MarketFragment();
-                        break;
-                    case R.id.save:
-                        //TODO: save game implementation
-                        break;
-                }
-                final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(oldFragment, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-                return true;
-            }
-        });
+                        int id = item.getItemId();
+                        if (newFragment != null) {
+                            oldFragment = newFragment.getId();
+                        }
+                        switch (id) {
+                            case R.id.skills:
+                                newFragment = new SkillsFragment();
+                                break;
+                            case R.id.ship:
+                                newFragment = new ShipFragment();
+                                break;
+                            case R.id.travel:
+                                newFragment = new fragment_map();
+                                break;
+                            case R.id.market:
+                                newFragment = new MarketFragment();
+                                break;
+                            case R.id.save:
+                                //TODO: save game implementation
+                                break;
+                        }
+                        final FragmentTransaction transaction =
+                                getSupportFragmentManager().beginTransaction();
+                        transaction.replace(oldFragment, newFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        return true;
+                    }
+                });
     }
-
 
 }
