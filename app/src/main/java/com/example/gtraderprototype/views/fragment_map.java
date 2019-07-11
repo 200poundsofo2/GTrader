@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.entity.GameInstance;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Ship;
@@ -34,6 +36,7 @@ import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener{
 
@@ -88,11 +91,25 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                     } else {
                         viewmodel.travelToRegion(selectedMarker.getTitle(), fuelCost);
                         fuel = fuel - fuelCost;
+
+                        //generate random event encounter
+
+
+
+                        Random rand = new Random();
+                        int p=rand.nextInt(100);
+                        if(p<100){
+                            encounter();
+                            Log.d("encounter", viewmodel.getPlayerLocationName());
+                        }
+
                         spacePort.setText(selectedMarker.getTitle());
                         fuelAmount.setText(fuel+"/"+viewmodel.getPlayerShipRange());
                         travelInfo.setText("Arrived");
                         Log.d("GTrader", viewmodel.getPlayerFuel()+" fuel remaining");
                         button.setEnabled(false);
+
+
                     }
                     destination=null;
                 }
@@ -220,6 +237,35 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         Log.w("Click", marker.getTitle());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 17.0f));
         marker.showInfoWindow();
+    }
+
+    private void encounter(){ //trade, police, pirate
+        int pirateP = (viewmodel.getPlayer().getDifficulty().difficultyIndex() + 1)*20;
+        Random rand = new Random();
+        int pirate = rand.nextInt(100);
+
+        Intent PoliceIntent=new Intent(this.getActivity(),EncountActivity.class);
+        startActivity(PoliceIntent);
+        //getActivity().overridePendingTransition(0, 0);
+
+
+        if(pirate < pirateP){
+            // encounter pirate
+        }else{
+            if(rand.nextBoolean()){
+                //encounter trader
+            }else{
+                //encounter police
+                /*
+                Intent PoliceIntent=new Intent(getActivity(),EncountActivity.class);
+                startActivity(PoliceIntent);
+                getActivity().overridePendingTransition(0, 0);
+                */
+
+
+            }
+        }
+
     }
 
 

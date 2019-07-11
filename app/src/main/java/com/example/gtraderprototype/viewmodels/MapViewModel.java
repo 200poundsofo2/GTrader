@@ -66,6 +66,9 @@ public class MapViewModel extends AndroidViewModel {
             Log.d("GTrader", "Entered region: " + region.toString());
         }
     }
+    public Player getPlayer() {
+        return playerInteractor.getPlayer();
+    }
 
 
 }
