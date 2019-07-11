@@ -4,15 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Player;
-import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.viewmodels.EncounterViewModel;
-import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.example.gtraderprototype.entity.Item;
 
 public class EncountActivity extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class EncountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_police);
+        setContentView(R.layout.encounter_police);
         words=findViewById(R.id.policeWord);
         b1=findViewById(R.id.b1);
         b2=findViewById(R.id.b2);
@@ -100,6 +99,7 @@ public class EncountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                startActivity(new Intent(EncountActivity.this, GameOverActivity.class));
             }
         });
     }
