@@ -9,41 +9,64 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="314dp"
+        android:layout_marginBottom="404dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/pd"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-45dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="86dp"
         android:layout_height="83dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="540dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:scaleType="fitStart"
-        app:srcCompat="@drawable/gtpd"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="259dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.788"
+        app:srcCompat="@drawable/gtpd" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="382dp"
-        android:layout_height="124dp"
-        android:text="    Hands up ! This is GTPD !"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="241dp" />
+        android:id="@+id/policeWord"
+        android:layout_width="372dp"
+        android:layout_height="233dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="184dp"
+        android:text="Hands up ! This is GTPD ! We are gonna search you."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/b1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="477dp" />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="108dp"
+        android:text="OK.fine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/b2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="253dp"
-        tools:layout_editor_absoluteY="477dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="8dp"
+        android:text="No!!!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.838" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

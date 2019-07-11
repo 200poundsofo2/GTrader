@@ -246,7 +246,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
 
         Intent PoliceIntent=new Intent(this.getActivity(),EncountActivity.class);
         startActivity(PoliceIntent);
-        //getActivity().overridePendingTransition(0, 0);
+
 
 
         if(pirate < pirateP){
