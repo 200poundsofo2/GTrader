@@ -60,5 +60,8 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public boolean getIsPirate(){
         return isPirate;
     }
+    public void setMoney(int m){
+        money=m;
+    }
 }
 

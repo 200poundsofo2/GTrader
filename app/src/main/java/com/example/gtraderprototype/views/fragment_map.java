@@ -63,6 +63,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     int fuel;
     int fuelCapacity;
     Marker destination = null;
+    private final int ENCOUNTER_PROB=100;
 
 
     private TextView region;
@@ -92,20 +93,18 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                         viewmodel.travelToRegion(selectedMarker.getTitle(), fuelCost);
                         fuel = fuel - fuelCost;
 
+                        spacePort.setText(selectedMarker.getTitle());
+                        fuelAmount.setText(fuel+"/"+viewmodel.getPlayerShipRange());
+                        travelInfo.setText("Arrived");
+
                         //generate random event encounter
-
-
-
                         Random rand = new Random();
                         int p=rand.nextInt(100);
-                        if(p<100){
+                        if(p<ENCOUNTER_PROB){
                             encounter();
                             Log.d("encounter", viewmodel.getPlayerLocationName());
                         }
 
-                        spacePort.setText(selectedMarker.getTitle());
-                        fuelAmount.setText(fuel+"/"+viewmodel.getPlayerShipRange());
-                        travelInfo.setText("Arrived");
                         Log.d("GTrader", viewmodel.getPlayerFuel()+" fuel remaining");
                         button.setEnabled(false);
 
@@ -244,11 +243,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         Random rand = new Random();
         int pirate = rand.nextInt(100);
 
-        Intent PoliceIntent=new Intent(this.getActivity(),EncountActivity.class);
-        startActivity(PoliceIntent);
-
-
-
         if(pirate < pirateP){
             // encounter pirate
         }else{
@@ -256,12 +250,9 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                 //encounter trader
             }else{
                 //encounter police
-                /*
+
                 Intent PoliceIntent=new Intent(getActivity(),EncountActivity.class);
                 startActivity(PoliceIntent);
-                getActivity().overridePendingTransition(0, 0);
-                */
-
 
             }
         }

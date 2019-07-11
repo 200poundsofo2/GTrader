@@ -23,6 +23,8 @@ public class EncountActivity extends AppCompatActivity {
     private EncounterViewModel viewModel;
     Player player;
     Item[] cargo;
+    int penalty;
+    int bribe;
 
 
     @Override
@@ -35,6 +37,8 @@ public class EncountActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayerInteractor().getPlayer();
         cargo=player.getShip().getCargo();
+        penalty=100;
+        bribe=player.getMoney()*(player.getDifficulty().difficultyIndex()+1)/10;
 
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -51,21 +55,14 @@ public class EncountActivity extends AppCompatActivity {
         });
 
 
-        //finish();
-
     }
     private void startSearching(){
-        boolean arrest = false;
-        words.setText("Searching");
-        b1.setEnabled(false);
-        b2.setEnabled(false);
         for(Item i:cargo){
             if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)||player.getIsPirate()){
-                arrest=true;
-                break;
+                penalty+=i.getMaximumPrice();
             }
         }
-        if(arrest){
+        if(penalty!=0){
             underArrest("You are a bad trader. ");
         }else{
             fine();
@@ -74,10 +71,37 @@ public class EncountActivity extends AppCompatActivity {
     }
     private void underArrest(String msg){
         words.setText(msg+"You are under arrest.");
+        b1.setText("Pay the penalty: $"+penalty);
+        b1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                player.setMoney(player.getMoney()-penalty);
+                finish();
+            }
+        });
+
+
+        b2.setText("Bribe: $"+bribe);
+        b2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                player.setMoney(player.getMoney()-bribe);
+                finish();
+            }
+        });
+
     }
 
     private void fine(){
         words.setText("You are a good man");
+        b1.setText("Goodbye");
+        b2.setEnabled(false);
+        b1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
