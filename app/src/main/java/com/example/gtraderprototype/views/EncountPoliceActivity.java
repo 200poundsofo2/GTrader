@@ -11,19 +11,24 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Player;
+import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.viewmodels.EncounterViewModel;
 import com.example.gtraderprototype.entity.Item;
+import java.util.List;
+import java.util.ArrayList;
 
-public class EncountActivity extends AppCompatActivity {
+public class EncountPoliceActivity extends AppCompatActivity {
 
     private TextView words;
     private Button b1;
     private Button b2;
     private EncounterViewModel viewModel;
     Player player;
+    Ship ship;
     Item[] cargo;
     int penalty;
     int bribe;
+    List<Item> illegalItems;
 
 
     @Override
@@ -35,7 +40,9 @@ public class EncountActivity extends AppCompatActivity {
         b2=findViewById(R.id.b2);
         viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayerInteractor().getPlayer();
+        ship=player.getShip();
         cargo=player.getShip().getCargo();
+        illegalItems=new ArrayList<>();
         penalty=100;
         bribe=player.getMoney()*(player.getDifficulty().difficultyIndex()+1)/10;
 
@@ -59,6 +66,7 @@ public class EncountActivity extends AppCompatActivity {
         for(Item i:cargo){
             if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)||player.getIsPirate()){
                 penalty+=i.getMaximumPrice();
+                illegalItems.add(i);
             }
         }
         if(penalty!=0){
@@ -66,8 +74,8 @@ public class EncountActivity extends AppCompatActivity {
         }else{
             fine();
         }
-
     }
+
     private void underArrest(String msg){
         words.setText(msg+"You are under arrest.");
         b1.setText("Pay the penalty: $"+penalty);
@@ -75,6 +83,10 @@ public class EncountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 player.setMoney(player.getMoney()-penalty);
+                for(Item i: illegalItems){
+                    ship.dropCargo(i);
+                }
+
                 finish();
             }
         });
@@ -88,7 +100,6 @@ public class EncountActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     private void fine(){
@@ -99,7 +110,7 @@ public class EncountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(EncountActivity.this, GameOverActivity.class));
+                startActivity(new Intent(EncountPoliceActivity.this, GameOverActivity.class));
             }
         });
     }

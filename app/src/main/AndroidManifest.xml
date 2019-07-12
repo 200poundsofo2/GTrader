@@ -54,7 +54,11 @@
             android:label="@string/app_name" />
 
         <activity
-            android:name=".views.EncountActivity"
+            android:name=".views.EncountPoliceActivity"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".views.EncounterPirateActivity"
             android:label="@string/app_name" />
 
         <activity

@@ -1,5 +1,7 @@
 package com.example.gtraderprototype.entity;
 
+
+
 public enum Ship {
     Gnatt("Gnatt", 50, 3, 3, 3, 3, 1, 50 );
     private String name;

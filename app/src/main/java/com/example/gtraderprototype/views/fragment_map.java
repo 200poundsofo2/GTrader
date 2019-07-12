@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
-import com.example.gtraderprototype.entity.GameInstance;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Ship;
@@ -245,15 +244,15 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
 
         if(pirate < pirateP){
             // encounter pirate
+            Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+            startActivity(pirateIntent);
         }else{
             if(rand.nextBoolean()){
                 //encounter trader
             }else{
                 //encounter police
-
-                Intent PoliceIntent=new Intent(getActivity(),EncountActivity.class);
-                startActivity(PoliceIntent);
-
+                Intent policeIntent=new Intent(getActivity(), EncountPoliceActivity.class);
+                startActivity(policeIntent);
             }
         }
 
