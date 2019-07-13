@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/gameover"
+        android:id="@+id/GameOver"
         android:layout_width="240dp"
         android:layout_height="203dp"
         android:layout_marginStart="8dp"

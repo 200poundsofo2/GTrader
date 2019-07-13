@@ -47,7 +47,7 @@ public class MarketFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        //Set views/text
+        //Set views/fleeText
         moneyView = rootView.findViewById(R.id.money);
         buyRecyclerView = rootView.findViewById(R.id.buying_recycler_view);
         sellRecyclerView = rootView.findViewById(R.id.selling_recycler_view);

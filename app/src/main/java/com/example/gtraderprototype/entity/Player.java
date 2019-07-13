@@ -29,8 +29,8 @@ public class Player extends Character {
         difficulty = d;
     }
 
-    public Difficulty getDifficulty(){
-        return difficulty;
+    public int getDifficultyLevel(){
+        return difficulty.difficultyIndex;
     }
 
     public void setPirate(boolean pirate) {

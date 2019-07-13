@@ -29,7 +29,7 @@
                 android:layout_gravity="left"
                 android:textColor="#fff" />
             <TextView
-                android:id="@+id/nameofShip"
+                android:id="@+id/NameOfShip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ship"

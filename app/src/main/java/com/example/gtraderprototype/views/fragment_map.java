@@ -236,7 +236,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     }
 
     private void encounter(){ //trade, police, pirate
-        double pirateProbability = (viewmodel.getPlayer().getDifficulty().difficultyIndex() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
+        double pirateProbability = (viewmodel.getPlayer().getDifficultyLevel() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
         Random rand = new Random();
         if(Math.random() < pirateProbability){
             // encounter pirate
