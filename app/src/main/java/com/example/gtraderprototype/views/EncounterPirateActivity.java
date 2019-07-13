@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.viewmodels.EncounterViewModel;
 import android.content.Intent;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -48,7 +49,6 @@ public class EncounterPirateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 attack();
-                finish();
             }
         });
 
@@ -56,7 +56,6 @@ public class EncounterPirateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flee();
-                finish();
             }
         });
 
@@ -64,30 +63,28 @@ public class EncounterPirateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 surrender();
-                finish();
             }
         });
 
     }
     private void flee(){
-        int fleeProbability = 100 - player.getDifficulty().difficultyIndex()*20; //100 for beginner, 20 for impossible
-        if(random.nextInt(100)<fleeProbability){
+        double fleeProbability = 1.0 - (player.getDifficulty().difficultyIndex()+1)*2/10.0; //0.8 for beginner, 0 for impossible
+        if(Math.random() < fleeProbability){
             //flee
-            encounterText.setText("Success!");
-            pirateText.setText("This isn't the end, you can count on it! Let's wait and see.");
+            surrender.setEnabled(false);
+            attack.setEnabled(false);
             flee.setText("Back");
+            encounterText.setText("Flee Succeeded!");
+            pirateText.setText("This isn't the end! Let's wait and see.");
             flee.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     finish();
                 }
             });
-            surrender.setEnabled(false);
-            attack.setEnabled(false);
-
-
         } else{ //unable to flee, game over
-            startActivity(new Intent(EncounterPirateActivity.this, GameOverActivity.class));
+            startActivity(new Intent(EncounterPirateActivity.this, GameOverActivity.class).putExtra("reason","unsuccessful flee"));
         }
 
 
@@ -102,23 +99,25 @@ public class EncounterPirateActivity extends AppCompatActivity {
     private void surrender(){
         attack.setEnabled(false);
         flee.setEnabled(false);
-        pirateText.setText("Ahahah I will take some precious from you.");
-        encounterText.setText("You will lose part of your cargo");
-        int numItem=((player.getDifficulty().difficultyIndex()+1)/10)*ship.getCargo().length; //10% for beginner 50% for impossible
-        for(int i=0; i<numItem;i++){
-            int j=random.nextInt(ship.getCargo().length);
-            ship.getCargo()[j]=null;
-        }
-        int moneyRobbed=(player.getDifficulty().difficultyIndex()+1)/10*player.getMoney();
-        player.setMoney(player.getMoney()-moneyRobbed);
         surrender.setText("Back");
+        pirateText.setText("Ahahah I took some precious from you.");
+        encounterText.setText("You will lose part of your cargo");
+
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int numItem=((player.getDifficulty().difficultyIndex()+1)/10)*ship.getCargo().length; //10% for beginner 50% for impossible
+                for(int i=0; i<numItem;i++){
+                    int j=random.nextInt(ship.getCargo().length);
+                    ship.getCargo()[j]=null;
+                }
+                int moneyRobbed=(player.getDifficulty().difficultyIndex()+1)/10*player.getMoney();
+                player.setMoney(player.getMoney()-moneyRobbed);
+
                 finish();
             }
         });
-
 
     }
 }

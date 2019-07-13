@@ -62,7 +62,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     int fuel;
     int fuelCapacity;
     Marker destination = null;
-    private final int ENCOUNTER_PROB=100;
+    private final double ENCOUNTER_PROB = 1.0;
 
 
     private TextView region;
@@ -97,9 +97,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                         travelInfo.setText("Arrived");
 
                         //generate random event encounter
-                        Random rand = new Random();
-                        int p=rand.nextInt(100);
-                        if(p<ENCOUNTER_PROB){
+                        if(Math.random() < 1.0){
                             encounter();
                             Log.d("encounter", viewmodel.getPlayerLocationName());
                         }
@@ -238,20 +236,20 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     }
 
     private void encounter(){ //trade, police, pirate
-        int pirateP = (viewmodel.getPlayer().getDifficulty().difficultyIndex() + 1)*20;
+        double pirateProbability = (viewmodel.getPlayer().getDifficulty().difficultyIndex() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
         Random rand = new Random();
-        int pirate = rand.nextInt(100);
-
-        if(pirate < pirateP){
+        if(Math.random() < pirateProbability){
             // encounter pirate
             Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
             startActivity(pirateIntent);
         }else{
             if(rand.nextBoolean()){
                 //encounter trader
+                Intent traderIntent=new Intent(getActivity(),EncounterTraderActivity.class);
+                startActivity(traderIntent);
             }else{
                 //encounter police
-                Intent policeIntent=new Intent(getActivity(), EncountPoliceActivity.class);
+                Intent policeIntent=new Intent(getActivity(), EncounterPoliceActivity.class);
                 startActivity(policeIntent);
             }
         }

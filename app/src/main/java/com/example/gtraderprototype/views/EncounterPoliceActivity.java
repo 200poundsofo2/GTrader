@@ -17,7 +17,7 @@ import com.example.gtraderprototype.entity.Item;
 import java.util.List;
 import java.util.ArrayList;
 
-public class EncountPoliceActivity extends AppCompatActivity {
+public class EncounterPoliceActivity extends AppCompatActivity {
 
     private TextView words;
     private Button b1;
@@ -64,10 +64,13 @@ public class EncountPoliceActivity extends AppCompatActivity {
     }
     private void startSearching(){
         for(Item i:cargo){
-            if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)||player.getIsPirate()){
-                penalty+=i.getMaximumPrice();
-                illegalItems.add(i);
+            if(i!=null){
+                if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)||player.getIsPirate()){
+                    penalty+=i.getMaximumPrice();
+                    illegalItems.add(i);
+                }
             }
+
         }
         if(penalty!=0){
             underArrest("You are a bad trader. ");
@@ -82,12 +85,16 @@ public class EncountPoliceActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                player.setMoney(player.getMoney()-penalty);
-                for(Item i: illegalItems){
-                    ship.dropCargo(i);
-                }
+                if(player.getMoney()-penalty>0){
+                    player.setMoney(player.getMoney()-penalty);
+                    for(Item i: illegalItems){
+                        ship.dropCargo(i);
+                    }
+                    finish();
+                } else {
 
-                finish();
+                    startActivity(new Intent(EncounterPoliceActivity.this, GameOverActivity.class).putExtra("reason","You are broke"));
+                }
             }
         });
 
@@ -96,8 +103,12 @@ public class EncountPoliceActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                player.setMoney(player.getMoney()-bribe);
-                finish();
+                if(player.getMoney()-bribe>0){
+                    player.setMoney(player.getMoney()-bribe);
+                    finish();
+                }else{
+                    startActivity(new Intent(EncounterPoliceActivity.this, GameOverActivity.class).putExtra("reason","You are broke"));
+                }
             }
         });
     }
@@ -110,7 +121,6 @@ public class EncountPoliceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(EncountPoliceActivity.this, GameOverActivity.class));
             }
         });
     }
