@@ -1,10 +1,10 @@
 package com.example.gtraderprototype.entity;
 
 public class Equipment {
-    private int strength;
-    private int health;
-    private TypeOfEquipment type;
-    private Item item;
+    private final int strength;
+    private final int health;
+    private final TypeOfEquipment type;
+    private final Item item;
 
     public Equipment(int strength, int health, TypeOfEquipment type, Item item){
         this.strength=strength;

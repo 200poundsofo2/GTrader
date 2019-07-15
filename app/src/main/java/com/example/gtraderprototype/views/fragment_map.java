@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener{
+class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener{
 
     private GoogleMap mMap;
 
@@ -49,12 +49,12 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     private TextView spacePort;
     private TextView fuelAmount;
 
-    ArrayList<LatLng> markersList = new ArrayList<>();
+    final ArrayList<LatLng> markersList = new ArrayList<>();
     private MapViewModel viewmodel;
 
-    HashMap<String, System> systems = new HashMap<>();
+    final HashMap<String, System> systems = new HashMap<>();
     HashMap<String, Region> regions = new HashMap<>();
-    HashMap<String, LatLng> places = new HashMap<>();
+    final HashMap<String, LatLng> places = new HashMap<>();
     Marker selectedMarker;
     Player player;
     Ship playerShip;
@@ -87,14 +87,14 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
             public void onClick(View v) {
                 if(destination!=null){
                     if(fuel - fuelCost < 0){
-                        travelInfo.setText("not enough fuel");
+                        travelInfo.setText(getString(R.string.not_enough));
                     } else {
                         viewmodel.travelToRegion(selectedMarker.getTitle(), fuelCost);
                         fuel = fuel - fuelCost;
 
                         spacePort.setText(selectedMarker.getTitle());
-                        fuelAmount.setText(fuel+"/"+viewmodel.getPlayerShipRange());
-                        travelInfo.setText("Arrived");
+                        fuelAmount.setText(new StringBuilder().append(String.valueOf(fuel)).append(getString(R.string.forward_slash)).append(viewmodel.getPlayerShipRange()).toString());
+                        travelInfo.setText(getString(R.string.arrived));
 
                         //generate random event encounter
                         if(Math.random() < 1.0){
@@ -122,7 +122,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        mapView = (MapView) mView.findViewById(R.id.map);
+        mapView = mView.findViewById(R.id.map);
         if(mapView!=null){
             mapView.onCreate(null);
             mapView.onResume();
@@ -225,7 +225,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
             }
             travelInfo.setText(text);
         }else{
-            travelInfo.setText("Already docked.");
+            travelInfo.setText(getString(R.string.then_who_is_that));
             button.setEnabled(false);
         }
 

@@ -13,18 +13,18 @@ public enum Item {
     Machines("Machines", 4, 3	, 5,	 900, -30,	5, RegionBasedEvent.LACKOFWORKERS, Resources.NotApplicable, Resources.NotApplicable,600, 800),
     Narcotics("Narcotics", 5, 0	, 5,	 3500, -125,	150, RegionBasedEvent.BOREDOM, Resources.WEIRDMUSHROOMS, Resources.NotApplicable,2000, 3000),
     Robots("Robots", 6, 4	, 7,	 5000, -150,	100, RegionBasedEvent.LACKOFWORKERS, Resources.NotApplicable, Resources.NotApplicable,3500, 5000);
-    private String name;
-    private int minimumTechLevelToProduce;
-    private int minimumTechLevelToUse;
-    private int techProductionLevel;
-    private int basePrice;
-    private int priceIncreasePerTechLevel;
-    private int variance;
-    private RegionBasedEvent regionPriceIncreaseEvent;
-    private Resources conditionForPriceIncrease;
-    private Resources conditionForPriceDecrease;
-    private int minimumPrice;
-    private int maximumPrice;
+    private final String name;
+    private final int minimumTechLevelToProduce;
+    private final int minimumTechLevelToUse;
+    private final int techProductionLevel;
+    private final int basePrice;
+    private final int priceIncreasePerTechLevel;
+    private final int variance;
+    private final RegionBasedEvent regionPriceIncreaseEvent;
+    private final Resources conditionForPriceIncrease;
+    private final Resources conditionForPriceDecrease;
+    private final int minimumPrice;
+    private final int maximumPrice;
     private int regionPrice;
       Item(String name, int minimumTechLevelToProduce, int minimumTechLevelToUse, int techProductionLevel, int basePrice, int priceIncreasePerTechLevel, int variance, RegionBasedEvent regionPriceIncreaseEvent, Resources conditionForPriceIncrease, Resources conditionForPriceDecrease, int minimumPrice, int maximumPrice){
         this.name = name;
@@ -97,7 +97,7 @@ public enum Item {
             regionPrice = (int)(regionPrice * .5);
         }
          if(regionEvent.getRegionEvent() == regionPriceIncreaseEvent.getRegionEvent()){
-             regionPrice = (int)(regionPrice * 5);
+             regionPrice = regionPrice * 5;
          }
      }
     public int getRegionPrice(){ return regionPrice; }

@@ -1,18 +1,14 @@
 package com.example.gtraderprototype.entity;
 
-import com.example.gtraderprototype.model.Database;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.HashSet;
 
 enum TechLevel{
     PRE_AGRICULTURE(0), AGRICULTURE(1), MEDIEVAL(2), RENAISSANCE(3), EARLY_INDUSTRIAL(4), INDUSTRIAL(5), POST_INDUSTRIAL(6), HI_TECH(7);
-    private int techLevel;
+    private final int techLevel;
     public  int getTechLevel(){ return techLevel;}
     TechLevel (int techLevel){
         this.techLevel = techLevel;
@@ -61,11 +57,11 @@ public class Region {
     //public Trader[] traders;
     public String regionName;
     public double[] coordinates;
-    public TechLevel techLevel;
-    public Resources resources;
-    public RegionBasedEvent regionBasedEvent;
-    public ArrayList<Item> sellableItems = new ArrayList<>();
-    public ArrayList<Item> buyableItems = new ArrayList<>();
+    private TechLevel techLevel;
+    private Resources resources;
+    private final RegionBasedEvent regionBasedEvent;
+    public final ArrayList<Item> sellableItems = new ArrayList<>();
+    public final ArrayList<Item> buyableItems = new ArrayList<>();
     public Marketplace marketplace;
 
     public Region(String name, double lat, double lng){
@@ -80,9 +76,8 @@ public class Region {
             boolean regionCanSell = numericTechLevel >= item.getMinimumTechLevelToProduce();
             boolean regionCanBuy = numericTechLevel >= item.getMinimumTechLevelToUse();
             if ( regionCanSell ){
-                Item sellableItem = item;
-                sellableItem.setRegionPrice(numericTechLevel, resources, regionBasedEvent);
-                sellableItems.add(sellableItem);
+                item.setRegionPrice(numericTechLevel, resources, regionBasedEvent);
+                sellableItems.add(item);
             }
             if ( regionCanBuy ){
                 buyableItems.add(item);

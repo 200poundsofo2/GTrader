@@ -4,9 +4,9 @@ package com.example.gtraderprototype.entity;
 import android.util.Log;
 
 public class Player extends Character {
-    public static volatile Player player = null;
-    Difficulty difficulty;
-    public Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Difficulty d){
+    private static volatile Player player = null;
+    private Difficulty difficulty;
+    private Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Difficulty d){
         super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.Gnatt);
         difficulty = d;
         player = this;

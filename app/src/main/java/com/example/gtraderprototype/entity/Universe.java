@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Universe {
     public static volatile Universe universe = null;
     public ArrayList<System> systems = new ArrayList<>();
-    public int size = 200;
+    private int size = 200;
 
 
     public Universe(){
@@ -21,7 +21,7 @@ public class Universe {
         String str = "Universe of size "+this.size;
         StringBuilder strb = new StringBuilder(str);
         for(System sys: systems){
-            strb.append(" system: "+sys.toString());
+            strb.append(" system: ").append(sys.toString());
 
         }
         return strb.toString();

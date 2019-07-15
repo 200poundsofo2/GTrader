@@ -2,21 +2,19 @@ package com.example.gtraderprototype.entity;
 
 import android.util.Log;
 
-import java.util.List;
-
 public class Character { //singleton design pattern: Player.getPlayer()
-    protected String name;
-    protected int pilotSkillPoints;
-    protected int engineerSkillPoints;
-    protected int fighterSkillPoints;
-    protected int traderSkillPoints;
-    protected boolean isPirate;
-    protected int money;
-    protected Ship spaceship;
-    protected Region currentLocation;
+    String name;
+    int pilotSkillPoints;
+    int engineerSkillPoints;
+    int fighterSkillPoints;
+    int traderSkillPoints;
+    boolean isPirate;
+    int money;
+    Ship spaceship;
+    private Region currentLocation;
 
 
-    public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
+    Character(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
         this.name = name;
         this.pilotSkillPoints = pilotPoints;
         this.engineerSkillPoints = engineerPoints;
@@ -25,7 +23,7 @@ public class Character { //singleton design pattern: Player.getPlayer()
         this.money = 1000;
         this.spaceship = spaceship;
     }
-    public Character (){}
+    Character(){}
 
     public void setName(String name) {
         this.name = name;

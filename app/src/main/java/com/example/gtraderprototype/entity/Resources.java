@@ -19,7 +19,7 @@ public enum Resources {
     POORSOIL(11),
     MINERALPOOR(12),
     NotApplicable(13);
-    private int resourceLevel;
+    private final int resourceLevel;
     Resources(int resourceLevel){
         this.resourceLevel = resourceLevel;
     }

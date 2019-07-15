@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.gtraderprototype.R;
-import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Universe;
@@ -15,7 +13,6 @@ import com.example.gtraderprototype.model.GameInstanceInteractor;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
-import com.example.gtraderprototype.views.SpacePortActivity;
 
 public class MapViewModel extends AndroidViewModel {
 

@@ -4,17 +4,13 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import android.content.Context;
 import androidx.annotation.NonNull;
-import android.util.Log;
 
 import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Item;
-import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.model.GameInstanceInteractor;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
-
-import java.util.Random;
 
 public class ConfigurationViewModel extends AndroidViewModel {
 
@@ -33,7 +29,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
         playerInteractor.getPlayer().setRegion(universeInteractor.getRandomSystem().getRandomRegion());
         Item[] listOfItems = Item.values();
         for(int i = 0; i< 10; i++){
-            playerInteractor.getPlayer().getShip().addCargo(listOfItems[(int)(Math.random()*listOfItems.length)]);
+            playerInteractor.getPlayer().getShip().addCargo(listOfItems[(int)(Math.random() *listOfItems.length)]);
         }
 
     }

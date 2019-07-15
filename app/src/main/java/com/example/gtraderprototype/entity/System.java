@@ -10,7 +10,7 @@ public class System {
     private ArrayList<Region> regions = new ArrayList<>();
     private int systemSize;
     private String systemName;
-    public double[] coordinates;
+    private double[] coordinates;
 
     public System(){
         this.systemSize = (int) Math.floor(Math.random()*15)+ 5;
@@ -53,7 +53,7 @@ public class System {
         StringBuilder strb = new StringBuilder();
         strb.append(str);
         for(Region sys: regions){
-            strb.append(" region: "+sys.toString());
+            strb.append(" region: ").append(sys.toString());
         }
         return strb.toString();
     }

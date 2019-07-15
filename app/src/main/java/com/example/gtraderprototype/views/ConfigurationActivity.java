@@ -147,14 +147,12 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private void decrementRemainingSkillPoints() {
         concurrentPoints--;
-        remainingPoints.setText("Remaining Points: "
-                + getString(R.string.points, concurrentPoints));
+        remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points), getString(R.string.points, concurrentPoints)));
     }
 
     private void incrementRemainingSkillPoints() {
         concurrentPoints++;
-        remainingPoints.setText("Remaining Points: "
-                + getString(R.string.points, concurrentPoints));
+        remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points), getString(R.string.points, concurrentPoints)));
     }
 
     private boolean canDecrement(TextView skillPoints) {

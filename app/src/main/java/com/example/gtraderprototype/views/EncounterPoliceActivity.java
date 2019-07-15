@@ -83,8 +83,8 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     }
 
     private void underArrest(String msg){
-        words.setText(msg+"You are under arrest.");
-        b1.setText("Pay the penalty: $"+penalty);
+        words.setText(msg + "You are under arrest.");
+        b1.setText(getString(R.string.pay_the_fine) + penalty);
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -102,7 +102,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         });
 
 
-        b2.setText("Bribe: $"+bribe);
+        b2.setText(getString(R.string.bribe) + bribe);
         b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -117,8 +117,8 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     }
 
     private void fine(){
-        words.setText("You are a good man");
-        b1.setText("Goodbye");
+        words.setText(getString(R.string.you_gud));
+        b1.setText(getString(R.string.bye));
         b2.setEnabled(false);
         b1.setOnClickListener(new View.OnClickListener(){
             @Override

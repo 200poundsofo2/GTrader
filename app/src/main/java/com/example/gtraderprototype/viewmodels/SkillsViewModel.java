@@ -7,7 +7,6 @@ import android.app.Application;
 
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
-import com.example.gtraderprototype.views.SkillsFragment;
 
 public class SkillsViewModel extends AndroidViewModel {
     private PlayerInteractor playerInteractor;

@@ -47,7 +47,7 @@ public class MarketplaceSellAdapter extends RecyclerView.Adapter<MarketplaceSell
     public void onBindViewHolder(MarketplaceViewHolder holder, int position) {
         Item item = itemList.get(position);
         holder.itemName.setText(item.getName());
-        holder.itemPrice.setText("" + item.getRegionPrice());
+        holder.itemPrice.setText(new StringBuilder().append(item.getRegionPrice()).toString());
     }
 
     public int getItemCount() {

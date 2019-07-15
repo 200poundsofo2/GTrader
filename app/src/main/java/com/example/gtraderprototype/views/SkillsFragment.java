@@ -10,11 +10,9 @@ import android.widget.TextView;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
-import com.example.gtraderprototype.entity.Player;
-import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.viewmodels.SkillsViewModel;
 
-public class SkillsFragment extends Fragment {
+class SkillsFragment extends Fragment {
 
     private SkillsViewModel player;
 
@@ -29,7 +27,7 @@ public class SkillsFragment extends Fragment {
         player = ViewModelProviders.of(this).get(SkillsViewModel.class);
 
         TextView playerName = v.findViewById(R.id.welcomePlayer);
-        playerName.setText("Welcome " + player.getName());
+        playerName.setText(getString(R.string.welcome) + player.getName());
 
         return v;
     }
