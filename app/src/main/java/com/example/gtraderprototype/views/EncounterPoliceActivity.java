@@ -79,7 +79,6 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         for(Item i:cargo){
             if(i!=null){
                 if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)){
-                    penalty+=i.getMaximumPrice();
                     illegalItems.add(i);
                 }
             }
@@ -87,6 +86,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         }
         for(Item i: illegalItems){
             ship.dropCargo(i);
+            penalty+=i.getMaximumPrice();
         }
 
     }
@@ -139,6 +139,9 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     }
     public int getPenalty(){
         return penalty;
+    }
+    public void setPenalty(int p){
+        this.penalty=p;
     }
     public void setShip(Ship ship){
         this.ship=ship;

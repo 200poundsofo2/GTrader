@@ -5,7 +5,10 @@ import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.views.EncounterPirateActivity;
 import com.example.gtraderprototype.views.EncounterPoliceActivity;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.Item;
@@ -39,26 +42,39 @@ public class EcounterUnitTest {
         encounterPoliceActivity.setShip(ship);
         encounterPoliceActivity.setIllegalItems(illegalItems);
     }
+
+    @After
+    public void tearDown(){
+        player=null;
+        ship=null;
+        illegalItems=null;
+        encounterPoliceActivity=null;
+        encounterPirateActivity=null;
+    }
+
+
+    @Test
+    public void testPoliceSearchIllegal(){
+        addIllegalCargo();
+        encounterPoliceActivity.setPenalty(0);
+        encounterPoliceActivity.testSearch();
+        assertEquals(4100,encounterPoliceActivity.getPenalty());
+        assertEquals(8,checkNumItems(ship.getCargo()));
+
+        List<Item> expected=new LinkedList<>();
+        expected.add(Item.Firearms);
+        expected.add(Item.Narcotics);
+        assertEquals(expected,encounterPoliceActivity.getIllegalItems());
+    }
+
     @Test
     public void testPoliceSearch(){
         addCargo();
         encounterPoliceActivity.testSearch();
         assertEquals(0,encounterPoliceActivity.getPenalty());
         assertEquals(10,checkNumItems(ship.getCargo()));
-
     }
-    @Test
-    public void testPoliceSearchIllegal(){
-        addIllegalCargo();
-        encounterPoliceActivity.testSearch();
-        assertEquals(4100,encounterPoliceActivity.getPenalty());
-        assertEquals(8,checkNumItems(ship.getCargo()));
-        List<Item> expected=new LinkedList<>();
 
-        expected.add(Item.Firearms);
-        expected.add(Item.Narcotics);
-        assertEquals(expected,encounterPoliceActivity.getIllegalItems());
-    }
 
     @Test
     public void testPlayerBeginner(){
@@ -93,16 +109,6 @@ public class EcounterUnitTest {
 
     }
 
-    @Test
-    public void testPlayerNormal(){
-        //pirate
-        player.setDifficulty(Difficulty.Normal);//Normal: 2
-        player.setMoney(1000);
-        addCargo();
-        encounterPirateActivity.testRobPlayer();
-        assertEquals(700,player.getMoney());
-        assertEquals(7,checkNumItems(ship.getCargo()));
-    }
 
     @Test
     public void testPlayerHard(){
@@ -115,6 +121,7 @@ public class EcounterUnitTest {
         assertEquals(6,checkNumItems(ship.getCargo()));
 
     }
+
     @Test
     public void testPlayerImpossible(){
         //pirate
@@ -152,11 +159,11 @@ public class EcounterUnitTest {
         ship.addCargo(Item.Water);
         ship.addCargo(Item.Furs);
         ship.addCargo(Item.Firearms);
-        ship.addCargo(Item.Ore);
-        ship.addCargo(Item.Water);
-        ship.addCargo(Item.Ore);
-        ship.addCargo(Item.Water);
         ship.addCargo(Item.Narcotics);
+        ship.addCargo(Item.Water);
+        ship.addCargo(Item.Ore);
+        ship.addCargo(Item.Water);
+        ship.addCargo(Item.Water);
         ship.addCargo(Item.Water);
         ship.addCargo(Item.Medicine);
     }
