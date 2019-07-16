@@ -12,6 +12,7 @@
       <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MarketViewModel gameInteractor" />
       <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MarketViewModel universeInteractor" />
       <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.MarketplaceSellAdapter.MarketplaceViewHolder numberOwned" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.MarketplaceBuyAdapter.MarketplaceViewHolder numberOwned" />
     </entry_points>
     <pattern value="com.example.gtraderprototype.entity.Difficulty" method="difficultyIndex" />
     <pattern value="com.example.gtraderprototype.entity.GameInstance" method="getDifficulty" />
@@ -33,6 +34,17 @@
     <pattern value="com.example.gtraderprototype.viewmodels.MarketViewModel" method="getMarketplace" />
     <pattern value="com.example.gtraderprototype.viewmodels.MarketViewModel" />
     <pattern value="com.example.gtraderprototype.entity.NPC" method="NPC" />
+    <pattern value="com.example.gtraderprototype.entity.Character" method="setPirate" />
+    <pattern value="com.example.gtraderprototype.entity.Equipment" />
+    <pattern value="com.example.gtraderprototype.entity.Equipment" method="Equipment" />
+    <pattern value="com.example.gtraderprototype.entity.Equipment" method="getHealth" />
+    <pattern value="com.example.gtraderprototype.entity.Equipment" method="getItem" />
+    <pattern value="com.example.gtraderprototype.entity.Equipment" method="getStrength" />
+    <pattern value="com.example.gtraderprototype.entity.Equipment" method="getType" />
+    <pattern value="com.example.gtraderprototype.views.MarketplaceSellAdapter" method="getItemCount" />
+    <pattern value="com.example.gtraderprototype.views.MarketplaceSellAdapter" />
+    <pattern value="com.example.gtraderprototype.views.MarketplaceSellAdapter" method="onBindViewHolder" />
+    <pattern value="com.example.gtraderprototype.views.MarketplaceSellAdapter" method="onCreateViewHolder" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />

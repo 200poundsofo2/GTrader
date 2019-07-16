@@ -16,23 +16,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Database {
-    static final ArrayList<String> names = new ArrayList<>();
+    private static final ArrayList<String> names = new ArrayList<>();
     /*
         This class communicates with the firebase database
      */
 
-    static final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference gameIDListRef = database.getReference("Save States");
-    public Database(){
-
-    }
 
     public static String getNewGameID(){
-
+        int numberOfCharacters = 16;
+        int charactersInAlphabet = 26;
                 String tempID;
                     tempID = "";
-                    for(int i=0;i<16;i++){
-                        int key = (int)(Math.floor(Math.random()*26));
+                    for(int i=0;i<numberOfCharacters;i++){
+                        int key = (int)(Math.floor(Math.random()*charactersInAlphabet));
                         tempID+=(char)((int)'a'+key);
                     }
         Log.d("GTrader", "Key "+tempID+" generated.");
@@ -81,10 +79,15 @@ public class Database {
                     Model.getInstance().getUniverseInteractor().setUniverse(new Universe());
                     for(DataSnapshot systemSnapshot : dataSnapshot.getChildren()){
                         Log.d("GTraderFirebaseSys", systemSnapshot.toString());
-                        System subSystem = new System(systemSnapshot.getKey(), systemSnapshot.child("/location/lat").getValue(Double.class), systemSnapshot.child("/location/lng").getValue(Double.class));
-                        for(DataSnapshot regionSnapshot : systemSnapshot.child("REGIONS").getChildren()){
+                        System subSystem = new System(systemSnapshot.getKey(),
+                                systemSnapshot.child("/location/lat").getValue(Double.class),
+                                systemSnapshot.child("/location/lng").getValue(Double.class));
+                        for(DataSnapshot regionSnapshot : systemSnapshot.child("REGIONS")
+                                .getChildren()){
                             Log.d("GTraderFirebaseRegion", regionSnapshot.toString());
-                            Region newRegion = new Region(regionSnapshot.getKey(), regionSnapshot.child("/location/lat").getValue(Double.class), regionSnapshot.child("/location/lng").getValue(Double.class));
+                            Region newRegion = new Region(regionSnapshot.getKey(),
+                                    regionSnapshot.child("/location/lat").getValue(Double.class),
+                                    regionSnapshot.child("/location/lng").getValue(Double.class));
 
                             //Add region to system
                             subSystem.addRegion(newRegion);
@@ -96,7 +99,8 @@ public class Database {
                     }
 
                     //Log Universe
-                    Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse().toString());
+                    Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse()
+                            .toString());
                 }/*else{
 
                     -- TODO
@@ -116,7 +120,8 @@ public class Database {
     }
 
     public static String getRandomName(){
-       return names.get((int)(Math.random()*90));
+        int rangeOfValues = 90;
+       return names.get((int)(Math.random()*rangeOfValues));
     }
 
 

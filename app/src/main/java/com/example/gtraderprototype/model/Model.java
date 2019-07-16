@@ -3,7 +3,7 @@ package com.example.gtraderprototype.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Model {
+public final class Model {
     private final Database gtDB;
 
 

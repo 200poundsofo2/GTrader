@@ -3,12 +3,12 @@ package com.example.gtraderprototype.entity;
 
 import android.util.Log;
 
-public class Player extends Character {
-    private static volatile Player player = null;
+public final class Player extends Character {
+    private static volatile Player player;
     private Difficulty difficulty;
-    private Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Difficulty d){
-        super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.Gnatt);
-        difficulty = d;
+    private Player(){
+        super("No Name", 0, 0, 0, 0, Ship.Gnatt);
+        difficulty = Difficulty.Beginner;
         player = this;
 
         Log.d("Woah", this.toString());
@@ -18,7 +18,7 @@ public class Player extends Character {
         if (player == null){
             synchronized (Player.class){
                 if(player == null){
-                    player = new Player("No Name", 0, 0, 0, 0, Difficulty.Beginner);
+                    player = new Player();
                 }
             }
         }
@@ -36,8 +36,10 @@ public class Player extends Character {
     public void setPirate(boolean pirate) {
         getPlayer().isPirate = pirate;
     }
-    public String toString(){return "Player Name: " + name + ", Pilot Skill Points: " + pilotSkillPoints +
-            ", Engineer Skill Points: " + engineerSkillPoints + ", Fighter Skill Points: " + fighterSkillPoints +
+    private String toString(){return "Player Name: "
+            + name + ", Pilot Skill Points: " + pilotSkillPoints +
+            ", Engineer Skill Points: " + engineerSkillPoints +
+            ", Fighter Skill Points: " + fighterSkillPoints +
             ", Trader Skill Points: " + traderSkillPoints +
             ", Money: " + money + ", SpaceShip: "+ spaceship.getName();}
 }

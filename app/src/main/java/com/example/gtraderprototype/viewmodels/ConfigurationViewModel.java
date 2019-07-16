@@ -26,10 +26,12 @@ public class ConfigurationViewModel extends AndroidViewModel {
     }
     public void newGame(Difficulty difficulty, Context context){
         gameInteractor.newGame(difficulty, context);
-        playerInteractor.getPlayer().setRegion(universeInteractor.getRandomSystem().getRandomRegion());
+        playerInteractor.getPlayer()
+                .setRegion(universeInteractor.getRandomSystem().getRandomRegion());
         Item[] listOfItems = Item.values();
         for(int i = 0; i< 10; i++){
-            playerInteractor.getPlayer().getShip().addCargo(listOfItems[(int)(Math.random() *listOfItems.length)]);
+            playerInteractor.getPlayer()
+                    .getShip().addCargo(listOfItems[(int)(Math.random() *listOfItems.length)]);
         }
 
     }

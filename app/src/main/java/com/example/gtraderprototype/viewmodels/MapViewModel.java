@@ -14,15 +14,15 @@ import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
 
+@SuppressWarnings("unused")
 public class MapViewModel extends AndroidViewModel {
 
-    private final GameInstanceInteractor gameInteractor;
     private final UniverseInteractor universeInteractor;
     private final PlayerInteractor playerInteractor;
 
     public MapViewModel(@NonNull Application application) {
         super(application);
-        gameInteractor = Model.getInstance().getGameInstanceInteractor();
+        GameInstanceInteractor gameInteractor = Model.getInstance().getGameInstanceInteractor();
         universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }

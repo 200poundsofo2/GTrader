@@ -12,7 +12,8 @@ import com.example.gtraderprototype.R;
 
 class blank extends Fragment {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View rootView = inflater.inflate(R.layout.activity_blank, container, false);
         super.onCreate(savedInstanceState);

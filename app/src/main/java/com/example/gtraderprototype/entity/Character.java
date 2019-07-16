@@ -14,7 +14,8 @@ public class Character { //singleton design pattern: Player.getPlayer()
     private Region currentLocation;
 
 
-    Character(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
+    Character(String name, int pilotPoints,
+              int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
         this.name = name;
         this.pilotSkillPoints = pilotPoints;
         this.engineerSkillPoints = engineerPoints;

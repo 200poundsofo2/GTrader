@@ -4,7 +4,7 @@ import com.example.gtraderprototype.entity.Item;
 
 import java.util.ArrayList;
 
-public class christianHolmesTest {
+class christianHolmesTest {
     public void testItems(){
     }
 }

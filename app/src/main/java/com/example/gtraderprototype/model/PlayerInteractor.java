@@ -15,7 +15,7 @@ public class PlayerInteractor extends Interactor {
 
     private final Player player = Player.getPlayer();
 
-    Marketplace marketplace = new Marketplace(player);
+    private Marketplace marketplace = new Marketplace(player);
 
     public Player getPlayer(){
         return player;

@@ -3,7 +3,7 @@ package com.example.gtraderprototype.entity;
 
 
 public enum Ship {
-    Gnatt("Gnatt", 50, 3, 3, 3, 3, 1, 50 );
+    Gnatt();
     private String name;
     private int hullStrength;
     private int numberOfUsedCargoBays;
@@ -20,17 +20,17 @@ public enum Ship {
     private int fuel;
     private int fuelCapacity;
 
-    Ship(String name, int hullStrength, int numberOfAvailableCargoBays, int numberOfAvailableWeaponSlots, int numberOfAvailableShieldSlots, int numberOfAvailableGadgetSlots, int numberOfAvailableCrewQuarters, int travelRange) {
-        this.name = name;
-        this.hullStrength = hullStrength;
-        this.cargoBays = new Item[numberOfAvailableCargoBays];
-        this.weaponSlots = new Equipment[numberOfAvailableWeaponSlots];
-        this.shieldSlots = new Equipment[numberOfAvailableShieldSlots];
-        this.gadgetSlots = new Equipment[numberOfAvailableGadgetSlots];
-        this.crewQuarters = new NPC[numberOfAvailableCrewQuarters];
-        this.travelRange = travelRange;
-        this.fuel = travelRange;
-        this.fuelCapacity = travelRange;
+    Ship() {
+        this.name = "Gnatt";
+        this.hullStrength = 50;
+        this.cargoBays = new Item[3];
+        this.weaponSlots = new Equipment[3];
+        this.shieldSlots = new Equipment[3];
+        this.gadgetSlots = new Equipment[3];
+        this.crewQuarters = new NPC[1];
+        this.travelRange = 50;
+        this.fuel = 50;
+        this.fuelCapacity = 50;
     }
 
     public String getName() {
@@ -94,7 +94,8 @@ public enum Ship {
     }
 
     public void addWeapon(Equipment weapon) {
-        this.weaponSlots[numberOfUsedWeaponSlots++] = weapon;
+        this.weaponSlots[numberOfUsedWeaponSlots] = weapon;
+        numberOfUsedWeaponSlots++;
     }
 
     public Equipment[] getShields() {
@@ -106,7 +107,8 @@ public enum Ship {
     }
 
     public void addShield(Equipment shield) {
-        this.shieldSlots[numberOfUsedShieldSlots++] = shield;
+        this.shieldSlots[numberOfUsedShieldSlots] = shield;
+        numberOfUsedShieldSlots++;
     }
 
     public Equipment[] getGadgets() {
@@ -118,7 +120,8 @@ public enum Ship {
     }
 
     public void addGadget(Equipment gadget) {
-        this.gadgetSlots[numberOfUsedGadgetSlots++] = gadget;
+        this.gadgetSlots[numberOfUsedGadgetSlots] = gadget;
+        numberOfUsedGadgetSlots++;
     }
 
     public NPC[] getCrewMembers() {
@@ -130,7 +133,8 @@ public enum Ship {
     }
 
     public void addCrewMember(NPC crewMember) {
-        this.crewQuarters[numberOfUsedCrewQuarters++] = crewMember;
+        this.crewQuarters[numberOfUsedCrewQuarters] = crewMember;
+        numberOfUsedCrewQuarters++;
     }
 
     public int getTravelRange() {

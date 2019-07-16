@@ -34,7 +34,7 @@ public class System {
     public Region getRandomRegion(){
         return regions.get((int)(Math.random()*regions.size()));
     }
-    public ArrayList<Region> getRegions(){
+    public Iterable<Region> getRegions(){
         return regions;
     }
     public String getSystemName(){
@@ -49,7 +49,9 @@ public class System {
 
 
     public String toString(){
-        String str = " Sys "+this.systemName+'('+this.coordinates[0]+','+this.coordinates[1]+") with Regions: ";
+        String str =
+                " Sys "+this.systemName+'('+this.coordinates[0]
+                        +','+this.coordinates[1]+") with Regions: ";
         StringBuilder strb = new StringBuilder();
         strb.append(str);
         for(Region sys: regions){

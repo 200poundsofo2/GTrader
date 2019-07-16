@@ -3,14 +3,11 @@ package com.example.gtraderprototype.entity;
 import java.util.ArrayList;
 
 public class Universe {
-    public static volatile Universe universe = null;
+    public static volatile Universe universe;
     public final ArrayList<System> systems = new ArrayList<>();
     private final int size = 200;
 
 
-    public Universe(){
-
-    }
     public void addSystem(System system){
         systems.add(system);
     }

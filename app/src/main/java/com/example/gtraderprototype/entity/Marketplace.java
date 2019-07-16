@@ -3,7 +3,7 @@ package com.example.gtraderprototype.entity;
 import java.util.ArrayList;
 
 public class Marketplace {
-    private Player player;
+    private final Player player;
     public Marketplace(Player player){
         this.player = player;
     }

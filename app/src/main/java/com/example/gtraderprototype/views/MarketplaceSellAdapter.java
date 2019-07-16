@@ -13,20 +13,21 @@ import com.example.gtraderprototype.entity.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarketplaceSellAdapter extends RecyclerView.Adapter<MarketplaceSellAdapter.MarketplaceViewHolder> {
-    public List<Item> itemList;
-    private RecyclerViewClickListener itemListener;
-    public MarketplaceSellAdapter (ArrayList<Item> itemList,RecyclerViewClickListener itemListener){
+public class MarketplaceSellAdapter
+        extends RecyclerView.Adapter<MarketplaceSellAdapter.MarketplaceViewHolder> {
+    private final List<Item> itemList;
+    private final RecyclerViewClickListener itemListener;
+    public MarketplaceSellAdapter (List<Item> itemList, RecyclerViewClickListener itemListener){
         this.itemList = itemList;
         this.itemListener = itemListener;
     }
     class MarketplaceViewHolder extends RecyclerView.ViewHolder{
-        private TextView itemName;
-        private TextView itemPrice;
-        private Button sell;
+        private final TextView itemName;
+        private final TextView itemPrice;
+        private final Button sell;
         private TextView numberOwned;
 
-        public MarketplaceViewHolder(View itemView) {
+        MarketplaceViewHolder(View itemView) {
             super(itemView);
             itemName = itemView.findViewById(R.id.item_name);
             itemPrice = itemView.findViewById(R.id.price_value);
@@ -40,7 +41,8 @@ public class MarketplaceSellAdapter extends RecyclerView.Adapter<MarketplaceSell
         }
     }
     public MarketplaceViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.marketplace_sell_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.marketplace_sell_item, parent, false);
         return new MarketplaceViewHolder(itemView);
     }
 
@@ -51,7 +53,9 @@ public class MarketplaceSellAdapter extends RecyclerView.Adapter<MarketplaceSell
     }
 
     public int getItemCount() {
-        if (itemList == null) return 0;
+        if (itemList == null) {
+            return 0;
+        }
         return itemList.size();
     }
 

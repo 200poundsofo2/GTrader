@@ -15,12 +15,12 @@ import java.util.ArrayList;
 
 public class GameInstanceInteractor extends Interactor{
 
-    final String localStateFilename = "states";
+    private final String localStateFilename = "states";
     public GameInstanceInteractor(Database db){
         super(db);
 
     }
-    private ArrayList<String> getLocalGames(Context context){
+    private Iterable<String> getLocalGames(Context context){
 
         File file = new File(context.getFilesDir(), localStateFilename);
         ArrayList<String> gameIDs = new ArrayList<>();
@@ -58,9 +58,8 @@ public class GameInstanceInteractor extends Interactor{
         return newinst;
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     void removeGame(GameInstance instance, Context context){
-        ArrayList<String> currentsaves = getLocalGames(context);
+        Iterable<String> currentsaves = getLocalGames(context);
         File file = new File(context.getFilesDir(), localStateFilename);
         file.delete();
 

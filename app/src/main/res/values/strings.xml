@@ -2,9 +2,11 @@
     <string name="app_name">GTraderPrototype</string>
     <string name="title_activity_configuration">ConfigurationActivity</string>
     <string name="points">%d</string>
-    <string name="title_activity_map_fragment" tools:keep="@string/title_activity_map_fragment">Map</string>
+    <string name="title_activity_map_fragment" tools:keep="@string/title_activity_map_fragment">
+        Map</string>
     <string name="title_activity_maps" tools:keep="@string/title_activity_maps">Map</string>
-    <string name="title_activity_fragment_map" tools:keep="@string/title_activity_fragment_map">Map</string>
+    <string name="title_activity_fragment_map" tools:keep="@string/title_activity_fragment_map">
+        Map</string>
     <string name="player_creation">Player Creation</string>
     <string name="player_name">Player Name</string>
     <string name="name">Name</string>
@@ -20,7 +22,9 @@
     <string name="engineer">Engineer:</string>
     <string name="select_difficulty">Select Difficulty</string>
     <string name="create">Create</string>
-    <string name="generic_encounter_text" tools:keep="@string/generic_encounter_text">You are fighting FILL_IN and they currently have BLANK health left. Would you like to continue fighting or flee?</string>
+    <string name="generic_encounter_text" tools:keep="@string/generic_encounter_text">
+        You are fighting FILL_IN and they currently have BLANK health left.
+        Would you like to continue fighting or flee?</string>
     <string name="attack">Attack</string>
     <string name="flee">Flee</string>
     <string name="go">go</string>
@@ -44,12 +48,15 @@
     <string name="argh">Argh!</string>
     <string name="cops">Cops</string>
     <string name="badge">Badge</string>
-    <string name="hands_up_this_is_gtpd_we_are_gonna_search_you">Hands up ! This is GTPD ! We are gonna search you.</string>
+    <string name="hands_up_this_is_gtpd_we_are_gonna_search_you">
+        Hands up ! This is GTPD ! We are gonna search you.</string>
     <string name="ok">OK</string>
     <string name="no">No!</string>
-    <string name="generic_encounter_text2" tools:keep="@string/generic_encounter_text2">You have encountered a trader. The trader is ignoring you. What do you wish to do?</string>
+    <string name="generic_encounter_text2" tools:keep="@string/generic_encounter_text2">
+        You have encountered a trader. The trader is ignoring you. What do you wish to do?</string>
     <string name="skip">Skip</string>
-    <string name="generic_encounter_text3">You have encountered a trader. The trader wants to trade. What do you wish to do?</string>
+    <string name="generic_encounter_text3">You have encountered a trader. The trader wants to trade.
+        What do you wish to do?</string>
     <string name="trade">Trade</string>
     <string name="welcome_to_the_market">Welcome to the Market</string>
     <string name="buy">Buy</string>

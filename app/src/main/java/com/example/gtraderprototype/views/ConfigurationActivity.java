@@ -147,21 +147,24 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private void decrementRemainingSkillPoints() {
         concurrentPoints--;
-        remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points), getString(R.string.points, concurrentPoints)));
+        remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points),
+                getString(R.string.points, concurrentPoints)));
     }
 
     private void incrementRemainingSkillPoints() {
         concurrentPoints++;
-        remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points), getString(R.string.points, concurrentPoints)));
+        remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points),
+                getString(R.string.points, concurrentPoints)));
     }
 
     private boolean canDecrement(TextView skillPoints) {
         boolean checkSkillIsNot0 = Integer.parseInt(skillPoints.getText().toString()) != 0;
-        return getAllocatedSkillPoints() > 0 && checkSkillIsNot0;
+        return (getAllocatedSkillPoints() > 0) && checkSkillIsNot0;
     }
 
     private boolean doSkillPointsRemainUnallocated() {
-        return getAllocatedSkillPoints() < 16;
+        int mostSkillPoints = 16;
+        return getAllocatedSkillPoints() < mostSkillPoints;
     }
 
     private int getAllocatedSkillPoints() {
@@ -186,12 +189,18 @@ public class ConfigurationActivity extends AppCompatActivity {
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
 
             Log.d("GTrader", "Setting up player |"+name+"|");
-            Model.getInstance().getPlayerInteractor().getPlayer().setName((name.equals("")) ? "Default" : name);
-            Model.getInstance().getPlayerInteractor().getPlayer().setEngineerSkillPoints(pointsEngineer);
-            Model.getInstance().getPlayerInteractor().getPlayer().setPilotSkillPoints(pointsPilot);
-            Model.getInstance().getPlayerInteractor().getPlayer().setFighterSkillPoints(pointsFighter);
-            Model.getInstance().getPlayerInteractor().getPlayer().setTraderSkillPoints(pointsTrader);
-            Model.getInstance().getPlayerInteractor().getPlayer().setDifficulty(difficulty);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setName(("".equals(name)) ? "Default" : name);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setEngineerSkillPoints(pointsEngineer);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setPilotSkillPoints(pointsPilot);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setFighterSkillPoints(pointsFighter);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setTraderSkillPoints(pointsTrader);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setDifficulty(difficulty);
             viewModel.newGame(difficulty, this);
             loadSpacePortPage();
         } else {

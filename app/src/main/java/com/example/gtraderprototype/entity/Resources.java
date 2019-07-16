@@ -25,7 +25,8 @@ public enum Resources {
     }
     public int getResourceLevel(){ return resourceLevel; }
         public static com.example.gtraderprototype.entity.Resources getRandomResources(){
-            final List<com.example.gtraderprototype.entity.Resources> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+            final List<com.example.gtraderprototype.entity.Resources> VALUES =
+                    Collections.unmodifiableList(Arrays.asList(values()));
             int SIZE = VALUES.size();
             final Random RANDOM = new Random();
             return VALUES.get(RANDOM.nextInt(SIZE));

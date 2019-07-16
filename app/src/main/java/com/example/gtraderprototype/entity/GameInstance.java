@@ -28,7 +28,7 @@ public class GameInstance {
 
     }
 
-    public String toString(){
+    private String toString(){
         return "INSTANCE: " + "Game ID: " + gameID + "Difficulty: " + difficulty;
     }
 }

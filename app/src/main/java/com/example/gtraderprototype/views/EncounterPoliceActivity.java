@@ -84,7 +84,8 @@ public class EncounterPoliceActivity extends AppCompatActivity {
 
     private void underArrest(String msg){
         words.setText(new StringBuilder().append(msg).append("You are under arrest.").toString());
-        b1.setText(new StringBuilder().append(getString(R.string.pay_the_fine)).append(penalty).toString());
+        b1.setText(new StringBuilder()
+                .append(getString(R.string.pay_the_fine)).append(penalty).toString());
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

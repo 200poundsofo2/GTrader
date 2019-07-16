@@ -13,15 +13,13 @@ import com.example.gtraderprototype.model.UniverseInteractor;
 
 public class MarketViewModel extends AndroidViewModel {
 
-    private GameInstanceInteractor gameInteractor;
-    private UniverseInteractor universeInteractor;
-    private PlayerInteractor playerInteractor;
+    private final PlayerInteractor playerInteractor;
 
 
     public MarketViewModel(@NonNull Application application) {
         super(application);
-        gameInteractor = Model.getInstance().getGameInstanceInteractor();
-        universeInteractor = Model.getInstance().getUniverseInteractor();
+        GameInstanceInteractor gameInteractor = Model.getInstance().getGameInstanceInteractor();
+        UniverseInteractor universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }
 

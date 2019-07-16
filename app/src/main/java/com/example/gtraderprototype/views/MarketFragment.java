@@ -27,13 +27,14 @@ class MarketFragment extends Fragment {
     private TextView moneyView;
     private MarketplaceBuyAdapter buyAdapter;
     private MarketplaceSellAdapter sellAdapter;
-    private Player player = Player.getPlayer();
+    private final Player player = Player.getPlayer();
     private Ship playerShip = player.getShip();
     private ArrayList<Item> sellable = new ArrayList<>();
     private Marketplace marketplace = new Marketplace(player);
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
         Log.d("GTrader", "view creating");
         View rootView = inflater.inflate(R.layout.fragment_market, container, false);
         MarketViewModel viewmodel = ViewModelProviders.of(this).get(MarketViewModel.class);
@@ -48,7 +49,8 @@ class MarketFragment extends Fragment {
         buyRecyclerView.setLayoutManager(layoutManagerBuy);
         RecyclerView.LayoutManager layoutManagerSell = new LinearLayoutManager(getActivity());
         sellRecyclerView.setLayoutManager(layoutManagerSell);
-        moneyView.setText(new StringBuilder().append(getString(R.string.money_with_dollar_sign)).append(player.getMoney()).toString());
+        moneyView.setText(new StringBuilder().append(getString(R.string.money_with_dollar_sign))
+                .append(player.getMoney()).toString());
 
 
 
@@ -62,14 +64,19 @@ class MarketFragment extends Fragment {
                 Item item = buyAdapter.getItemAt(position);
                 if (player.getMoney() >= item.getRegionPrice()) {
                     if (playerShip.canAddCargo()) {
-                        Log.d("GTrader", "Player Contents: Money:" + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                        Log.d("GTrader", "Player Contents: Money:" + player.getMoney()+ " Ship: "
+                                + playerShip.getNumberOfUsedCargoBays());
                         playerShip.addCargo(item);
                         player.pay(item.getRegionPrice());
-                        moneyView.setText(new StringBuilder().append(getString(R.string.money_with_dollar_sign)).append(player.getMoney()).toString());
+                        moneyView.setText(new StringBuilder()
+                                .append(getString(R.string.money_with_dollar_sign))
+                                .append(player.getMoney()).toString());
                         sellable.clear();
                         sellable.addAll(marketplace.getPlayerSellableItems());
                         sellAdapter.notifyDataSetChanged();
-                        Log.d("GTrader", "Player Contents: Money:" + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                        Log.d("GTrader", "Player Contents: Money:"
+                                + player.getMoney()+ " Ship: "
+                                + playerShip.getNumberOfUsedCargoBays());
                     } else {
                         Toast.makeText(getActivity(),
                                 "You have no space", Toast.LENGTH_LONG).show();
@@ -88,14 +95,18 @@ class MarketFragment extends Fragment {
                 playerShip = player.getShip();
                 Item item = sellAdapter.getItemAt(position);
                 if (playerShip.hasCargo()) {
-                    Log.d("GTrader", "Player Contents: Money:" + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                    Log.d("GTrader", "Player Contents: Money:"
+                            + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                     player.getPaid(item.getRegionPrice());
                     playerShip.dropCargo(item);
-                    moneyView.setText(new StringBuilder().append(getString(R.string.money_with_dollar_sign)).append(player.getMoney()).toString());
+                    moneyView.setText(new StringBuilder()
+                            .append(getString(R.string.money_with_dollar_sign))
+                            .append(player.getMoney()).toString());
                     sellable.clear();
                     sellable.addAll(marketplace.getPlayerSellableItems());
                     sellAdapter.notifyDataSetChanged();
-                    Log.d("GTrader", "Player Contents: Money:" + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
+                    Log.d("GTrader", "Player Contents: Money:"
+                            + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                 } else {
                     Toast.makeText(getActivity(),
                             "You have no cargo", Toast.LENGTH_LONG).show();
