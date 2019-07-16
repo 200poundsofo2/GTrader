@@ -96,9 +96,17 @@ public class EncounterPirateActivity extends AppCompatActivity {
     }
 
     private void attack(){
-        //I am still thinking about a good game :)
         pirateText.setText("Lets play game");
-
+        surrender.setEnabled(false);
+        flee.setEnabled(false);
+        attack.setText("start game");
+        attack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pirateGame=new Intent(EncounterPirateActivity.this, PirateGameActivity.class);
+                startActivity(pirateGame);
+            }
+        });
     }
 
     private void surrender(){
@@ -118,9 +126,6 @@ public class EncounterPirateActivity extends AppCompatActivity {
         });
     }
 
-    /** rob some money and items from the player
-     *
-     */
     private void robPlayer(){
         Random random=new Random();
         int moneyRobbed= (int) (((player.getDifficultyLevel() + 1.0) / 10) * player.getMoney());
@@ -137,14 +142,17 @@ public class EncounterPirateActivity extends AppCompatActivity {
                 j=random.nextInt(ship.getCargo().length);
             }
             ship.dropCargo(ship.getCargo()[j]);
-
         }
     }
+
+    /** used for testing
+     *  test robPlayer()
+     */
     public void testRobPlayer(){
         robPlayer();
     }
 
-    /** setter for the player, used for testing different levels of Players
+    /** setter for the player
      *
      * @param player Player of this Game
      */

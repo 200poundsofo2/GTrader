@@ -56,7 +56,6 @@ public class EcounterUnitTest {
     @Test
     public void testPoliceSearchIllegal(){
         addIllegalCargo();
-        encounterPoliceActivity.setPenalty(0);
         encounterPoliceActivity.testSearch();
         assertEquals(4100,encounterPoliceActivity.getPenalty());
         assertEquals(8,checkNumItems(ship.getCargo()));

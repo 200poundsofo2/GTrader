@@ -85,6 +85,12 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+                startActivity(pirateIntent);
+
+                /*
                 if(destination!=null){
                     if(fuel - fuelCost < 0){
                         travelInfo.setText("not enough fuel");
@@ -109,7 +115,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                     }
                     destination=null;
                 }
-
+        */
 
             }
         });

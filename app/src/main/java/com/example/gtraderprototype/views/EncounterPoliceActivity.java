@@ -134,24 +134,49 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * setter for Player
+     * @param player Player
+     */
     public void setPlayer(Player player){
         this.player=player;
     }
+
+    /**
+     * getter for penalty
+     * @return penalty
+     */
     public int getPenalty(){
         return penalty;
     }
-    public void setPenalty(int p){
-        this.penalty=p;
-    }
+
+    /**
+     * setter for ship
+     * @param ship
+     */
     public void setShip(Ship ship){
         this.ship=ship;
     }
+
+    /** getter for illegalItems
+     *
+     * @return illegalItems
+     */
     public List<Item> getIllegalItems(){
         return illegalItems;
     }
-    public void setIllegalItems(List<Item> i){
-        illegalItems=i;
+
+    /**
+     * setter for illegalItems
+     * @param illegalItems illegalItems
+     */
+    public void setIllegalItems(List<Item> illegalItems){
+        this.illegalItems=illegalItems;
     }
+
+    /** used for testing
+     * test search()
+     */
     public void testSearch(){
         search();
     }

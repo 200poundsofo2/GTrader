@@ -69,6 +69,10 @@
             android:name=".views.EncounterTraderActivity"
             android:label="@string/app_name" />
 
+        <activity
+            android:name=".views.PirateGameActivity"
+            android:label="@string/app_name" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD-Wc2Pefl-7H-N_GPX3OCtteqTfGqodaE" />
