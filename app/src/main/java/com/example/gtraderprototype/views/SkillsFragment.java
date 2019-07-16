@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.views;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.example.gtraderprototype.viewmodels.SkillsViewModel;
 class SkillsFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
+    public View onCreateView( LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         if (container != null) {
             container.removeAllViews();
@@ -26,8 +27,8 @@ class SkillsFragment extends Fragment {
         SkillsViewModel player = ViewModelProviders.of(this).get(SkillsViewModel.class);
 
         TextView playerName = v.findViewById(R.id.welcomePlayer);
-        playerName.setText(new StringBuilder().append(getString(R.string.welcome))
-                .append(player.getName()).toString());
+        playerName.setText(getString(R.string.welcome) +
+                player.getName());
 
         return v;
     }

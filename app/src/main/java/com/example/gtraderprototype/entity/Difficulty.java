@@ -8,7 +8,4 @@ public enum Difficulty {
     Impossible();
 
     int difficultyIndex;
-    Difficulty(){
-        this.difficultyIndex = difficultyIndex;
-    }
 }

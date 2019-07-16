@@ -27,14 +27,14 @@ public class Database {
     public static String getNewGameID(){
         int numberOfCharacters = 16;
         int charactersInAlphabet = 26;
-                String tempID;
-                    tempID = "";
+                StringBuilder tempID;
+                    tempID = new StringBuilder();
                     for(int i=0;i<numberOfCharacters;i++){
                         int key = (int)(Math.floor(Math.random()*charactersInAlphabet));
-                        tempID+=(char)((int)'a'+key);
+                        tempID.append((char) ((int) 'a' + key));
                     }
         Log.d("GTrader", "Key "+tempID+" generated.");
-                return tempID;
+                return tempID.toString();
 
     }
     public static void saveState(GameInstance instance){
@@ -52,7 +52,7 @@ public class Database {
         DatabaseReference ref = database.getReference("Save States/"+gameID);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange( DataSnapshot dataSnapshot) {
                 /*
                 Post post = dataSnapshot.getValue(Post.class);
                 System.out.println(post);
@@ -61,7 +61,7 @@ public class Database {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled( DatabaseError databaseError) {
                 //System.out.println("The read failed: " + databaseError.getCode());
             }
         });
@@ -103,7 +103,6 @@ public class Database {
                             .toString());
                 }/*else{
 
-                    -- TODO
                     Universe universe = dataSnapshot.getValue(Universe.class);
                     Model.getInstance().getUniverseInteractor().setUniverse(universe);
                     Log.d("GTrader", "Universe is created");

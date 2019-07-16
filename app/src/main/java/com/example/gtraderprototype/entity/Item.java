@@ -117,7 +117,8 @@ public enum Item {
         Random rand = new Random();
         int resultingVariance = rand.nextInt(variance);
         regionPrice = basePrice + (priceIncreasePerTechLevel *
-                (techLevel - minimumTechLevelToProduce)) + (int) ((30 * .01 * resultingVariance) + .5);
+                (techLevel - minimumTechLevelToProduce))
+                + (int) ((30 * .01 * resultingVariance) + .5);
         if(conditionForPriceIncrease.getResourceLevel() == regionResource.getResourceLevel()) {
             regionPrice = (int)(regionPrice * 1.5);
         }else if(conditionForPriceDecrease.getResourceLevel() ==

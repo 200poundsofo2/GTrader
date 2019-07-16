@@ -8,10 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gtraderprototype.R;
 
-@SuppressWarnings("ALL")
 public class EncounterTraderActivity extends AppCompatActivity {
 
-    @SuppressWarnings("unused")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

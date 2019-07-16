@@ -54,7 +54,7 @@ public enum Ship {
     }
 
     public Item[] getCargo() {
-        return cargoBays;
+        return cargoBays.clone();
     }
 
     public boolean canAddCargo() {

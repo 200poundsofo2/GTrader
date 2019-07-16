@@ -21,7 +21,7 @@ public class Region {
     }
 
     public void setCoordinates(double[] coordinates) {
-        this.coordinates = coordinates;
+        this.coordinates = coordinates.clone();
     }
 
     public TechLevel getTechLevel() {

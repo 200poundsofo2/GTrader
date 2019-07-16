@@ -42,18 +42,21 @@ public class MarketplaceBuyAdapter
             });
         }
     }
-    public MarketplaceViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    @Override
+    public MarketplaceViewHolder onCreateViewHolder( ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.marketplace_buy_item, parent, false);
         return new MarketplaceViewHolder(itemView);
     }
 
+    @Override
     public void onBindViewHolder(MarketplaceViewHolder holder, int position) {
         Item item = itemList.get(position);
         holder.itemName.setText(item.getName());
-        holder.itemPrice.setText(new StringBuilder().append(item.getRegionPrice()).toString());
+        holder.itemPrice.setText(String.valueOf(item.getRegionPrice()));
     }
 
+    @Override
     public int getItemCount() {
         if (itemList == null) {
             return 0;

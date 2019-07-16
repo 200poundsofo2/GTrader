@@ -38,9 +38,9 @@ public class SpacePortActivity extends AppCompatActivity {
         //Set fleeText
         region.setText(mapviewmodel.getPlayerLocationName());
         shipName.setText(mapviewmodel.getPlayerShipName());
-        fuelAmount.setText(new StringBuilder().append(getString(R.string.fuel))
-                .append(mapviewmodel.getPlayerFuel()).append("/")
-                .append(mapviewmodel.getPlayerShipRange()).toString());
+        fuelAmount.setText(getString(R.string.fuel) +
+                mapviewmodel.getPlayerFuel() + "/" +
+                mapviewmodel.getPlayerShipRange());
 
         newFragment = new MarketFragment();
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -71,7 +71,6 @@ public class SpacePortActivity extends AppCompatActivity {
                                 newFragment = new MarketFragment();
                                 break;
                             case R.id.save:
-                                //TODO: save game implementation
                                 break;
                         }
                         final FragmentTransaction transaction =

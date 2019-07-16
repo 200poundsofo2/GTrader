@@ -83,9 +83,8 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     }
 
     private void underArrest(String msg){
-        words.setText(new StringBuilder().append(msg).append("You are under arrest.").toString());
-        b1.setText(new StringBuilder()
-                .append(getString(R.string.pay_the_fine)).append(penalty).toString());
+        words.setText(msg + "You are under arrest.");
+        b1.setText(getString(R.string.pay_the_fine) + penalty);
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -103,7 +102,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         });
 
 
-        b2.setText(new StringBuilder().append(getString(R.string.bribe)).append(bribe).toString());
+        b2.setText(getString(R.string.bribe) + bribe);
         b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

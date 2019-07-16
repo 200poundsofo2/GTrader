@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-@SuppressWarnings({"ALL", "unused"})
 class fragment_map extends Fragment
         implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
         GoogleMap.OnInfoWindowClickListener{

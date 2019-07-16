@@ -14,7 +14,6 @@ import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
 
-@SuppressWarnings("unused")
 public class MapViewModel extends AndroidViewModel {
 
     private final UniverseInteractor universeInteractor;

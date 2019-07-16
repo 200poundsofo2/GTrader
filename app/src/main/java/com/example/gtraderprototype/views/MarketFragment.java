@@ -33,7 +33,7 @@ class MarketFragment extends Fragment {
     private Marketplace marketplace = new Marketplace(player);
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
+    public View onCreateView( LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         Log.d("GTrader", "view creating");
         View rootView = inflater.inflate(R.layout.fragment_market, container, false);
@@ -49,8 +49,8 @@ class MarketFragment extends Fragment {
         buyRecyclerView.setLayoutManager(layoutManagerBuy);
         RecyclerView.LayoutManager layoutManagerSell = new LinearLayoutManager(getActivity());
         sellRecyclerView.setLayoutManager(layoutManagerSell);
-        moneyView.setText(new StringBuilder().append(getString(R.string.money_with_dollar_sign))
-                .append(player.getMoney()).toString());
+        moneyView.setText(getString(R.string.money_with_dollar_sign) +
+                player.getMoney());
 
 
 
@@ -68,9 +68,8 @@ class MarketFragment extends Fragment {
                                 + playerShip.getNumberOfUsedCargoBays());
                         playerShip.addCargo(item);
                         player.pay(item.getRegionPrice());
-                        moneyView.setText(new StringBuilder()
-                                .append(getString(R.string.money_with_dollar_sign))
-                                .append(player.getMoney()).toString());
+                        moneyView.setText(getString(R.string.money_with_dollar_sign) +
+                                player.getMoney());
                         sellable.clear();
                         sellable.addAll(marketplace.getPlayerSellableItems());
                         sellAdapter.notifyDataSetChanged();
@@ -99,9 +98,8 @@ class MarketFragment extends Fragment {
                             + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                     player.getPaid(item.getRegionPrice());
                     playerShip.dropCargo(item);
-                    moneyView.setText(new StringBuilder()
-                            .append(getString(R.string.money_with_dollar_sign))
-                            .append(player.getMoney()).toString());
+                    moneyView.setText(getString(R.string.money_with_dollar_sign) +
+                            player.getMoney());
                     sellable.clear();
                     sellable.addAll(marketplace.getPlayerSellableItems());
                     sellAdapter.notifyDataSetChanged();

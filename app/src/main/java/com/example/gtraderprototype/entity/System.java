@@ -1,9 +1,11 @@
 package com.example.gtraderprototype.entity;
 
 
+
 import com.example.gtraderprototype.model.Database;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class System {
     //public Pirate[] pirates;
@@ -35,7 +37,7 @@ public class System {
         return regions.get((int)(Math.random()*regions.size()));
     }
     public Iterable<Region> getRegions(){
-        return regions;
+        return Collections.unmodifiableList(regions);
     }
     public String getSystemName(){
         return systemName;
