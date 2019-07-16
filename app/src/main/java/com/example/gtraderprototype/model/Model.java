@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Model {
-    private Database gtDB;
+    private final Database gtDB;
 
 
-    private Map<String, Object> interactorMap;
+    private final Map<String, Object> interactorMap;
 
-    private static Model instance = new Model();
+    private static final Model instance = new Model();
 
     public static Model getInstance(){ return instance;}
 

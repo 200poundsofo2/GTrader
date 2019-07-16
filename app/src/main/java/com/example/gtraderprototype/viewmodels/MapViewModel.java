@@ -16,9 +16,9 @@ import com.example.gtraderprototype.model.UniverseInteractor;
 
 public class MapViewModel extends AndroidViewModel {
 
-    private GameInstanceInteractor gameInteractor;
-    private UniverseInteractor universeInteractor;
-    private PlayerInteractor playerInteractor;
+    private final GameInstanceInteractor gameInteractor;
+    private final UniverseInteractor universeInteractor;
+    private final PlayerInteractor playerInteractor;
 
     public MapViewModel(@NonNull Application application) {
         super(application);

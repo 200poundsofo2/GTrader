@@ -13,7 +13,7 @@ public class PlayerInteractor extends Interactor {
         super(db);
     }
 
-    private Player player = Player.getPlayer();
+    private final Player player = Player.getPlayer();
 
     Marketplace marketplace = new Marketplace(player);
 

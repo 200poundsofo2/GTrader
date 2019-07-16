@@ -6,7 +6,7 @@ import com.example.gtraderprototype.model.Database;
 
 public class GameInstance {
     //Game Instance Reference
-    private String gameID;
+    private final String gameID;
 
 
     private Difficulty difficulty;

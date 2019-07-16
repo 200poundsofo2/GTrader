@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Universe {
     public static volatile Universe universe = null;
-    public ArrayList<System> systems = new ArrayList<>();
-    private int size = 200;
+    public final ArrayList<System> systems = new ArrayList<>();
+    private final int size = 200;
 
 
     public Universe(){

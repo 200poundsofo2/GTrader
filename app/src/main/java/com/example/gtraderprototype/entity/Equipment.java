@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.entity;
 
+@SuppressWarnings("unused")
 public class Equipment {
     private final int strength;
     private final int health;

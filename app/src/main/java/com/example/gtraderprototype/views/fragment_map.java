@@ -192,7 +192,7 @@ class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnM
                 .radius(35)
                 .build();
         // Add a tile overlay to the map, using the heat map tile provider.
-        TileOverlay mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+         mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
 
     }
     public boolean onMarkerClick(Marker marker) {

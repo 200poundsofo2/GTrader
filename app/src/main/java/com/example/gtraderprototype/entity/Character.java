@@ -31,10 +31,10 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public String getName(){
         return name;
     }
-    public int getPilotSkillPoints(){return pilotSkillPoints;}
+    /*public int getPilotSkillPoints(){return pilotSkillPoints;}
     public int getEngineerSkillPoints(){return  engineerSkillPoints;}
     public int getFighterSkillPoints(){return fighterSkillPoints;}
-    public int getTraderSkillPoints(){return traderSkillPoints;}
+    public int getTraderSkillPoints(){return traderSkillPoints;}*/
     public void setPilotSkillPoints(int points){this.pilotSkillPoints = points;}
     public void setEngineerSkillPoints(int points){this.engineerSkillPoints = points;}
     public void setFighterSkillPoints(int points){this.fighterSkillPoints = points;}

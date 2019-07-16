@@ -9,7 +9,7 @@ import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 
 public class SkillsViewModel extends AndroidViewModel {
-    private PlayerInteractor playerInteractor;
+    private final PlayerInteractor playerInteractor;
 
     public SkillsViewModel(@NonNull Application application) {
         super(application);

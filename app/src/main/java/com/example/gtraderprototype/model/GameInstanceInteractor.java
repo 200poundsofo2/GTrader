@@ -58,6 +58,7 @@ public class GameInstanceInteractor extends Interactor{
         return newinst;
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     void removeGame(GameInstance instance, Context context){
         ArrayList<String> currentsaves = getLocalGames(context);
         File file = new File(context.getFilesDir(), localStateFilename);

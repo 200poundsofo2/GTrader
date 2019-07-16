@@ -1,10 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">GTraderPrototype</string>
     <string name="title_activity_configuration">ConfigurationActivity</string>
     <string name="points">%d</string>
-    <string name="title_activity_map_fragment">Map</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="title_activity_fragment_map">Map</string>
+    <string name="title_activity_map_fragment" tools:keep="@string/title_activity_map_fragment">Map</string>
+    <string name="title_activity_maps" tools:keep="@string/title_activity_maps">Map</string>
+    <string name="title_activity_fragment_map" tools:keep="@string/title_activity_fragment_map">Map</string>
     <string name="player_creation">Player Creation</string>
     <string name="player_name">Player Name</string>
     <string name="name">Name</string>
@@ -20,7 +20,7 @@
     <string name="engineer">Engineer:</string>
     <string name="select_difficulty">Select Difficulty</string>
     <string name="create">Create</string>
-    <string name="generic_encounter_text">You are fighting FILL_IN and they currently have BLANK health left. Would you like to continue fighting or flee?</string>
+    <string name="generic_encounter_text" tools:keep="@string/generic_encounter_text">You are fighting FILL_IN and they currently have BLANK health left. Would you like to continue fighting or flee?</string>
     <string name="attack">Attack</string>
     <string name="flee">Flee</string>
     <string name="go">go</string>
@@ -47,7 +47,7 @@
     <string name="hands_up_this_is_gtpd_we_are_gonna_search_you">Hands up ! This is GTPD ! We are gonna search you.</string>
     <string name="ok">OK</string>
     <string name="no">No!</string>
-    <string name="generic_encounter_text2">You have encountered a trader. The trader is ignoring you. What do you wish to do?</string>
+    <string name="generic_encounter_text2" tools:keep="@string/generic_encounter_text2">You have encountered a trader. The trader is ignoring you. What do you wish to do?</string>
     <string name="skip">Skip</string>
     <string name="generic_encounter_text3">You have encountered a trader. The trader wants to trade. What do you wish to do?</string>
     <string name="trade">Trade</string>
@@ -63,9 +63,9 @@
     <string name="travel">travel</string>
     <string name="market">market</string>
     <string name="save">save</string>
-    <string name="regionname">regionName</string>
-    <string name="resrc">resrc</string>
-    <string name="techlevel">TechLevel:</string>
+    <string name="regionname" tools:keep="@string/regionname">regionName</string>
+    <string name="resrc" tools:keep="@string/resrc">resrc</string>
+    <string name="techlevel" tools:keep="@string/techlevel">TechLevel:</string>
     <string name="remaining_points">Remaining Points:</string>
     <string name="flee_succeeded">Flee Succeeded!</string>
     <string name="see_you_nexttime">This isn\'t the end! Let\'s wait and see.</string>
@@ -82,8 +82,8 @@
     <string name="arrived">Arrived</string>
     <string name="then_who_is_that">Already docked.</string>
     <string name="money_with_dollar_sign">Money: $</string>
-    <string name="empty" />
+    <string name="empty" tools:keep="@string/empty" />
     <string name="welcome">Welcome</string>
     <string name="fuel">Fuel:</string>
-    <string name="money">money</string>
+    <string name="money" tools:keep="@string/money">money</string>
 </resources>

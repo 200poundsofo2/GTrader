@@ -1,17 +1,14 @@
 package com.example.gtraderprototype.entity;
 
 public enum Difficulty {
-    Beginner(0),
-    Easy(1),
-    Normal(2),
-    Hard(3),
-    Impossible(4);
+    Beginner(),
+    Easy(),
+    Normal(),
+    Hard(),
+    Impossible();
 
     int difficultyIndex;
-    Difficulty(int level){
+    Difficulty(){
         this.difficultyIndex = difficultyIndex;
-    }
-    public int difficultyIndex(){
-        return difficultyIndex;
     }
 }

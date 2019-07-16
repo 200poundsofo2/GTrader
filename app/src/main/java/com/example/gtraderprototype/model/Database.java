@@ -16,12 +16,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Database {
-    static ArrayList<String> names = new ArrayList<>();
+    static final ArrayList<String> names = new ArrayList<>();
     /*
         This class communicates with the firebase database
      */
 
-    static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static final FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference gameIDListRef = database.getReference("Save States");
     public Database(){
 
@@ -97,14 +97,13 @@ public class Database {
 
                     //Log Universe
                     Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse().toString());
-                }else{
+                }/*else{
 
-                    /*-- TODO
+                    -- TODO
                     Universe universe = dataSnapshot.getValue(Universe.class);
                     Model.getInstance().getUniverseInteractor().setUniverse(universe);
                     Log.d("GTrader", "Universe is created");
-                    */
-                }
+                }*/
 
             }
 

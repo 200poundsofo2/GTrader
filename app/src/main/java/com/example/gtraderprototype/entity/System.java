@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class System {
     //public Pirate[] pirates;
-    private ArrayList<Region> regions = new ArrayList<>();
-    private int systemSize;
+    private final ArrayList<Region> regions = new ArrayList<>();
+    private final int systemSize;
     private String systemName;
     private double[] coordinates;
 

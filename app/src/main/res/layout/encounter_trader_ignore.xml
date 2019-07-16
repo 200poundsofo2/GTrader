@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000"
-        tools:context=".views.MainActivity">
+        tools:context=".views.MainActivity"
+        tools:keep="@layout/encounter_trader_ignore">
 
         <TextView
             android:id="@+id/trader"
