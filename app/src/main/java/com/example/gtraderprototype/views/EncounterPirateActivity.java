@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gtraderprototype.entity.Item;
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.Player;
 
@@ -26,7 +27,7 @@ import java.util.Random;
  */
 
 public class EncounterPirateActivity extends AppCompatActivity {
-    private Random random;
+
 
     private  Button attack;
     private  Button flee;
@@ -35,16 +36,15 @@ public class EncounterPirateActivity extends AppCompatActivity {
     private  TextView encounterText;
 
     private  Player player;
-    private  Ship ship;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.encounter_pirate);
-        random= new Random();
+
         EncounterViewModel viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayer();
-        ship=player.getShip();
+
 
         pirateText=findViewById(R.id.pirateText);
         encounterText=findViewById(R.id.encounterText);
@@ -93,9 +93,6 @@ public class EncounterPirateActivity extends AppCompatActivity {
         } else{ //unable to flee, game over
             startActivity(new Intent(EncounterPirateActivity.this, GameOverActivity.class));
         }
-
-
-
     }
 
     private void attack(){
@@ -115,19 +112,54 @@ public class EncounterPirateActivity extends AppCompatActivity {
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                int numItem=((player.getDifficultyLevel()+1)/10)
-                        *ship.getCargo().length; //10% for beginner 50% for impossible
-                for(int i=0; i<numItem;i++){
-                    int j=random.nextInt(ship.getCargo().length);
-                    ship.dropCargo(ship.getCargo()[j]);
-                }
-                int moneyRobbed= ((player.getDifficultyLevel() + 1) / 10) * player.getMoney();
-                player.setMoney(player.getMoney()-moneyRobbed);
-
+                robPlayer();
                 finish();
             }
         });
-
     }
+
+    /** rob some money and items from the player
+     *
+     */
+    private void robPlayer(){
+        Random random=new Random();
+        int moneyRobbed= (int) (((player.getDifficultyLevel() + 1.0) / 10) * player.getMoney());
+        player.setMoney(player.getMoney()-moneyRobbed);
+
+        Ship ship=player.getShip();
+        int numItem=(int) (((player.getDifficultyLevel()+1.0)/10)
+                *checkNumItems(ship.getCargo()));
+        //10% for beginner 50% for impossible
+
+        for(int i=0; i<numItem;i++){
+            int j=random.nextInt(ship.getCargo().length);
+            while (ship.getCargo()[j]== null){
+                j=random.nextInt(ship.getCargo().length);
+            }
+            ship.dropCargo(ship.getCargo()[j]);
+
+        }
+    }
+    public void testRobPlayer(){
+        robPlayer();
+    }
+
+    /** setter for the player, used for testing different levels of Players
+     *
+     * @param player Player of this Game
+     */
+    public void setPlayer(Player player){
+        this.player=player;
+    }
+    private int checkNumItems(Item[] cargo){
+        int num=0;
+        for(Item i:cargo){
+            if(i!=null){
+                num++;
+            }
+        }
+        return num;
+    }
+
+
 }

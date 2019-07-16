@@ -28,7 +28,6 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     private Button b2;
     private Player player;
     private Ship ship;
-    private Item[] cargo;
     private int penalty;
     private int bribe;
     private List<Item> illegalItems;
@@ -44,9 +43,9 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         EncounterViewModel viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayer();
         ship=player.getShip();
-        cargo=ship.getCargo();
+
         illegalItems=new ArrayList<>();
-        penalty=100;
+        penalty=0;
         bribe = (player.getMoney() * (player.getDifficultyLevel() + 1)) / 10;
 
         b1.setOnClickListener(new View.OnClickListener(){
@@ -62,24 +61,34 @@ public class EncounterPoliceActivity extends AppCompatActivity {
                 underArrest("You didn't obey. ");
             }
         });
-
-
     }
     private void startSearching(){
-        for(Item i:cargo){
-            if(i!=null){
-                if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)||player.getIsPirate()){
-                    penalty+=i.getMaximumPrice();
-                    illegalItems.add(i);
-                }
-            }
-
+        search();
+        if(player.getIsPirate()){
+            penalty+=1000;
         }
         if(penalty!=0){
             underArrest("You are a bad trader. ");
         }else{
             fine();
         }
+    }
+
+    private void search(){
+        Item[] cargo=ship.getCargo();
+        for(Item i:cargo){
+            if(i!=null){
+                if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)){
+                    penalty+=i.getMaximumPrice();
+                    illegalItems.add(i);
+                }
+            }
+
+        }
+        for(Item i: illegalItems){
+            ship.dropCargo(i);
+        }
+
     }
 
     private void underArrest(String msg){
@@ -90,9 +99,6 @@ public class EncounterPoliceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if((player.getMoney() - penalty) > 0){
                     player.setMoney(player.getMoney()-penalty);
-                    for(Item i: illegalItems){
-                        ship.dropCargo(i);
-                    }
                     finish();
                 } else {
 
@@ -128,5 +134,23 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         });
     }
 
+    public void setPlayer(Player player){
+        this.player=player;
+    }
+    public int getPenalty(){
+        return penalty;
+    }
+    public void setShip(Ship ship){
+        this.ship=ship;
+    }
+    public List<Item> getIllegalItems(){
+        return illegalItems;
+    }
+    public void setIllegalItems(List<Item> i){
+        illegalItems=i;
+    }
+    public void testSearch(){
+        search();
+    }
 
 }

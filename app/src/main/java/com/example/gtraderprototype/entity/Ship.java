@@ -3,7 +3,7 @@ package com.example.gtraderprototype.entity;
 
 
 public enum Ship {
-    Gnatt("Gnatt", 50, 3, 3, 3, 3, 1, 50 );
+    Gnatt("Gnatt", 50, 10, 3, 3, 3, 1, 50 );
     private String name;
     private int hullStrength;
     private int numberOfUsedCargoBays;

@@ -9,7 +9,7 @@ public enum Difficulty {
 
     int difficultyIndex;
     Difficulty(int level){
-        this.difficultyIndex = difficultyIndex;
+        this.difficultyIndex = level;
     }
     public int difficultyIndex(){
         return difficultyIndex;
