@@ -54,7 +54,6 @@ public class Region {
     public ArrayList<Item> sellableItems;
     public ArrayList<Item> buyableItems;
     public Region(){
-        this.regionName = Database.getRandomName();
         this.coordinates = new int[]{(int)(Math.random()*90), (int)(Math.random()*90)};
         this.techLevel = TechLevel.getRandomLevel();
         this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
