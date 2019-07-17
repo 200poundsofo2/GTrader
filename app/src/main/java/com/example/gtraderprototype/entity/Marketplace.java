@@ -5,11 +5,24 @@ import com.example.gtraderprototype.model.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * marketplace where users can purchase items
+ */
 public class Marketplace {
     private Player player;
+
+    /**
+     * initializing the player in the marketplace
+     * @param player the player in the marketplace
+     */
     public Marketplace(Player player){
         this.player = player;
     }
+
+    /**
+     * getting items that a player has that are can be traded
+     * @return list of items
+     */
     public ArrayList<Item> getPlayerSellableItems(){
         Region region = Model.getInstance().getPlayerInteractor().getLocation();
         ArrayList<Item> allowablePlayerItemList = new ArrayList<>();
@@ -23,6 +36,11 @@ public class Marketplace {
         }
         return allowablePlayerItemList;
     }
+
+    /**
+     * getting items that the player can purchase
+     * @return list of items
+     */
     public ArrayList<Item> getPlayerBuyableItems(){
         Region region = Model.getInstance().getPlayerInteractor().getLocation();
         return region.sellableItems;

@@ -37,10 +37,10 @@ public class SpacePortActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         TextView region = findViewById(R.id.name_of_region);
-        TextView shipName = findViewById(R.id.nameofShip);
+        TextView shipName = findViewById(R.id.NameOfShip);
         TextView fuelAmount = findViewById(R.id.fuel_amount);
 
-        //Set text
+        //Set fleeText
         region.setText(mapviewmodel.getPlayerLocationName());
         shipName.setText(mapviewmodel.getPlayerShipName());
         fuelAmount.setText("Fuel: " + mapviewmodel.getPlayerFuel()

@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Difficulty;
-import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
@@ -23,7 +22,7 @@ import java.util.Arrays;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
-    private ConfigurationViewModel viewmodel;
+    private ConfigurationViewModel viewModel;
 
     private TextView remainingPoints;
     private EditText playerName;
@@ -55,7 +54,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
 
-        viewmodel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
     public void decrementSkillPointsForPilot(View view) {

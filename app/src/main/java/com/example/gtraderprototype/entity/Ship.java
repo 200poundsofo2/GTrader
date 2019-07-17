@@ -1,7 +1,5 @@
 package com.example.gtraderprototype.entity;
 
-
-
 import android.util.Log;
 
 import java.util.ArrayList;
