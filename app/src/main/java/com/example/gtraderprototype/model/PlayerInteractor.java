@@ -31,7 +31,7 @@ public class PlayerInteractor extends Interactor {
     }
 
     public void deductFuel(int fuelAmt){
-        player.getSpaceship().deductFuel(fuelAmt);
+        player.getSpaceShip().deductFuel(fuelAmt);
     }
     public Region getLocation(){
         return Model.getInstance().getUniverseInteractor().getRegionByName(player.getRegionName());

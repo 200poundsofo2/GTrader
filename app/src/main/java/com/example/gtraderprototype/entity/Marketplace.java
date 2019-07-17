@@ -26,7 +26,7 @@ public class Marketplace {
     public ArrayList<Item> getPlayerSellableItems(){
         Region region = Model.getInstance().getPlayerInteractor().getLocation();
         ArrayList<Item> allowablePlayerItemList = new ArrayList<>();
-        List<Item> playerItems = player.getSpaceship().getCargo();
+        List<Item> playerItems = player.getSpaceShip().getCargo();
         for (Item regionItem : region.buyableItems) {
             for(Item playerItem : playerItems){
                 if(regionItem.equals(playerItem) ){

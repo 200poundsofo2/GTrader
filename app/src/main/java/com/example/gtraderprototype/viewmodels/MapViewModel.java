@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Universe;
 import com.example.gtraderprototype.model.GameInstanceInteractor;
@@ -35,15 +36,15 @@ public class MapViewModel extends AndroidViewModel {
     }
 
     public int getPlayerFuel() {
-        return playerInteractor.getPlayer().getSpaceship().getFuel();
+        return playerInteractor.getPlayer().getSpaceShip().getFuel();
     }
 
     public int getPlayerShipRange() {
-        return playerInteractor.getPlayer().getSpaceship().getFuelCapacity();
+        return playerInteractor.getPlayer().getSpaceShip().getFuelCapacity();
     }
 
     public String getPlayerShipName() {
-        return playerInteractor.getPlayer().getSpaceship().getName();
+        return playerInteractor.getPlayer().getSpaceShip().getName();
     }
 
     public String getPlayerLocationName() {

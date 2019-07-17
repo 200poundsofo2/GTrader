@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Ship;
+import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.EncounterViewModel;
 import com.example.gtraderprototype.entity.Item;
 import java.util.List;
@@ -28,6 +30,8 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     private Button b2;
     private Player player;
     private Ship ship;
+
+    private Difficulty gameDifficulty;
     private int penalty;
     private int bribe;
     private List<Item> illegalItems;
@@ -42,11 +46,11 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         b2=findViewById(R.id.b2);
         EncounterViewModel viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayer();
-        ship=player.getShip();
-
+        ship=player.getSpaceShip();
+        gameDifficulty = Model.getInstance().getGameInstanceInteractor().getGameDifficulty();
         illegalItems=new ArrayList<>();
         penalty=0;
-        bribe = (player.getMoney() * (player.getDifficultyLevel() + 1)) / 10;
+        bribe = (player.getMoney() * (gameDifficulty.difficultyIndex() + 1)) / 10;
 
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -75,7 +79,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     }
 
     private void search(){
-        Item[] cargo=ship.getCargo();
+        List<Item> cargo=ship.getCargo();
         for(Item i:cargo){
             if(i!=null){
                 if(i.equals(Item.Firearms)||i.equals(Item.Narcotics)){

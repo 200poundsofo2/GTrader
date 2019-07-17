@@ -80,17 +80,17 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         travelInfo =  mView.findViewById(R.id.travel);
         button = mView.findViewById(R.id.button);
         player = Model.getInstance().getPlayerInteractor().getPlayer();
-        fuel = player.getSpaceship().getFuel();
-        fuelCapacity = player.getSpaceship().getFuelCapacity();
+        fuel = player.getSpaceShip().getFuel();
+        fuelCapacity = player.getSpaceShip().getFuelCapacity();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
-                startActivity(pirateIntent);
+                //Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+                //startActivity(pirateIntent);
 
-                /*
+
                 if(destination!=null){
                     if(fuel - fuelCost < 0){
                         travelInfo.setText("not enough fuel");
@@ -115,7 +115,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                     }
                     destination=null;
                 }
-        */
+
 
             }
         });
@@ -242,7 +242,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     }
 
     private void encounter(){ //trade, police, pirate
-        double pirateProbability = (viewmodel.getPlayer().getDifficultyLevel() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
+        double pirateProbability = (Model.getInstance().getGameInstanceInteractor().getGameDifficulty().difficultyIndex() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
         Random rand = new Random();
         if(Math.random() < pirateProbability){
             // encounter pirate

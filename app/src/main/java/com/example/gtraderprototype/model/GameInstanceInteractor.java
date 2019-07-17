@@ -26,6 +26,10 @@ public class GameInstanceInteractor extends Interactor{
     public GameInstance getGameInstance(){
         return gameInstance;
     }
+
+    public Difficulty getGameDifficulty(){
+        return gameInstance.getDifficulty();
+    }
     public ArrayList<String> getLocalGames(Context context){
 
         File file = new File(context.getFilesDir(), localStateFilename);
@@ -53,7 +57,7 @@ public class GameInstanceInteractor extends Interactor{
         Log.d("GTrader", instance.toString());
     }
     public void newGame(Difficulty difficulty, Player player, Context context){
-        gameInstance = new GameInstance(difficulty, player);
+        this.gameInstance = new GameInstance(difficulty, player);
         try{
             FileOutputStream outputStream;
             String fileContents = gameInstance.getGameID();
