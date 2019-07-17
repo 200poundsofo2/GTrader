@@ -2,11 +2,24 @@ package com.example.gtraderprototype.entity;
 
 import java.util.ArrayList;
 
+/**
+ * marketplace where users can purchase items
+ */
 public class Marketplace {
     private Player player;
+
+    /**
+     * initializing the player in the marketplace
+     * @param player the player in the marketplace
+     */
     public Marketplace(Player player){
         this.player = player;
     }
+
+    /**
+     * getting items that a player has that are can be traded
+     * @return list of items
+     */
     public ArrayList<Item> getPlayerSellableItems(){
         Region region = player.getRegion();
         ArrayList<Item> allowablePlayerItemList = new ArrayList<>();
@@ -20,6 +33,11 @@ public class Marketplace {
         }
         return allowablePlayerItemList;
     }
+
+    /**
+     * getting items that the player can purchase
+     * @return list of items
+     */
     public ArrayList<Item> getPlayerBuyableItems(){
         Region region = player.getRegion();
         return region.sellableItems;
