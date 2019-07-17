@@ -11,10 +11,19 @@ import com.example.gtraderprototype.entity.Item;
 
 import java.util.List;
 
+/**
+ * the adapter for sellable item from a player
+ */
 public class MarketplaceSellAdapter
         extends RecyclerView.Adapter<MarketplaceSellAdapter.MarketplaceViewHolder> {
     private final List<Item> itemList;
     private final RecyclerViewClickListener itemListener;
+
+    /**
+     * constructor for the the sell adapter
+     * @param itemList list of items that the player can sell
+     * @param itemListener a listener for selling item via a button
+     */
     public MarketplaceSellAdapter (List<Item> itemList, RecyclerViewClickListener itemListener){
         this.itemList = itemList;
         this.itemListener = itemListener;
@@ -60,6 +69,11 @@ public class MarketplaceSellAdapter
         return itemList.size();
     }
 
+    /**
+     * gets an item from the item list
+     * @param position the index of the item in the item list
+     * @return a sellable item
+     */
     public Item getItemAt(int position) {
         return itemList.get(position);
     }

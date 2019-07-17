@@ -13,9 +13,17 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * a connection between the database and the current instance of the game
+ */
 public class GameInstanceInteractor extends Interactor{
 
     private final String localStateFilename = "states";
+
+    /**
+     * a constructor for GameInstanceInteractor
+     * @param db the database
+     */
     public GameInstanceInteractor(Database db){
         super(db);
 
@@ -43,6 +51,12 @@ public class GameInstanceInteractor extends Interactor{
         }
         return gameIDs;
     }
+
+    /**
+     * create a new game
+     * @param difficulty the difficulty of the game
+     * @param context android stuff
+     */
     public void newGame(Difficulty difficulty, Context context){
         GameInstance newinst = new GameInstance(difficulty);
         try{
