@@ -194,7 +194,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             Model.getInstance().getPlayerInteractor().getPlayer().setPilotSkillPoints(pointsPilot);
             Model.getInstance().getPlayerInteractor().getPlayer().setFighterSkillPoints(pointsFighter);
             Model.getInstance().getPlayerInteractor().getPlayer().setTraderSkillPoints(pointsTrader);
-            viewmodel.newGame(difficulty, this);
+            viewmodel.newGame(difficulty, Model.getInstance().getPlayerInteractor().getPlayer(), this);
             loadSpacePortPage();
         } else {
             Toast.makeText(ConfigurationActivity.this,

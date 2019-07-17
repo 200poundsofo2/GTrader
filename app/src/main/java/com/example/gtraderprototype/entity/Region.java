@@ -1,14 +1,12 @@
 package com.example.gtraderprototype.entity;
 
-import com.example.gtraderprototype.model.Database;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.HashSet;
 
 enum TechLevel{
     PRE_AGRICULTURE(0), AGRICULTURE(1), MEDIEVAL(2), RENAISSANCE(3), EARLY_INDUSTRIAL(4), INDUSTRIAL(5), POST_INDUSTRIAL(6), HI_TECH(7);
@@ -33,11 +31,11 @@ public class Region {
         this.regionName = regionName;
     }
 
-    public double[] getCoordinates() {
+    public List<Double> getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(double[] coordinates) {
+    public void setCoordinates(List<Double> coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -60,7 +58,7 @@ public class Region {
     //public Police[] police;
     //public Trader[] traders;
     public String regionName;
-    public double[] coordinates;
+    public List<Double> coordinates = new ArrayList<>();
     public TechLevel techLevel;
     public Resources resources;
     public RegionBasedEvent regionBasedEvent;
@@ -70,7 +68,8 @@ public class Region {
 
     public Region(String name, double lat, double lng){
         this.regionName = name;
-        this.coordinates = new double[]{lat,lng};
+        this.coordinates.add(lat);
+        this.coordinates.add(lng);
         this.techLevel = TechLevel.getRandomLevel();
         this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
         this.resources = Resources.getRandomResources();
@@ -91,7 +90,7 @@ public class Region {
     }
 
     public String toString(){
-        return "REGION "+this.regionName+"("+coordinates[0]+","+coordinates[1]+") tech:"+this.techLevel+",rsc:"+this.resources+", Sellable: "+sellableItems.toString()+ ", Buyable: "+buyableItems.toString();
+        return "REGION "+this.regionName+"("+coordinates.get(0)+","+coordinates.get(0)+") tech:"+this.techLevel+",rsc:"+this.resources+", Sellable: "+sellableItems.toString()+ ", Buyable: "+buyableItems.toString();
     }
 
 }

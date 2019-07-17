@@ -10,7 +10,7 @@ public class GameInstance {
 
 
     private Difficulty difficulty;
-    private System[] system;
+    private Player player;
 
     public String getGameID(){
         return gameID;
@@ -20,16 +20,28 @@ public class GameInstance {
         this.difficulty = difficulty;
     }
 
-    public GameInstance( Difficulty difficulty){
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+
+    public GameInstance(){
+        this.gameID = Database.getNewGameID();
+        this.difficulty = Difficulty.Beginner;
+    }
+    public GameInstance(Difficulty difficulty, Player player){
         this.gameID = Database.getNewGameID();
         this.difficulty = difficulty;
+        this.player = player;
         Log.d("GTrader", "Created Local Game Instance: " + this.toString());
-
-
     }
 
     public String toString(){
-        return "INSTANCE: " + "Game ID: " + gameID + "Difficulty: " + difficulty;
+        return "INSTANCE: " + "Game ID: " + gameID + "Difficulty: " + difficulty + ",Player: "+player.toString();
     }
 }
 

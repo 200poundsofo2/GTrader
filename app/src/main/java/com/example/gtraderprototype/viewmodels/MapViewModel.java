@@ -6,16 +6,12 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.gtraderprototype.R;
-import com.example.gtraderprototype.entity.Difficulty;
-import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Universe;
 import com.example.gtraderprototype.model.GameInstanceInteractor;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
-import com.example.gtraderprototype.views.SpacePortActivity;
 
 public class MapViewModel extends AndroidViewModel {
 
@@ -39,15 +35,15 @@ public class MapViewModel extends AndroidViewModel {
     }
 
     public int getPlayerFuel() {
-        return playerInteractor.getPlayer().getShip().getFuel();
+        return playerInteractor.getPlayer().getSpaceship().getFuel();
     }
 
     public int getPlayerShipRange() {
-        return playerInteractor.getPlayer().getShip().getTravelRange();
+        return playerInteractor.getPlayer().getSpaceship().getFuelCapacity();
     }
 
     public String getPlayerShipName() {
-        return playerInteractor.getPlayer().getShip().getName();
+        return playerInteractor.getPlayer().getSpaceship().getName();
     }
 
     public String getPlayerLocationName() {

@@ -13,17 +13,18 @@ public class Character { //singleton design pattern: Player.getPlayer()
     protected boolean isPirate;
     protected int money;
     protected Ship spaceship;
-    protected Region currentLocation;
+    protected String currentLocationName;
 
 
-    public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
+    public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship.ShipType spaceshiptype){
         this.name = name;
         this.pilotSkillPoints = pilotPoints;
         this.engineerSkillPoints = engineerPoints;
         this.fighterSkillPoints = fighterPoints;
         this.traderSkillPoints = traderPoints;
         this.money = 1000;
-        this.spaceship = spaceship;
+        this.spaceship = new Ship(Ship.ShipType.GNATT);
+        this.spaceship.shipType = spaceshiptype;
     }
     public Character (){}
 
@@ -41,11 +42,12 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public void setEngineerSkillPoints(int points){this.engineerSkillPoints = points;}
     public void setFighterSkillPoints(int points){this.fighterSkillPoints = points;}
     public void setTraderSkillPoints(int points){this.traderSkillPoints = points;}
-    public Ship getShip(){ return spaceship ; }
-    public Region getRegion() { return currentLocation;}
-    public void setRegion(Region location) {
-        currentLocation = location;
-        Log.d("GTrader", "Updated location for "+name+" to "+currentLocation.regionName);
+    public Ship getSpaceship(){ return spaceship ; }
+    public void setSpaceship(Ship spaceship){ this.spaceship = spaceship;}
+    public String getRegionName() { return currentLocationName;}
+    public void setRegionName(String location) {
+        currentLocationName = location;
+        Log.d("GTrader", "Updated location for "+name+" to "+location);
     }
     public int getMoney(){ return money;}
     public void pay(int cost){

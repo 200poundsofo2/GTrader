@@ -1,15 +1,14 @@
 package com.example.gtraderprototype.entity;
 
-
-import android.util.Log;
-
 public class Player extends Character {
     public static volatile Player player = null;
     public Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints){
-        super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.Gnatt);
+        super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.ShipType.GNATT);
         player = this;
 
-        Log.d("Woah", this.toString());
+    }
+    public Player(){
+
     }
     public static Player getPlayer(){
         if (player == null){

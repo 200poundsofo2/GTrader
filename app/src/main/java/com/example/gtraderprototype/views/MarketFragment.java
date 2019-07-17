@@ -19,7 +19,6 @@ import com.example.gtraderprototype.entity.Marketplace;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.model.Model;
-import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.example.gtraderprototype.viewmodels.MarketViewModel;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class MarketFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManagerBuy;
     private RecyclerView.LayoutManager layoutManagerSell;
     private Player player = Player.getPlayer();
-    private Ship playerShip = player.getShip();
+    private Ship playerShip = player.getSpaceship();
     private ArrayList<Item> buyable = new ArrayList<>();
     private ArrayList<Item> sellable = new ArrayList<>();
     private Marketplace marketplace = new Marketplace(player);
@@ -44,6 +43,8 @@ public class MarketFragment extends Fragment {
         Log.d("GTrader", "view creating");
         View rootView = inflater.inflate(R.layout.fragment_market, container, false);
         viewmodel = ViewModelProviders.of(this).get(MarketViewModel.class);
+        player = Model.getInstance().getPlayerInteractor().getPlayer();
+        Log.d("invv", player.toString());
         super.onCreate(savedInstanceState);
 
 
@@ -65,7 +66,7 @@ public class MarketFragment extends Fragment {
         buyAdapter = new MarketplaceBuyAdapter(buyable, new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                playerShip = player.getShip();
+                playerShip = player.getSpaceship();
                 Item item = buyAdapter.getItemAt(position);
                 if (player.getMoney() >= item.getRegionPrice()) {
                     if (playerShip.canAddCargo()) {
@@ -86,14 +87,20 @@ public class MarketFragment extends Fragment {
                             "You do not have enough money", Toast.LENGTH_LONG).show();
                 }
             }
+            @Override
+            public void recyclerViewListClickedRemove(View v, int position){
+
+            }
         });
         buyRecyclerView.setAdapter(buyAdapter);
         sellable = marketplace.getPlayerSellableItems();
         sellAdapter = new MarketplaceSellAdapter(sellable, new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                playerShip = player.getShip();
+                playerShip = player.getSpaceship();
                 Item item = sellAdapter.getItemAt(position);
+                Log.d("GTraderinv", playerShip.getCargo().toString());
+
                 if (playerShip.hasCargo()) {
                     Log.d("GTrader", "Player Contents: Money:" + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                     player.getPaid(item.getRegionPrice());
@@ -107,6 +114,10 @@ public class MarketFragment extends Fragment {
                     Toast.makeText(getActivity(),
                             "You have no cargo", Toast.LENGTH_LONG).show();
                 }
+            }
+            @Override
+            public void recyclerViewListClickedRemove(View v, int position){
+
             }
         });
         sellRecyclerView.setAdapter(sellAdapter);
