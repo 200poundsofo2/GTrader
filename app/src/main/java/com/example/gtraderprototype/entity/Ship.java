@@ -2,7 +2,7 @@ package com.example.gtraderprototype.entity;
 
 
 /**
- * an enum that contian all possible ship model and the behavoir of the ship itself
+ * an enum that contain all possible ship model and the behavior of the ship itself
  */
 public enum Ship {
     Gnatt();
@@ -44,7 +44,7 @@ public enum Ship {
     }
 
     /**
-     * sets thename of the ship
+     * sets the name of the ship
      * @param name the new name
      */
     public void setName(String name) {
@@ -52,7 +52,7 @@ public enum Ship {
     }
 
     /**
-     * get the remianing hp of the ship
+     * get the remaining hp of the ship
      * @return the health point that the ship has
      */
     public int getHullStrength() {
@@ -85,7 +85,7 @@ public enum Ship {
 
     /**
      * checks if there is space in the cargo bays to add more cargo
-     * @return
+     * @return true if cargo can be added false otherwise
      */
     public boolean canAddCargo() {
         return numberOfUsedCargoBays != cargoBays.length;
@@ -93,7 +93,7 @@ public enum Ship {
 
     /**
      * checks if the player has any cargo
-     * @return
+     * @return true if cargo exists in the cargo hold false otherwise
      */
     public boolean hasCargo() {
         return numberOfUsedCargoBays > 0;
@@ -161,7 +161,7 @@ public enum Ship {
     }
 
     /**
-     * checks if ther eis space for another shield to be added to the shield list
+     * checks if their eis space for another shield to be added to the shield list
      * @return true if there is space false otherwise
      */
     public boolean canAddShield() {
@@ -170,7 +170,7 @@ public enum Ship {
 
     /**
      * adds shield equipment ot the list
-     * @param shield
+     * @param shield shield equipment
      */
     public void addShield(Equipment shield) {
         this.shieldSlots[numberOfUsedShieldSlots] = shield;
@@ -179,7 +179,7 @@ public enum Ship {
 
     /**
      * get the a list of equipped gadgets
-     * @return alist of equipped gadgets
+     * @return a list of equipped gadgets
      */
     public Equipment[] getGadgets() {
         return gadgetSlots.clone();
@@ -212,7 +212,7 @@ public enum Ship {
 
     /**
      * checks if there is space for another crew member
-     * @return true if ther is emough space false otherwise
+     * @return true if their is enough space false otherwise
      */
     public boolean canAddCrewMember() {
         return numberOfUsedCrewQuarters != crewQuarters.length;
@@ -228,15 +228,15 @@ public enum Ship {
     }
 
     /**
-     * gets the maximum range a palyer can travel
-     * @return maximum range a palyer can travel
+     * gets the maximum range a player can travel
+     * @return maximum range a player can travel
      */
     public int getTravelRange() {
         return travelRange;
     }
 
     /**
-     * gets the maximum range a palyer can travel
+     * gets the maximum range a player can travel
      * @param travelRange the desired travel range
      */
     public void setTravelRange(int travelRange) {

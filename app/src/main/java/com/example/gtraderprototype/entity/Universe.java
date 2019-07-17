@@ -29,7 +29,7 @@ public class Universe {
 
     /**
      * a string representation for the universe
-     * @return
+     * @return a string representation for the universe
      */
     public String toString(){
         String str = "Universe of size "+this.size;

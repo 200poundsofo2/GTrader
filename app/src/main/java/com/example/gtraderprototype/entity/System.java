@@ -58,15 +58,15 @@ public class System {
 
     /**
      * get a random region from the system
-     * @return
+     * @return a random region from the system
      */
     public Region getRandomRegion(){
         return regions.get((int)(Math.random()*regions.size()));
     }
 
     /**
-     * get all region from the system
-     * @return
+     * get all regions from the system
+     * @return all regions from the system
      */
     public Iterable<Region> getRegions(){
         return Collections.unmodifiableList(regions);
@@ -74,7 +74,7 @@ public class System {
 
     /**
      * get the name of the system
-     * @return teh region's name
+     * @return the region's name
      */
     public String getSystemName(){
         return systemName;
@@ -98,7 +98,7 @@ public class System {
 
     /**
      * the string representation of the system and it's contents
-     * @return
+     * @return the string representation of the system and it's contents
      */
     public String toString(){
         String str =
