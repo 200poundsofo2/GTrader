@@ -1,19 +1,22 @@
 package com.example.gtraderprototype.model;
 import androidx.annotation.NonNull;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.gtraderprototype.entity.GameInstance;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.System;
 import com.example.gtraderprototype.entity.Universe;
+import com.example.gtraderprototype.views.SpacePortActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * the class that connects to firebase or the back end
@@ -63,21 +66,30 @@ public class Database {
         DatabaseReference ref = database.getReference("Save States");
         ref.child(instance.getGameID()).removeValue();
     }
-
+    public static void removeState(String gameID){
+        DatabaseReference ref = database.getReference("Save States");
+        ref.child(gameID).removeValue();
+    }
     /**
      * loads the game from teh database
      * @param gameID the serialized key
      */
     public static void retrieveGameFromDB(String gameID){
         DatabaseReference ref = database.getReference("Save States/"+gameID);
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
                 /*
                 Post post = dataSnapshot.getValue(Post.class);
                 System.out.println(post);
                  */
-                Log.d("GTraderDB", "DB Change: "+dataSnapshot.toString());
+                Log.d("GTraderDB", "Retrieved save from DB: "+dataSnapshot.toString());
+                GameInstance instance = dataSnapshot.getValue(GameInstance.class);
+                Model.getInstance().getGameInstanceInteractor().setInstance(instance);
+                Model.getInstance().getPlayerInteractor().setPlayer(instance.getPlayer());
+                Intent myIntent = new Intent(context, SpacePortActivity.class);
+                context.startActivity(myIntent);
+
             }
 
             @Override
@@ -126,7 +138,6 @@ public class Database {
                     Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse()
                             .toString());
                 }/*else{
-
                     Universe universe = dataSnapshot.getValue(Universe.class);
                     Model.getInstance().getUniverseInteractor().setUniverse(universe);
                     Log.d("GTrader", "Universe is created");

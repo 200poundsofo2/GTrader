@@ -1,5 +1,27 @@
 package com.example.gtraderprototype.entity;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Ship {
+    public enum ShipType{
+        GNATT("Gnatt", 50, 3, 3, 3, 3, 3, 50);
+
+        String shipName;
+        int hullStrength, numCargoBays, numWep, numShield, numGadget, numCrew, fuelCapacity;
+        ShipType(String shipName, int hullStrength, int numCargoBays, int numWep, int numShield, int numGadget, int numCrew, int fuelCapacity){
+            this.shipName = shipName;
+            this.hullStrength = hullStrength;
+            this.numCargoBays = numCargoBays;
+            this.numWep = numWep;
+            this.numShield = numShield;
+            this.numCrew = numCrew;
+            this.numGadget = numGadget;
+            this.fuelCapacity = fuelCapacity;
+        }
 
 /**
  * an enum that contain all possible ship model and the behavior of the ship itself
@@ -8,6 +30,7 @@ public enum Ship {
     Gnatt();
     private String name;
     private int hullStrength;
+    private int numberOfAvailableCargoBays;
     private int numberOfUsedCargoBays;
     private final Item[] cargoBays;
     private int numberOfUsedWeaponSlots;
@@ -88,7 +111,8 @@ public enum Ship {
      * @return true if cargo can be added false otherwise
      */
     public boolean canAddCargo() {
-        return numberOfUsedCargoBays != cargoBays.length;
+        Log.d("GTraderinv", "Avail:"+this.numberOfAvailableCargoBays);
+        return (this.numberOfAvailableCargoBays>0);
     }
 
     /**
@@ -96,7 +120,7 @@ public enum Ship {
      * @return true if cargo exists in the cargo hold false otherwise
      */
     public boolean hasCargo() {
-        return numberOfUsedCargoBays > 0;
+        return (numberOfUsedCargoBays > 0);
     }
 
     /**
@@ -104,13 +128,11 @@ public enum Ship {
      * @param cargo cargo that will be added to the cargo bay
      */
     public void addCargo(Item cargo) {
-        for (int i = 0; i < cargoBays.length; i++) {
-            if (cargoBays[i] == null) {
-                cargoBays[i] = cargo;
-                numberOfUsedCargoBays++;
-                break;
-            }
-        }
+        this.cargoBays.add(cargo);
+        this.numberOfUsedCargoBays++;
+        this.numberOfAvailableCargoBays--;
+        Log.d("INV", "added "+numberOfAvailableCargoBays);
+
     }
 
     /**
@@ -118,13 +140,10 @@ public enum Ship {
      * @param soldItem item that will be taken
      */
     public void dropCargo(Item soldItem) {
-        for (int i = 0; i < cargoBays.length; i++) {
-            if (soldItem.equals(cargoBays[i])) {
-                cargoBays[i] = null;
-                numberOfUsedCargoBays--;
-                break;
-            }
-        }
+        this.cargoBays.remove(soldItem);
+        this.numberOfUsedCargoBays--;
+        this.numberOfAvailableCargoBays++;
+        Log.d("INV", "removed "+numberOfAvailableCargoBays);
     }
 
     /**
@@ -140,7 +159,7 @@ public enum Ship {
      * @return true if there is space for an additional weapon false otherwise
      */
     public boolean canAddWeapon() {
-        return numberOfUsedWeaponSlots != weaponSlots.length;
+        return numberOfUsedWeaponSlots != numberOfAvailableWeaponSlots;
     }
 
     /**
@@ -165,7 +184,7 @@ public enum Ship {
      * @return true if there is space false otherwise
      */
     public boolean canAddShield() {
-        return numberOfUsedShieldSlots != shieldSlots.length;
+        return numberOfUsedShieldSlots != numberOfAvailableShieldSlots;
     }
 
     /**
@@ -190,7 +209,7 @@ public enum Ship {
      * @return true if there is space false otherwise
      */
     public boolean canAddGadget() {
-        return numberOfUsedGadgetSlots != gadgetSlots.length;
+        return numberOfUsedGadgetSlots != numberOfAvailableGadgetSlots;
     }
 
     /**
@@ -215,7 +234,7 @@ public enum Ship {
      * @return true if their is enough space false otherwise
      */
     public boolean canAddCrewMember() {
-        return numberOfUsedCrewQuarters != crewQuarters.length;
+        return numberOfUsedCrewQuarters != numberOfAvailableCrewQuarters;
     }
 
     /**

@@ -31,7 +31,6 @@ public class UniverseInteractor extends Interactor {
      * @param system a system contained in the universe
      */
     public void addSystem(System system){
-
         universe.addSystem(system);
 
     }
@@ -42,7 +41,6 @@ public class UniverseInteractor extends Interactor {
      */
     public void setUniverse(Universe universe){
         this.universe = universe;
-        //addSystems(10);
         Universe.universe = universe;
     }
 

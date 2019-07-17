@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.model;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.gtraderprototype.entity.Difficulty;
@@ -42,7 +43,6 @@ public class GameInstanceInteractor extends Interactor{
                 while(temp!=null){
                     gameIDs.add(temp);
                     temp = br.readLine();
-                    Database.retrieveGameFromDB(temp);
                 }
                 Log.d("GTrader", gameIDs.toString());
             }
@@ -61,7 +61,7 @@ public class GameInstanceInteractor extends Interactor{
         GameInstance newinst = new GameInstance(difficulty);
         try{
             FileOutputStream outputStream;
-            String fileContents = newinst.getGameID();
+            String fileContents = gameInstance.getGameID();
             outputStream = context.openFileOutput(localStateFilename, Context.MODE_APPEND);
             outputStream.write((fileContents+"\r\n").getBytes());
             outputStream.close();
@@ -85,9 +85,13 @@ public class GameInstanceInteractor extends Interactor{
                 }
             }
             outputStream.close();
-            Database.removeState(instance);
+            Database.removeState(gameID);
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+    public void saveGameToDB(){
+        Database.saveState(this.gameInstance);
     }
 }

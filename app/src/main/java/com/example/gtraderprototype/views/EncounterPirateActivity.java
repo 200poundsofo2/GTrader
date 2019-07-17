@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gtraderprototype.entity.Item;
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.Player;
 
@@ -26,7 +27,7 @@ import java.util.Random;
  */
 
 public class EncounterPirateActivity extends AppCompatActivity {
-    private Random random;
+
 
     private  Button attack;
     private  Button flee;
@@ -35,16 +36,15 @@ public class EncounterPirateActivity extends AppCompatActivity {
     private  TextView encounterText;
 
     private  Player player;
-    private  Ship ship;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.encounter_pirate);
-        random= new Random();
+
         EncounterViewModel viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayer();
-        ship=player.getShip();
+
 
         pirateText=findViewById(R.id.pirateText);
         encounterText=findViewById(R.id.encounterText);
@@ -91,17 +91,25 @@ public class EncounterPirateActivity extends AppCompatActivity {
                 }
             });
         } else{ //unable to flee, game over
-            startActivity(new Intent(EncounterPirateActivity.this, GameOverActivity.class));
+            startActivity(new Intent(EncounterPirateActivity.this,
+             GameOverActivity.class));
         }
-
-
-
     }
 
     private void attack(){
         //I am still thinking about a good game :)
         pirateText.setText(getString(R.string.lets_play));
-
+        surrender.setEnabled(false);
+        flee.setEnabled(false);
+        attack.setText("start game");
+        attack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pirateGame=new Intent(EncounterPirateActivity.this,
+                 PirateGameActivity.class);
+                startActivity(pirateGame);
+            }
+        });
     }
 
     private void surrender(){
@@ -115,19 +123,54 @@ public class EncounterPirateActivity extends AppCompatActivity {
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                int numItem=((player.getDifficultyLevel()+1)/10)
-                        *ship.getCargo().length; //10% for beginner 50% for impossible
-                for(int i=0; i<numItem;i++){
-                    int j=random.nextInt(ship.getCargo().length);
-                    ship.dropCargo(ship.getCargo()[j]);
-                }
-                int moneyRobbed= ((player.getDifficultyLevel() + 1) / 10) * player.getMoney();
-                player.setMoney(player.getMoney()-moneyRobbed);
-
+                robPlayer();
                 finish();
             }
         });
-
     }
+
+    private void robPlayer(){
+        Random random=new Random();
+        int moneyRobbed= (int) (((player.getDifficultyLevel() + 1.0) / 10) * player.getMoney());
+        player.setMoney(player.getMoney()-moneyRobbed);
+
+        Ship ship=player.getShip();
+        int numItem=(int) (((player.getDifficultyLevel()+1.0)/10)
+                *checkNumItems(ship.getCargo()));
+        //10% for beginner 50% for impossible
+
+        for(int i=0; i<numItem;i++){
+            int j=random.nextInt(ship.getCargo().length);
+            while (ship.getCargo()[j]== null){
+                j=random.nextInt(ship.getCargo().length);
+            }
+            ship.dropCargo(ship.getCargo()[j]);
+        }
+    }
+
+    /** used for testing
+     *  test robPlayer()
+     */
+    public void testRobPlayer(){
+        robPlayer();
+    }
+
+    /** setter for the player
+     *
+     * @param player Player of this Game
+     */
+    public void setPlayer(Player player){
+        this.player=player;
+    }
+    private int checkNumItems(Item[] cargo){
+        int num=0;
+        for(Item i:cargo){
+            if(i!=null){
+                num++;
+            }
+        }
+        return num;
+    }
+
+
 }

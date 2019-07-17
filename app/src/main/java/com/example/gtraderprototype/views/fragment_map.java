@@ -87,6 +87,12 @@ class fragment_map extends Fragment
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+                startActivity(pirateIntent);
+
+                /*
                 if(destination!=null){
                     if((fuel - fuelCost) < 0){
                         travelInfo.setText(getString(R.string.not_enough));
@@ -113,7 +119,7 @@ class fragment_map extends Fragment
                     }
                     destination=null;
                 }
-
+        */
 
             }
         });
@@ -183,14 +189,14 @@ class fragment_map extends Fragment
             systems.put(sys.getSystemName(), sys);
             //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1], false);
             for(Region reg: sys.getRegions()){
-                LatLng curr = new LatLng(reg.coordinates[0], reg.coordinates[1]);
+                LatLng curr = new LatLng(reg.coordinates.get(0), reg.coordinates.get(1));
                 markersList.add(curr);
                 places.put(reg.regionName,curr);
                 if(reg.regionName.equals(viewmodel.getPlayerLocationName())){
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(curr));
-                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], true);
+                    setMarker(reg.regionName, reg.coordinates.get(0), reg.coordinates.get(1), true);
                 }else{
-                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], false);
+                    setMarker(reg.regionName, reg.coordinates.get(0), reg.coordinates.get(1), false);
                 }
             }
         }

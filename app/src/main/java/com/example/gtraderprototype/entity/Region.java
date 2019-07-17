@@ -22,7 +22,6 @@ public class Region {
     public void setRegionName(String regionName) {
         this.regionName = regionName;
     }
-
     /**
      * the coordinates of the region
      * @return the coordinate of the region
@@ -74,9 +73,6 @@ public class Region {
     //public Police[] police;
     //public Trader[] traders;
     public String regionName;
-    public double[] coordinates;
-    private TechLevel techLevel;
-    private Resources resources;
 
     /**
      * gets the region event
@@ -85,8 +81,10 @@ public class Region {
     public RegionBasedEvent getRegionBasedEvent() {
         return regionBasedEvent;
     }
-
-    private RegionBasedEvent regionBasedEvent;;
+    public double[] coordinates;
+    private TechLevel techLevel;
+    private Resources resources;
+    private RegionBasedEvent regionBasedEvent;
     public final ArrayList<Item> sellableItems = new ArrayList<>();
     public final ArrayList<Item> buyableItems = new ArrayList<>();
     public Marketplace marketplace;
@@ -99,7 +97,8 @@ public class Region {
      */
     public Region(String name, double lat, double lng){
         this.regionName = name;
-        this.coordinates = new double[]{lat,lng};
+        this.coordinates.add(lat);
+        this.coordinates.add(lng);
         this.techLevel = TechLevel.getRandomLevel();
         regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
         this.resources = Resources.getRandomResources();

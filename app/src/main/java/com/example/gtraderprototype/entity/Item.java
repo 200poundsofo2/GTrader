@@ -2,6 +2,9 @@ package com.example.gtraderprototype.entity;
 
 import java.util.Random;
 
+/**
+ * item enum that initialize all the items
+ */
 public enum Item {
     Water("Water", 0, 0	, 2,
             30, 3,	4, RegionBasedEvent.DROUGHT,
@@ -65,69 +68,127 @@ public enum Item {
         this.minimumPrice = minimumPrice;
         this.maximumPrice = maximumPrice;
     }
+
+    /**
+     * getting name of the item
+     * @return name of the item
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * getting the minimum tech level to produce this item
+     * @return minimum tech level
+     */
     public int getMinimumTechLevelToProduce() {
         return minimumTechLevelToProduce;
     }
-
+    /**
+     * getting the minimum tech level to use this item
+     * @return minimum tech level
+     */
     public int getMinimumTechLevelToUse() {
         return minimumTechLevelToUse;
     }
-
+    /**
+     * getting the tech level of production
+     * @return tech level
+     */
     public int getTechProductionLevel() {
         return techProductionLevel;
     }
 
+    /**
+     * getting the base price of an item, which fluctuate based on region
+     * @return base price
+     */
     public int getBasePrice() {
         return basePrice;
     }
 
+    /**
+     * getting the fluctuated price of the item due to region tech level
+     * @return increased price
+     */
     public int getPriceIncreasePerTechLevel() {
         return priceIncreasePerTechLevel;
     }
 
+    /**
+     * variance of the item
+     * @return variance
+     */
     public int getVariance() {
         return variance;
     }
 
+    /**
+     * event that's based on the region, which increase price of an item
+     * @return increased amount of price
+     */
     public RegionBasedEvent getRegionPriceIncreaseEvent() {
         return regionPriceIncreaseEvent;
     }
 
+    /**
+     * price change due to resources scarcity
+     * @return increased amount of price
+     */
     public Resources getConditionForPriceIncrease() {
         return conditionForPriceIncrease;
     }
-
+    /**
+     * price change due to resources abundance
+     * @return decreased amount of price
+     */
     public Resources getConditionForPriceDecrease() {
         return conditionForPriceDecrease;
     }
 
+    /**
+     * getting the minimum price of an item
+     * @return the minimum price
+     */
     public int getMinimumPrice() {
         return minimumPrice;
     }
-
+    /**
+     * getting the max price of an item
+     * @return the max price
+     */
     public int getMaximumPrice() {
         return maximumPrice;
     }
+
+    /**
+     * setting how the price of an item fluctuate based on region
+     * @param techLevel tech level of the region
+     * @param regionResource resources of the region
+     * @param regionEvent event of the region
+     */
     public void setRegionPrice(int techLevel,
-                               Resources regionResource, RegionBasedEvent regionEvent){
+     Resources regionResource, RegionBasedEvent regionEvent){
         Random rand = new Random();
         int resultingVariance = rand.nextInt(variance);
         regionPrice = basePrice + (priceIncreasePerTechLevel *
                 (techLevel - minimumTechLevelToProduce))
                 + (int) ((30 * .01 * resultingVariance) + .5);
-        if(conditionForPriceIncrease.getResourceLevel() == regionResource.getResourceLevel()) {
+        if(conditionForPriceIncrease.getResourceLevel() ==
+         regionResource.getResourceLevel()) {
             regionPrice = (int)(regionPrice * 1.5);
         }else if(conditionForPriceDecrease.getResourceLevel() ==
                 regionResource.getResourceLevel()) {
             regionPrice = (int)(regionPrice * .5);
         }
-         if(regionEvent.getRegionEvent() == regionPriceIncreaseEvent.getRegionEvent()){
+         if(regionEvent.getRegionEvent() ==
+          regionPriceIncreaseEvent.getRegionEvent()){
              regionPrice = regionPrice * 5;
          }
      }
+
+    /**
+     * getting the price of an item in a region
+     * @return price of the item
+     */
     public int getRegionPrice(){ return regionPrice; }
 }

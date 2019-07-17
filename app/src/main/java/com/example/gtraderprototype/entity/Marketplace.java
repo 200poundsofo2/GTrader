@@ -1,6 +1,9 @@
 package com.example.gtraderprototype.entity;
 
+import com.example.gtraderprototype.model.Model;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * a entity that contains all of the sellable items in a region
@@ -25,12 +28,12 @@ public class Marketplace {
      * @return list of sellable items
      */
     public ArrayList<Item> getPlayerSellableItems(){
-        Region region = player.getRegion();
+        Region region = Model.getInstance().getPlayerInteractor().getLocation();
         ArrayList<Item> allowablePlayerItemList = new ArrayList<>();
-        Item[] playerItems = player.getShip().getCargo();
+        List<Item> playerItems = player.getSpaceship().getCargo();
         for (Item regionItem : region.buyableItems) {
             for(Item playerItem : playerItems){
-                if( regionItem.equals(playerItem) ){
+                if(regionItem.equals(playerItem) ){
                     allowablePlayerItemList.add(playerItem);
                 }
             }
@@ -43,7 +46,7 @@ public class Marketplace {
      * @return a list of buyable items
      */
     public ArrayList<Item> getPlayerBuyableItems(){
-        Region region = player.getRegion();
+        Region region = Model.getInstance().getPlayerInteractor().getLocation();
         return region.sellableItems;
     }
 }

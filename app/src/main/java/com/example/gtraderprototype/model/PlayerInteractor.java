@@ -33,8 +33,9 @@ public class PlayerInteractor extends Interactor {
      * @param region a space that exits within a system
      */
     public void setLocation(Region region){
-        player.setRegion(region);
+        player.setRegionName(region.regionName);
         marketplace = new Marketplace(Player.getPlayer());
+        Database.saveState(Model.getInstance().getGameInstanceInteractor().getGameInstance());
     }
 
     /**
@@ -42,7 +43,7 @@ public class PlayerInteractor extends Interactor {
      * @param fuelAmt amount of fuel to be subtracted
      */
     public void deductFuel(int fuelAmt){
-        player.getShip().deductFuel(fuelAmt);
+        player.getSpaceship().deductFuel(fuelAmt);
     }
 
     /**
@@ -50,7 +51,7 @@ public class PlayerInteractor extends Interactor {
      * @return the player's location
      */
     public Region getLocation(){
-        return player.getRegion();
+        return Model.getInstance().getUniverseInteractor().getRegionByName(player.getRegionName());
     }
 
     /**
