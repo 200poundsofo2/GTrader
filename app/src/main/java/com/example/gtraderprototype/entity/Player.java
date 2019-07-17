@@ -1,6 +1,4 @@
 package com.example.gtraderprototype.entity;
-
-
 import android.util.Log;
 
 /**
@@ -8,23 +6,21 @@ import android.util.Log;
  */
 public class Player extends Character {
     public static volatile Player player = null;
-    Difficulty difficulty;
-
-    /**
+      /**
      * initializing a player that has a default Gnatt ship
      * @param name name of the player
      * @param pilotPoints skill points of piloting
      * @param engineerPoints skill points of engineering
      * @param fighterPoints skill points of fighting
      * @param traderPoints skill points of trading
-     * @param d difficulty level
      */
-    public Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Difficulty d){
-        super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.Gnatt);
-        difficulty = d;
+    public Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints){
+        super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.ShipType.GNATT);
         player = this;
 
-        Log.d("Woah", this.toString());
+    }
+    public Player(){
+
     }
 
     /**

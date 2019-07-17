@@ -1,36 +1,69 @@
 package com.example.gtraderprototype.entity;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public enum Ship {
-    Gnatt("Gnatt", 50, 10, 3, 3, 3, 1, 50 );
+public class Ship {
+    public enum ShipType{
+        GNATT("Gnatt", 50, 3, 3, 3, 3, 3, 50);
+
+        String shipName;
+        int hullStrength, numCargoBays, numWep, numShield, numGadget, numCrew, fuelCapacity;
+        ShipType(String shipName, int hullStrength, int numCargoBays, int numWep, int numShield, int numGadget, int numCrew, int fuelCapacity){
+            this.shipName = shipName;
+            this.hullStrength = hullStrength;
+            this.numCargoBays = numCargoBays;
+            this.numWep = numWep;
+            this.numShield = numShield;
+            this.numCrew = numCrew;
+            this.numGadget = numGadget;
+            this.fuelCapacity = fuelCapacity;
+        }
+
+    }
+
+    ShipType shipType;
     private String name;
     private int hullStrength;
+    private int numberOfAvailableCargoBays;
     private int numberOfUsedCargoBays;
-    private Item[] cargoBays;
+    private List<Item> cargoBays = new ArrayList<>();
     private int numberOfUsedWeaponSlots;
-    private Equipment[] weaponSlots;
+    private int numberOfAvailableWeaponSlots;
+    private List<Equipment> weaponSlots= new ArrayList<>();
     private int numberOfUsedShieldSlots;
-    private Equipment[] shieldSlots;
+    private int numberOfAvailableShieldSlots;
+    private List<Equipment> shieldSlots= new ArrayList<>();
     private int numberOfUsedGadgetSlots;
-    private Equipment[] gadgetSlots;
+    private int numberOfAvailableGadgetSlots;
+    private List<Equipment> gadgetSlots= new ArrayList<>();
     private int numberOfUsedCrewQuarters;
-    private NPC[] crewQuarters;
-    private int travelRange;
+    private int numberOfAvailableCrewQuarters;
+    private List<NPC> crewQuarters= new ArrayList<>();
     private int fuel;
     private int fuelCapacity;
 
-    Ship(String name, int hullStrength, int numberOfAvailableCargoBays, int numberOfAvailableWeaponSlots, int numberOfAvailableShieldSlots, int numberOfAvailableGadgetSlots, int numberOfAvailableCrewQuarters, int travelRange) {
-        this.name = name;
-        this.hullStrength = hullStrength;
-        this.cargoBays = new Item[numberOfAvailableCargoBays];
-        this.weaponSlots = new Equipment[numberOfAvailableWeaponSlots];
-        this.shieldSlots = new Equipment[numberOfAvailableShieldSlots];
-        this.gadgetSlots = new Equipment[numberOfAvailableGadgetSlots];
-        this.crewQuarters = new NPC[numberOfAvailableCrewQuarters];
-        this.travelRange = travelRange;
-        this.fuel = travelRange;
-        this.fuelCapacity = travelRange;
+    Ship(ShipType shipType) {
+        this.name = shipType.shipName;
+        this.hullStrength = shipType.hullStrength;
+        this.fuel = shipType.fuelCapacity;
+        this.fuelCapacity = shipType.fuelCapacity;
+        this.numberOfAvailableCargoBays = shipType.numCargoBays;
+        this.numberOfAvailableCrewQuarters = shipType.numCrew;
+        this.numberOfAvailableGadgetSlots = shipType.numGadget;
+        this.numberOfAvailableShieldSlots = shipType.numShield;
+        this.numberOfAvailableWeaponSlots = shipType.numWep;
+        this.shipType = shipType;
+    }
+
+    Ship(){
+
+    }
+    public ShipType getShipType(){
+        return this.shipType;
     }
 
     public String getName() {
@@ -53,93 +86,91 @@ public enum Ship {
         return numberOfUsedCargoBays;
     }
 
-    public Item[] getCargo() {
-        return cargoBays;
+    public int getNumberOfAvailableCargoBays(){
+        return this.numberOfAvailableCargoBays;
+    }
+
+    public List<Item> getCargo() {
+        Log.d("innerinv", cargoBays.toString());
+        return this.cargoBays;
+    }
+
+    public void setCargo(ArrayList<Item> cargo){
+        this.cargoBays.addAll(cargo);
     }
 
     public boolean canAddCargo() {
-        return numberOfUsedCargoBays != cargoBays.length;
+        Log.d("GTraderinv", "Avail:"+this.numberOfAvailableCargoBays);
+        return (this.numberOfAvailableCargoBays>0);
     }
 
     public boolean hasCargo() {
-        return numberOfUsedCargoBays > 0;
+        return (numberOfUsedCargoBays > 0);
     }
 
     public void addCargo(Item cargo) {
-        for (int i = 0; i < cargoBays.length; i++) {
-            if (cargoBays[i] == null) {
-                cargoBays[i] = cargo;
-                numberOfUsedCargoBays++;
-                break;
-            }
-        }
+        this.cargoBays.add(cargo);
+        this.numberOfUsedCargoBays++;
+        this.numberOfAvailableCargoBays--;
+        Log.d("INV", "added "+numberOfAvailableCargoBays);
+
     }
 
     public void dropCargo(Item soldItem) {
-        for (int i = 0; i < cargoBays.length; i++) {
-            if (soldItem.equals(cargoBays[i])) {
-                cargoBays[i] = null;
-                numberOfUsedCargoBays--;
-                break;
-            }
-        }
+        this.cargoBays.remove(soldItem);
+        this.numberOfUsedCargoBays--;
+        this.numberOfAvailableCargoBays++;
+        Log.d("INV", "removed "+numberOfAvailableCargoBays);
     }
 
-    public Equipment[] getWeapons() {
+    public List<Equipment> getWeapons() {
         return this.weaponSlots;
     }
 
     public boolean canAddWeapon() {
-        return numberOfUsedWeaponSlots != weaponSlots.length;
+        return numberOfUsedWeaponSlots != numberOfAvailableWeaponSlots;
     }
 
     public void addWeapon(Equipment weapon) {
-        this.weaponSlots[numberOfUsedWeaponSlots++] = weapon;
+        this.weaponSlots.set(numberOfUsedWeaponSlots++, weapon);
     }
 
-    public Equipment[] getShields() {
+    public List<Equipment> getShields() {
         return shieldSlots;
     }
 
     public boolean canAddShield() {
-        return numberOfUsedShieldSlots != shieldSlots.length;
+        return numberOfUsedShieldSlots != numberOfAvailableShieldSlots;
     }
 
     public void addShield(Equipment shield) {
-        this.shieldSlots[numberOfUsedShieldSlots++] = shield;
+        this.shieldSlots.set(numberOfUsedShieldSlots++, shield);
     }
 
-    public Equipment[] getGadgets() {
+    public List<Equipment> getGadgets() {
         return gadgetSlots;
     }
 
     public boolean canAddGadget() {
-        return numberOfUsedGadgetSlots != gadgetSlots.length;
+        return numberOfUsedGadgetSlots != numberOfAvailableGadgetSlots;
     }
 
     public void addGadget(Equipment gadget) {
-        this.gadgetSlots[numberOfUsedGadgetSlots++] = gadget;
+        this.gadgetSlots.set(numberOfUsedGadgetSlots++, gadget);
     }
 
-    public NPC[] getCrewMembers() {
+    public List<NPC> getCrewMembers() {
         return crewQuarters;
     }
 
     public boolean canAddCrewMember() {
-        return numberOfUsedCrewQuarters != crewQuarters.length;
+        return numberOfUsedCrewQuarters != numberOfAvailableCrewQuarters;
     }
 
     public void addCrewMember(NPC crewMember) {
-        this.crewQuarters[numberOfUsedCrewQuarters++] = crewMember;
+        this.crewQuarters.set(numberOfUsedCrewQuarters++, crewMember);
     }
 
-    public int getTravelRange() {
-        return travelRange;
-    }
-
-    public void setTravelRange(int travelRange) {
-        this.travelRange = travelRange;
-    }
 
     public int getFuel() {
         return this.fuel;

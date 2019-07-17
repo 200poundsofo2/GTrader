@@ -17,7 +17,7 @@ public class Character { //singleton design pattern: Player.getPlayer()
     protected boolean isPirate;
     protected int money;
     protected Ship spaceship;
-    protected Region currentLocation;
+    protected String currentLocationName;
 
     /**
      * Constructor that distribute skill points of the character
@@ -27,16 +27,17 @@ public class Character { //singleton design pattern: Player.getPlayer()
      * @param engineerPoints skill points for engineering
      * @param fighterPoints skill points for fighting
      * @param traderPoints skill points for trading
-     * @param spaceship assigned spaceship
+     * @param spaceshiptype assigned spaceship
      */
-    public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship spaceship){
+    public Character (String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship.ShipType spaceshiptype){
         this.name = name;
         this.pilotSkillPoints = pilotPoints;
         this.engineerSkillPoints = engineerPoints;
         this.fighterSkillPoints = fighterPoints;
         this.traderSkillPoints = traderPoints;
         this.money = 1000;
-        this.spaceship = spaceship;
+        this.spaceship = new Ship(Ship.ShipType.GNATT);
+        this.spaceship.shipType = spaceshiptype;
     }
 
     /**
@@ -106,20 +107,27 @@ public class Character { //singleton design pattern: Player.getPlayer()
      * getting ship that this character owns
      * @return ship
      */
-    public Ship getShip(){ return spaceship ; }
+    public Ship getSpaceShip(){ return spaceship ; }
+      
+    /**
+     * setting ship for the player
+     * @param spaceship the spaceship to set the player to
+     */
+    public void setShapeship(Ship spaceship){ this.spaceship = spaceship;}
+      
     /**
      * getting region that this character is at
      * @return region
      */
-    public Region getRegion() { return currentLocation;}
+    public String getRegionName() { return currentLocationName;}
 
     /**
      * setting region that this character will be at
      * @param location the location the character is going to
      */
-    public void setRegion(Region location) {
+    public void setRegionName(String location) {
         currentLocation = location;
-        Log.d("GTrader", "Updated location for "+name+" to "+currentLocation.regionName);
+        Log.d("GTrader", "Updated location for "+name+" to "+location);
     }
 
     /**

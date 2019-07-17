@@ -12,7 +12,7 @@ public class GameInstance {
 
 
     private Difficulty difficulty;
-    private System[] system;
+    private Player player;
 
     /**
      * getting the Game ID number
@@ -36,23 +36,34 @@ public class GameInstance {
     }
 
     /**
-     * initialize a game instance
-     * @param difficulty difficult the user chooses for the game
+     * getting the Player
+     * @return Player
      */
-    public GameInstance( Difficulty difficulty){
-        this.gameID = Database.getNewGameID();
-        this.difficulty = difficulty;
-        Log.d("GTrader", "Created Local Game Instance: " + this.toString());
-
-
+    public Player getPlayer() {
+        return player;
     }
 
+      /**
+     * setting the difficulty level
+     * @param player the game's player
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    /**
+     * initialize a game instance
+     */
+    public GameInstance(){
+        this.gameID = Database.getNewGameID();
+        this.difficulty = Difficulty.Beginner;
+    }
     /**
      * printing out game Id and difficulty of the game of the user
      * @return
      */
     public String toString(){
-        return "INSTANCE: " + "Game ID: " + gameID + "Difficulty: " + difficulty;
+        return "INSTANCE: " + "Game ID: " + gameID + "Difficulty: " + difficulty + ",Player: "+player.toString();
     }
 }
 

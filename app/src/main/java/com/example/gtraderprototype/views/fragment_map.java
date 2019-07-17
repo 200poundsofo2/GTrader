@@ -80,8 +80,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         travelInfo =  mView.findViewById(R.id.travel);
         button = mView.findViewById(R.id.button);
         player = Model.getInstance().getPlayerInteractor().getPlayer();
-        fuel = player.getShip().getFuel();
-        fuelCapacity = player.getShip().getFuelCapacity();
+        fuel = player.getSpaceship().getFuel();
+        fuelCapacity = player.getSpaceship().getFuelCapacity();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,14 +178,14 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
             systems.put(sys.getSystemName(), sys);
             //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1], false);
             for(Region reg: sys.getRegions()){
-                LatLng curr = new LatLng(reg.coordinates[0], reg.coordinates[1]);
+                LatLng curr = new LatLng(reg.coordinates.get(0), reg.coordinates.get(1));
                 markersList.add(curr);
                 places.put(reg.regionName,curr);
                 if(reg.regionName.equals(viewmodel.getPlayerLocationName())){
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(curr));
-                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], true);
+                    setMarker(reg.regionName, reg.coordinates.get(0), reg.coordinates.get(1), true);
                 }else{
-                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], false);
+                    setMarker(reg.regionName, reg.coordinates.get(0), reg.coordinates.get(1), false);
                 }
             }
         }
