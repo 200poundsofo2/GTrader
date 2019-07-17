@@ -29,7 +29,6 @@ public class Database {
     public Database(){
 
     }
-
     public static String getNewGameID(){
 
                 String tempID;
