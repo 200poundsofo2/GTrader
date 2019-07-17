@@ -16,6 +16,9 @@ import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * this activity switches between other fragments that is contained in the activity itself
+ */
 public class SpacePortActivity extends AppCompatActivity {
 
     private Fragment newFragment;
