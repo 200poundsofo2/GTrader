@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Marketplace {
     private final Player player;
+    private ArrayList<Item> playerSellableItems;
+    private ArrayList<Item> playerBuyableItems;
 
     /**
      * the constructor for the market place
@@ -15,6 +17,7 @@ public class Marketplace {
      */
     public Marketplace(Player player){
         this.player = player;
+
     }
 
     /**

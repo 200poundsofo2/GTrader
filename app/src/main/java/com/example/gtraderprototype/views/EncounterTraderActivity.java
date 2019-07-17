@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gtraderprototype.R;
 
+/**
+ * the encounter activity
+ */
 public class EncounterTraderActivity extends AppCompatActivity {
 
     @Override

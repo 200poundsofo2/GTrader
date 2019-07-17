@@ -15,6 +15,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * the class that connects to firebase or the back end
+ */
 public class Database {
     private static final ArrayList<String> names = new ArrayList<>();
     /*
@@ -24,6 +27,10 @@ public class Database {
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference gameIDListRef = database.getReference("Save States");
 
+    /**
+     * creates a serialized key as an id for the game
+     * @return
+     */
     public static String getNewGameID(){
         int numberOfCharacters = 16;
         int charactersInAlphabet = 26;
@@ -37,17 +44,30 @@ public class Database {
                 return tempID.toString();
 
     }
+
+    /**
+     * saves an instance of the game to the database
+     * @param instance the game
+     */
     public static void saveState(GameInstance instance){
         DatabaseReference stateref = database.getReference("Save States/"+instance.getGameID());
         stateref.setValue(instance);
         Log.d("Gtrader", instance.getGameID()+" Saved to DB");
     }
 
+    /**
+     * delete an instance of the game
+     * @param instance
+     */
     public static void removeState(GameInstance instance){
         DatabaseReference ref = database.getReference("Save States");
         ref.child(instance.getGameID()).removeValue();
     }
 
+    /**
+     * loads the game from teh database
+     * @param gameID the serialized key
+     */
     public static void retrieveGameFromDB(String gameID){
         DatabaseReference ref = database.getReference("Save States/"+gameID);
         ref.addValueEventListener(new ValueEventListener() {
@@ -66,6 +86,10 @@ public class Database {
             }
         });
     }
+
+    /**
+     *  gets the universe
+     */
     public void getGlobalUniverse(){
         DatabaseReference ref = database.getReference("INDEX/SYSTEMS");
 
@@ -118,6 +142,10 @@ public class Database {
 
     }
 
+    /**
+     * creates a random name for the game id
+     * @return game id
+     */
     public static String getRandomName(){
         int rangeOfValues = 90;
        return names.get((int)(Math.random()*rangeOfValues));

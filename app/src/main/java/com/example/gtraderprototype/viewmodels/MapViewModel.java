@@ -58,7 +58,7 @@ public class MapViewModel extends AndroidViewModel {
 
     /**
      * gets the player's ship range
-     * @returnthe player's ship range
+     * @return the player's ship range
      */
     public int getPlayerShipRange() {
         return playerInteractor.getPlayer().getShip().getTravelRange();

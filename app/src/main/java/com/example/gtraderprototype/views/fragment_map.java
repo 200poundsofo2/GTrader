@@ -95,9 +95,9 @@ class fragment_map extends Fragment
                         fuel = fuel - fuelCost;
 
                         spacePort.setText(selectedMarker.getTitle());
-                        fuelAmount.setText(String.valueOf(fuel) +
-                                getString(R.string.forward_slash) + viewmodel
-                                .getPlayerShipRange());
+                        fuelAmount.setText(new StringBuilder().append(fuel)
+                                .append(getString(R.string.forward_slash)).append(viewmodel
+                                .getPlayerShipRange()).toString());
                         travelInfo.setText(getString(R.string.arrived));
 
                         //generate random event encounter
@@ -220,8 +220,11 @@ class fragment_map extends Fragment
             int R = 6378137;
             LatLng p1 = places.get(marker.getTitle());
             LatLng p2 = places.get(viewmodel.getPlayerLocationName());
-            double dLat = ((Objects.requireNonNull(p1).latitude - Objects.requireNonNull(p2).latitude) * Math.PI) / 180;
-            double dLong = ((Objects.requireNonNull(places.get(marker.getTitle())).longitude - Objects.requireNonNull(places.get(viewmodel
+            double dLat = ((Objects.requireNonNull(p1).latitude - Objects
+                    .requireNonNull(p2).latitude)
+                    * Math.PI) / 180;
+            double dLong = ((Objects.requireNonNull(places.get(marker.getTitle()))
+                    .longitude - Objects.requireNonNull(places.get(viewmodel
                     .getPlayerLocationName())).longitude) * Math.PI) / 180;
             double a = (Math.sin(dLat / 2) * Math.sin(dLat / 2)) +
                     (Math.cos(((p1.latitude) * Math.PI) / 180) *

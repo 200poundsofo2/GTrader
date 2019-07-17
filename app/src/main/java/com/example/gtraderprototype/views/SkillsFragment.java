@@ -27,8 +27,8 @@ class SkillsFragment extends Fragment {
         SkillsViewModel player = ViewModelProviders.of(this).get(SkillsViewModel.class);
 
         TextView playerName = v.findViewById(R.id.welcomePlayer);
-        playerName.setText(getString(R.string.welcome) +
-                player.getName());
+        playerName.setText(new StringBuilder().append(getString(R.string.welcome))
+                .append(player.getName()).toString());
 
         return v;
     }

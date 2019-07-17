@@ -6,7 +6,7 @@ import android.util.Log;
 public final class Player extends Character {
     private static volatile Player player;
     private Difficulty difficulty;
-    private Player(){
+    public Player(){
         super("No Name", 0, 0, 0, 0, Ship.Gnatt);
         difficulty = Difficulty.Beginner;
         player = this;

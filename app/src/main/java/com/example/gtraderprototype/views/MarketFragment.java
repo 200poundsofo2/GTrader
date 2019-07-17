@@ -49,8 +49,8 @@ class MarketFragment extends Fragment {
         buyRecyclerView.setLayoutManager(layoutManagerBuy);
         RecyclerView.LayoutManager layoutManagerSell = new LinearLayoutManager(getActivity());
         sellRecyclerView.setLayoutManager(layoutManagerSell);
-        moneyView.setText(getString(R.string.money_with_dollar_sign) +
-                player.getMoney());
+        moneyView.setText(new StringBuilder().append(getString(R.string.money_with_dollar_sign))
+                .append(player.getMoney()).toString());
 
 
 
@@ -68,8 +68,9 @@ class MarketFragment extends Fragment {
                                 + playerShip.getNumberOfUsedCargoBays());
                         playerShip.addCargo(item);
                         player.pay(item.getRegionPrice());
-                        moneyView.setText(getString(R.string.money_with_dollar_sign) +
-                                player.getMoney());
+                        moneyView.setText(new StringBuilder()
+                                .append(getString(R.string.money_with_dollar_sign))
+                                .append(player.getMoney()).toString());
                         sellable.clear();
                         sellable.addAll(marketplace.getPlayerSellableItems());
                         sellAdapter.notifyDataSetChanged();
@@ -98,8 +99,9 @@ class MarketFragment extends Fragment {
                             + player.getMoney()+ " Ship: " + playerShip.getNumberOfUsedCargoBays());
                     player.getPaid(item.getRegionPrice());
                     playerShip.dropCargo(item);
-                    moneyView.setText(getString(R.string.money_with_dollar_sign) +
-                            player.getMoney());
+                    moneyView.setText(new StringBuilder()
+                            .append(getString(R.string.money_with_dollar_sign))
+                            .append(player.getMoney()).toString());
                     sellable.clear();
                     sellable.addAll(marketplace.getPlayerSellableItems());
                     sellAdapter.notifyDataSetChanged();

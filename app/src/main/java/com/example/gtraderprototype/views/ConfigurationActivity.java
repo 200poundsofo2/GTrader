@@ -20,6 +20,9 @@ import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
 import java.util.Arrays;
 
+/**
+ * the configuration page
+ */
 public class ConfigurationActivity extends AppCompatActivity {
 
     private ConfigurationViewModel viewModel;
@@ -57,6 +60,10 @@ public class ConfigurationActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
+    /**
+     * decrements the point value for pilot
+     * @param view android stuff
+     */
     public void decrementSkillPointsForPilot(View view) {
         if (canDecrement(pilotPoints)) {
             int pointsAllocated = Integer.parseInt(pilotPoints.getText().toString());
@@ -67,7 +74,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * decrements the point value for engineer
+     * @param view android stuff
+     */
     public void decrementSkillPointsForEngineer(View view) {
         if (canDecrement(engineerPoints)) {
             int pointsAllocated = Integer.parseInt(engineerPoints.getText().toString());
@@ -78,7 +88,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * decrements the point value for fighter
+     * @param view android stuff
+     */
     public void decrementSkillPointsForFighter(View view) {
         if (canDecrement(fighterPoints)) {
             int pointsAllocated = Integer.parseInt(fighterPoints.getText().toString());
@@ -89,7 +102,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "The lowest point allocation is 0", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * decrements the point value for Trader
+     * @param view android stuff
+     */
     public void decrementSkillPointsForTrader(View view) {
         if (canDecrement(traderPoints)) {
             int pointsAllocated = Integer.parseInt(traderPoints.getText().toString());
@@ -100,7 +116,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "The lowest point allocation is 0.", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * increments the point value for pilot
+     * @param view android stuff
+     */
     public void incrementSkillPointsForPilot(View view) {
         if (doSkillPointsRemainUnallocated()) {
             int pointsAllocated = Integer.parseInt(pilotPoints.getText().toString());
@@ -111,7 +130,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * increments the point value for engineer
+     * @param view android stuff
+     */
     public void incrementSkillPointsForEngineer(View view) {
         if (doSkillPointsRemainUnallocated()) {
             int pointsAllocated = Integer.parseInt(engineerPoints.getText().toString());
@@ -122,7 +144,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * increments the point value for fighter
+     * @param view android stuff
+     */
     public void incrementSkillPointsForFighter(View view) {
         if (doSkillPointsRemainUnallocated()) {
             int pointsAllocated = Integer.parseInt(fighterPoints.getText().toString());
@@ -133,7 +158,10 @@ public class ConfigurationActivity extends AppCompatActivity {
                     "You are out of skill points to spend.", Toast.LENGTH_LONG).show();
         }
     }
-
+    /**
+     * increments the point value for trader
+     * @param view android stuff
+     */
     public void incrementSkillPointsForTrader(View view) {
         if (doSkillPointsRemainUnallocated()) {
             int pointsAllocated = Integer.parseInt(traderPoints.getText().toString());
@@ -145,28 +173,46 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * decrements the remaining skill points from the concurrent skill points
+     */
     private void decrementRemainingSkillPoints() {
         concurrentPoints--;
         remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points),
                 getString(R.string.points, concurrentPoints)));
     }
-
+    /**
+     * increments the remaining skill points from the concurrent skill points
+     */
     private void incrementRemainingSkillPoints() {
         concurrentPoints++;
         remainingPoints.setText(String.format("%s%s", getString(R.string.remaining_points),
                 getString(R.string.points, concurrentPoints)));
     }
 
+   /**
+     * checks if any skill points remain to be allocated
+     * @param skillPoints skill points
+     * @return true if the skill is not equal to zero
+    * and there are points to be allocated false otherwise
+     */
     private boolean canDecrement(TextView skillPoints) {
         boolean checkSkillIsNot0 = Integer.parseInt(skillPoints.getText().toString()) != 0;
         return (getAllocatedSkillPoints() > 0) && checkSkillIsNot0;
     }
-
+    /**
+     * checks if any skill points remain to be allocated
+     * @return true if the net skill points is less than 16
+     */
     private boolean doSkillPointsRemainUnallocated() {
         int mostSkillPoints = 16;
         return getAllocatedSkillPoints() < mostSkillPoints;
     }
 
+    /**
+     * get the net skill points from the summation of all skill allocated to
+     * @return met skill points
+     */
     private int getAllocatedSkillPoints() {
         int pointsForPilot = Integer.parseInt(pilotPoints.getText().toString());
         int pointsForEngineer = Integer.parseInt(engineerPoints.getText().toString());
@@ -175,10 +221,18 @@ public class ConfigurationActivity extends AppCompatActivity {
         return pointsForPilot + pointsForEngineer + pointsForFighter + pointsForTrader;
     }
 
+    /**
+     * loads the main menu via button press
+     * @param view android stuff
+     */
     public void loadMainMenu(View view) {
         startActivity(new Intent(ConfigurationActivity.this, MainActivity.class));
     }
 
+    /**
+     * creates a player
+     * @param view android stuff
+     */
     public void createPlayer(View view) {
         if (!doSkillPointsRemainUnallocated()) {
             String name = playerName.getText().toString();
@@ -209,6 +263,9 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * loads the space port via button press
+     */
     private void loadSpacePortPage() {
         startActivity(new Intent(ConfigurationActivity.this, SpacePortActivity.class));
     }

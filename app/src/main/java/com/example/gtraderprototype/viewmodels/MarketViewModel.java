@@ -31,7 +31,8 @@ public class MarketViewModel extends AndroidViewModel {
 
     /**
      * returns an instance of the market place
-     * @return a market place that contains buyable goods from a region and sellable good from the player
+     * @return a market place that contains buyable goods
+     * from a region and sellable good from the player
      */
     public Marketplace getMarketplace(){
         return playerInteractor.getMarketplace();

@@ -77,6 +77,16 @@ public class Region {
     public double[] coordinates;
     private TechLevel techLevel;
     private Resources resources;
+
+    /**
+     * gets the region event
+     * @return a region based event
+     */
+    public RegionBasedEvent getRegionBasedEvent() {
+        return regionBasedEvent;
+    }
+
+    private RegionBasedEvent regionBasedEvent;;
     public final ArrayList<Item> sellableItems = new ArrayList<>();
     public final ArrayList<Item> buyableItems = new ArrayList<>();
     public Marketplace marketplace;
@@ -91,7 +101,7 @@ public class Region {
         this.regionName = name;
         this.coordinates = new double[]{lat,lng};
         this.techLevel = TechLevel.getRandomLevel();
-        RegionBasedEvent regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
+        regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
         this.resources = Resources.getRandomResources();
         Item[] items = Item.values();
         for (Item item: items) {

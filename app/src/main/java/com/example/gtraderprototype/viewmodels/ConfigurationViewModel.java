@@ -12,18 +12,31 @@ import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
 
+/**
+ * the configuration view model
+ */
 public class ConfigurationViewModel extends AndroidViewModel {
 
     private final GameInstanceInteractor gameInteractor;
     private final UniverseInteractor universeInteractor;
     private final PlayerInteractor playerInteractor;
 
+    /**
+     * the constructor for the configuration view model
+     * @param application android stuff
+     */
     public ConfigurationViewModel(@NonNull Application application) {
         super(application);
         gameInteractor = Model.getInstance().getGameInstanceInteractor();
         universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }
+
+    /**
+     * creates a new game
+     * @param difficulty how hard the game is
+     * @param context android stuff
+     */
     public void newGame(Difficulty difficulty, Context context){
         gameInteractor.newGame(difficulty, context);
         playerInteractor.getPlayer()
