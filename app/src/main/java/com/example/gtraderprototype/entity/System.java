@@ -2,6 +2,7 @@ package com.example.gtraderprototype.entity;
 
 
 
+
 import com.example.gtraderprototype.model.Database;
 
 import java.util.ArrayList;
@@ -46,10 +47,10 @@ public class System {
         return systemSize;
     }
     public double[] getcoordinates(){
-        return coordinates;
+        return coordinates.clone();
     }
 
-
+    
     public String toString(){
         String str =
                 " Sys "+this.systemName+'('+this.coordinates[0]

@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.entity;
 
 
+
 import java.util.ArrayList;
 
 public class Universe {

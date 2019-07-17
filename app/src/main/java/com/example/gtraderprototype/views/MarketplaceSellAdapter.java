@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MarketplaceSellAdapter
@@ -47,7 +46,7 @@ public class MarketplaceSellAdapter
     }
 
     @Override
-    public void onBindViewHolder(MarketplaceViewHolder holder, int position) {
+    public void onBindViewHolder( MarketplaceViewHolder holder, int position) {
         Item item = itemList.get(position);
         holder.itemName.setText(item.getName());
         holder.itemPrice.setText(String.valueOf(item.getRegionPrice()));

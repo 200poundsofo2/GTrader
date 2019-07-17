@@ -1,9 +1,5 @@
 package com.example.gtraderprototype.model;
 
-import android.view.View;
-import android.widget.TextView;
-
-import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Marketplace;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;

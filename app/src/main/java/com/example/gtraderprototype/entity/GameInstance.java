@@ -2,6 +2,7 @@ package com.example.gtraderprototype.entity;
 
 import android.util.Log;
 
+
 import com.example.gtraderprototype.model.Database;
 
 public class GameInstance {

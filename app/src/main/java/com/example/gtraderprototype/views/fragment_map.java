@@ -29,15 +29,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 class fragment_map extends Fragment
@@ -75,10 +74,10 @@ class fragment_map extends Fragment
 
     }
     @Override
-    public View onCreateView(LayoutInflater inflater,
+    public View onCreateView( LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_fragment_map, container, false);
-        spacePort = getActivity().findViewById(R.id.name_of_region);
+        spacePort = Objects.requireNonNull(getActivity()).findViewById(R.id.name_of_region);
         fuelAmount =  getActivity().findViewById(R.id.fuel_amount);
         travelInfo =  mView.findViewById(R.id.travel);
         button = mView.findViewById(R.id.button);
@@ -96,9 +95,9 @@ class fragment_map extends Fragment
                         fuel = fuel - fuelCost;
 
                         spacePort.setText(selectedMarker.getTitle());
-                        fuelAmount.setText(new StringBuilder().append(fuel)
-                                .append(getString(R.string.forward_slash)).append(viewmodel
-                                        .getPlayerShipRange()).toString());
+                        fuelAmount.setText(String.valueOf(fuel) +
+                                getString(R.string.forward_slash) + viewmodel
+                                .getPlayerShipRange());
                         travelInfo.setText(getString(R.string.arrived));
 
                         //generate random event encounter
@@ -125,7 +124,7 @@ class fragment_map extends Fragment
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated( View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         MapView mapView = mView.findViewById(R.id.map);
         if(mapView !=null){
@@ -151,13 +150,14 @@ class fragment_map extends Fragment
         );
         newMarker.setTag(0);
         if(isCurrentLocation){
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), markerValue));
+            mMap.animateCamera(CameraUpdateFactory
+                    .newLatLngZoom(new LatLng(lat, lng), markerValue));
         }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(Objects.requireNonNull(getContext()));
         mMap = googleMap;
         //Set boundaries
         double lowBoundaryLatValue = 33.771136;
@@ -208,12 +208,10 @@ class fragment_map extends Fragment
 
     }
     public boolean onMarkerClick(Marker marker) {
-        // TODO Auto-generated method stub
             marker.showInfoWindow();
             return true;
 
     }
-    @SuppressWarnings("MagicNumber")
     @Override
     public void onInfoWindowClick(Marker marker) {
         if(!(viewmodel.getPlayerLocationName().equals(marker.getTitle()))){
@@ -222,11 +220,12 @@ class fragment_map extends Fragment
             int R = 6378137;
             LatLng p1 = places.get(marker.getTitle());
             LatLng p2 = places.get(viewmodel.getPlayerLocationName());
-            double dLat = ((p1.latitude - p2.latitude) * Math.PI) / 180;
-            double dLong = ((places.get(marker.getTitle()).longitude - places.get(viewmodel
-                    .getPlayerLocationName()).longitude) * Math.PI) / 180;
+            double dLat = ((Objects.requireNonNull(p1).latitude - Objects.requireNonNull(p2).latitude) * Math.PI) / 180;
+            double dLong = ((Objects.requireNonNull(places.get(marker.getTitle())).longitude - Objects.requireNonNull(places.get(viewmodel
+                    .getPlayerLocationName())).longitude) * Math.PI) / 180;
             double a = (Math.sin(dLat / 2) * Math.sin(dLat / 2)) +
-                    (Math.cos(((p1.latitude) * Math.PI) / 180) * Math.cos(((p2.latitude) * Math.PI) / 180) *
+                    (Math.cos(((p1.latitude) * Math.PI) / 180) *
+                            Math.cos(((p2.latitude) * Math.PI) / 180) *
                             Math.sin(dLong / 2) * Math.sin(dLong / 2));
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             double d = R * c;

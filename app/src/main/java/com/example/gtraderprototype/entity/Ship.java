@@ -86,7 +86,7 @@ public enum Ship {
     }
 
     public Equipment[] getWeapons() {
-        return this.weaponSlots;
+        return this.weaponSlots.clone();
     }
 
     public boolean canAddWeapon() {
@@ -99,7 +99,7 @@ public enum Ship {
     }
 
     public Equipment[] getShields() {
-        return shieldSlots;
+        return shieldSlots.clone();
     }
 
     public boolean canAddShield() {
@@ -112,7 +112,7 @@ public enum Ship {
     }
 
     public Equipment[] getGadgets() {
-        return gadgetSlots;
+        return gadgetSlots.clone();
     }
 
     public boolean canAddGadget() {
@@ -125,7 +125,7 @@ public enum Ship {
     }
 
     public NPC[] getCrewMembers() {
-        return crewQuarters;
+        return crewQuarters.clone();
     }
 
     public boolean canAddCrewMember() {
