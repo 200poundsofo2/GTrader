@@ -8,20 +8,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gtraderprototype.R;
 
+/**
+ * the encounter activity
+ */
 public class EncounterTraderActivity extends AppCompatActivity {
-    private Button trade;
-    private Button attack;
-    private Button flee;
-    private Button skip;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.encounter_trader_trade);
-        trade=findViewById(R.id.button_trade);
-        attack=findViewById(R.id.button_attack);
-        flee=findViewById(R.id.button_flee);
-        skip=findViewById(R.id.button_skip);
+        Button trade = findViewById(R.id.button_trade);
+        Button attack = findViewById(R.id.button_attack);
+        Button flee = findViewById(R.id.button_flee);
+        Button skip = findViewById(R.id.button_skip);
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override

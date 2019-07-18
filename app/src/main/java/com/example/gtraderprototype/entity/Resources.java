@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * resources that a region and a player can contain
+ */
 public enum Resources {
     LOTSOFWATER(0),
     RICHFAUNA(1),
@@ -19,13 +22,24 @@ public enum Resources {
     POORSOIL(11),
     MINERALPOOR(12),
     NotApplicable(13);
-    private int resourceLevel;
+    private final int resourceLevel;
     Resources(int resourceLevel){
         this.resourceLevel = resourceLevel;
     }
+
+    /**
+     * a number that dictates what region can accept and distribute this item
+     * @return the resourceLevel as a number
+     */
     public int getResourceLevel(){ return resourceLevel; }
+
+    /**
+     * generates a random resource
+     * @return a random resource
+     */
         public static com.example.gtraderprototype.entity.Resources getRandomResources(){
-            final List<com.example.gtraderprototype.entity.Resources> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+            final List<com.example.gtraderprototype.entity.Resources> VALUES =
+                    Collections.unmodifiableList(Arrays.asList(values()));
             int SIZE = VALUES.size();
             final Random RANDOM = new Random();
             return VALUES.get(RANDOM.nextInt(SIZE));

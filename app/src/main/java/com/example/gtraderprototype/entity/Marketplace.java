@@ -6,22 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * marketplace where users can purchase items
+ * a entity that contains all of the sellable items in a region
+ * and all the goods that a player can sell
  */
 public class Marketplace {
-    private Player player;
+    private final Player player;
+    private ArrayList<Item> playerSellableItems;
+    private ArrayList<Item> playerBuyableItems;
 
     /**
-     * initializing the player in the marketplace
-     * @param player the player in the marketplace
+     * the constructor for the market place
+     * @param player the player
      */
     public Marketplace(Player player){
         this.player = player;
+
     }
 
     /**
-     * getting items that a player has that are can be traded
-     * @return list of items
+     * a function that determines which goods from the player's cargo is sellable
+     * @return list of sellable items
      */
     public ArrayList<Item> getPlayerSellableItems(){
         Region region = Model.getInstance().getPlayerInteractor().getLocation();
@@ -38,8 +42,8 @@ public class Marketplace {
     }
 
     /**
-     * getting items that the player can purchase
-     * @return list of items
+     * a function that determines what goods can be bought by the player
+     * @return a list of buyable items
      */
     public ArrayList<Item> getPlayerBuyableItems(){
         Region region = Model.getInstance().getPlayerInteractor().getLocation();

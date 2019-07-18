@@ -1,5 +1,4 @@
-<resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="fab_margin" tools:keep="@dimen/fab_margin">16dp</dimen>
 </resources>

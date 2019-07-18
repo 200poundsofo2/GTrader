@@ -1,8 +1,8 @@
 package com.example.gtraderprototype.model;
 
-public abstract class Interactor {
-    private Database gtDB;
-    protected Interactor(Database db){
+abstract class Interactor {
+    private final Database gtDB;
+    Interactor(Database db){
         gtDB = db;
     }
     protected  Database getDatabase(){

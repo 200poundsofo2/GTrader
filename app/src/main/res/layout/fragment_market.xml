@@ -10,16 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:paddingTop="10dp"
-        android:paddingRight="20dp">
+        android:paddingEnd="20dp">
 
         <TextView
             android:id="@+id/welcomeMarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Welcome to the Market"
+            android:text="@string/welcome_to_the_market"
             android:textStyle="bold"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"/>
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Money: $"
+            android:text="@string/money_with_dollar_sign"
             android:textStyle="bold" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="23sp"
             android:paddingBottom="10sp"
-            android:text="Buy" />
+            android:text="@string/buy" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/buying_recycler_view"
@@ -52,7 +52,7 @@
             android:layout_height="40dp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
-            android:text="Sell" />
+            android:text="@string/sell" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/selling_recycler_view"

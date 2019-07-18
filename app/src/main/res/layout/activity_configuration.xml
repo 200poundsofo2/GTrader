@@ -18,16 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
             android:paddingTop="10dp"
-            android:paddingRight="20dp">
+            android:paddingEnd="20dp">
 
             <TextView
                 android:id="@+id/playerCreation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Player Creation"
+                android:text="@string/player_creation"
                 android:textSize="40sp" />
 
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="23sp"
                 android:paddingBottom="10sp"
-                android:text="Player Name" />
+                android:text="@string/player_name" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,9 +50,10 @@
                     android:layout_height="40dp"
                     android:layout_gravity="fill_vertical"
                     android:ems="10"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:inputType="textPersonName"
                     android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
                     android:textColor="#fff"
                     android:textColorHint="#EAAA00" />
             </LinearLayout>
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="23sp"
                 android:paddingBottom="10sp"
-                android:text="Skill Points" />
+                android:text="@string/skill_points" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10sp"
                     android:paddingBottom="10sp"
-                    android:text="Remaining Points: 16"
+                    android:text="@string/remaining_points_16"
                     android:textStyle="normal|italic"
                     android:textSize="18sp" />
 
@@ -91,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".38"
-                        android:text="Pilot:"
+                        android:text="@string/pilot"
                         android:textStyle="normal" />
 
                     <com.google.android.material.button.MaterialButton
@@ -101,7 +102,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForPilot"
-                        android:text="-"
+                        android:text="@string/hyphen"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -114,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
                         android:gravity="center"
-                        android:text="0"
+                        android:text="@string/_0"
                         android:textSize="15sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -124,7 +125,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForPilot"
-                        android:text="+"
+                        android:text="@string/plus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -143,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".25"
-                        android:text="Fighter:"
+                        android:text="@string/fighter"
                         android:textStyle="normal" />
 
                     <com.google.android.material.button.MaterialButton
@@ -153,7 +154,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForFighter"
-                        android:text="-"
+                        android:text="@string/minus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -166,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
                         android:gravity="center"
-                        android:text="0"
+                        android:text="@string/_0"
                         android:textSize="15sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -176,7 +177,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForFighter"
-                        android:text="+"
+                        android:text="@string/plus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -195,7 +196,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".25"
-                        android:text="Trader:"
+                        android:text="@string/trader"
                         android:textStyle="normal" />
 
                     <com.google.android.material.button.MaterialButton
@@ -205,7 +206,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForTrader"
-                        android:text="-"
+                        android:text="@string/minus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -218,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
                         android:gravity="center"
-                        android:text="0"
+                        android:text="@string/_0"
                         android:textSize="15sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -228,7 +229,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForTrader"
-                        android:text="+"
+                        android:text="@string/plus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -247,7 +248,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".17"
-                        android:text="Engineer:"
+                        android:text="@string/engineer"
                         android:textStyle="normal" />
 
                     <com.google.android.material.button.MaterialButton
@@ -257,7 +258,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="decrementSkillPointsForEngineer"
-                        android:text="-"
+                        android:text="@string/minus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -270,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
                         android:gravity="center"
-                        android:text="0"
+                        android:text="@string/_0"
                         android:textSize="15sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -280,7 +281,7 @@
                         android:layout_height="45dp"
                         android:layout_weight=".25"
                         android:onClick="incrementSkillPointsForEngineer"
-                        android:text="+"
+                        android:text="@string/plus"
                         app:backgroundTint="#00000000"
                         app:cornerRadius="10dp"
                         app:rippleColor="#EAAA00"
@@ -296,7 +297,7 @@
                 android:id="@+id/selectDifficulty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Difficulty"
+                android:text="@string/select_difficulty"
                 android:paddingTop="23sp"
                 android:paddingBottom="10sp" />
 
@@ -326,7 +327,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="loadMainMenu"
-                    android:text="Back"
+                    android:text="@string/back"
                     app:backgroundTint="#00000000"
                     app:cornerRadius="10dp"
                     app:rippleColor="#EAAA00"
@@ -339,7 +340,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="createPlayer"
-                    android:text="Create"
+                    android:text="@string/create"
                     app:backgroundTint="#00000000"
                     app:cornerRadius="10dp"
                     app:rippleColor="#EAAA00"
