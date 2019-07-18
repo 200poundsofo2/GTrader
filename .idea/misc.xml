@@ -12,9 +12,10 @@
       <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MarketViewModel gameInteractor" />
       <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MarketViewModel universeInteractor" />
       <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.MarketplaceSellAdapter.MarketplaceViewHolder numberOwned" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.MarketplaceBuyAdapter.MarketplaceViewHolder numberOwned" />
     </entry_points>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

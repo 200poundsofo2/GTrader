@@ -16,13 +16,11 @@ import com.example.gtraderprototype.model.UniverseInteractor;
 
 public class MapViewModel extends AndroidViewModel {
 
-    private GameInstanceInteractor gameInteractor;
     private UniverseInteractor universeInteractor;
     private PlayerInteractor playerInteractor;
 
     public MapViewModel(@NonNull Application application) {
         super(application);
-        gameInteractor = Model.getInstance().getGameInstanceInteractor();
         universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }
@@ -51,9 +49,6 @@ public class MapViewModel extends AndroidViewModel {
         return playerInteractor.getLocation().regionName;
     }
 
-    public int getPlayerMoney() {
-        return playerInteractor.getPlayer().getMoney();
-    }
 
     public void travelToRegion(String regionname, int fuelCost) {
         Region region = universeInteractor.getRegionByName(regionname);
