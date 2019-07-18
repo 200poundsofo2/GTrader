@@ -18,50 +18,35 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-/**
- * the class that connects to firebase or the back end
- */
 public class Database {
-    private static final ArrayList<String> names = new ArrayList<>();
+    static List<String> names;
     /*
         This class communicates with the firebase database
      */
 
-    private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference gameIDListRef = database.getReference("Save States");
-
-    /**
-     * creates a serialized key as an id for the game
-     * @return
-     */
-    public static String getNewGameID(){
-        int numberOfCharacters = 16;
-        int charactersInAlphabet = 26;
-                StringBuilder tempID;
-                    tempID = new StringBuilder();
-                    for(int i=0;i<numberOfCharacters;i++){
-                        int key = (int)(Math.floor(Math.random()*charactersInAlphabet));
-                        tempID.append((char) ((int) 'a' + key));
-                    }
-        Log.d("GTrader", "Key "+tempID+" generated.");
-                return tempID.toString();
+    public Database(){
 
     }
+    public static String getNewGameID(){
 
-    /**
-     * saves an instance of the game to the database
-     * @param instance the game
-     */
+                String tempID;
+                    tempID = "";
+                    for(int i=0;i<16;i++){
+                        int key = (int)(Math.floor(Math.random()*26));
+                        tempID+=(char)((int)'a'+key);
+                    }
+        Log.d("GTrader", "Key "+tempID+" generated.");
+                return tempID;
+
+    }
     public static void saveState(GameInstance instance){
         DatabaseReference stateref = database.getReference("Save States/"+instance.getGameID());
         stateref.setValue(instance);
         Log.d("Gtrader", instance.getGameID()+" Saved to DB");
     }
 
-    /**
-     * delete an instance of the game
-     * @param instance
-     */
     public static void removeState(GameInstance instance){
         DatabaseReference ref = database.getReference("Save States");
         ref.child(instance.getGameID()).removeValue();
@@ -70,15 +55,12 @@ public class Database {
         DatabaseReference ref = database.getReference("Save States");
         ref.child(gameID).removeValue();
     }
-    /**
-     * loads the game from teh database
-     * @param gameID the serialized key
-     */
-    public static void retrieveGameFromDB(String gameID){
+
+    public static void retrieveGameFromDB(String gameID, final Context context){
         DatabaseReference ref = database.getReference("Save States/"+gameID);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange( DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 /*
                 Post post = dataSnapshot.getValue(Post.class);
                 System.out.println(post);
@@ -93,15 +75,12 @@ public class Database {
             }
 
             @Override
-            public void onCancelled( DatabaseError databaseError) {
-                //System.out.println("The read failed: " + databaseError.getCode());
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("GTraderDB", "Unable to retrieve save from DB: "+databaseError.toString());
             }
         });
     }
 
-    /**
-     *  gets the universe
-     */
     public void getGlobalUniverse(){
         DatabaseReference ref = database.getReference("INDEX/SYSTEMS");
 
@@ -115,15 +94,10 @@ public class Database {
                     Model.getInstance().getUniverseInteractor().setUniverse(new Universe());
                     for(DataSnapshot systemSnapshot : dataSnapshot.getChildren()){
                         Log.d("GTraderFirebaseSys", systemSnapshot.toString());
-                        System subSystem = new System(systemSnapshot.getKey(),
-                                systemSnapshot.child("/location/lat").getValue(Double.class),
-                                systemSnapshot.child("/location/lng").getValue(Double.class));
-                        for(DataSnapshot regionSnapshot : systemSnapshot.child("REGIONS")
-                                .getChildren()){
+                        System subSystem = new System(systemSnapshot.getKey(), systemSnapshot.child("/location/lat").getValue(Double.class), systemSnapshot.child("/location/lng").getValue(Double.class));
+                        for(DataSnapshot regionSnapshot : systemSnapshot.child("REGIONS").getChildren()){
                             Log.d("GTraderFirebaseRegion", regionSnapshot.toString());
-                            Region newRegion = new Region(regionSnapshot.getKey(),
-                                    regionSnapshot.child("/location/lat").getValue(Double.class),
-                                    regionSnapshot.child("/location/lng").getValue(Double.class));
+                            Region newRegion = new Region(regionSnapshot.getKey(), regionSnapshot.child("/location/lat").getValue(Double.class), regionSnapshot.child("/location/lng").getValue(Double.class));
 
                             //Add region to system
                             subSystem.addRegion(newRegion);
@@ -135,13 +109,16 @@ public class Database {
                     }
 
                     //Log Universe
-                    Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse()
-                            .toString());
-                }/*else{
+                    Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse().toString());
+                }else{
+
+
+                    /*-- TODO
                     Universe universe = dataSnapshot.getValue(Universe.class);
                     Model.getInstance().getUniverseInteractor().setUniverse(universe);
                     Log.d("GTrader", "Universe is created");
-                }*/
+                    */
+                }
 
             }
 
@@ -153,13 +130,8 @@ public class Database {
 
     }
 
-    /**
-     * creates a random name for the game id
-     * @return game id
-     */
     public static String getRandomName(){
-        int rangeOfValues = 90;
-       return names.get((int)(Math.random()*rangeOfValues));
+       return names.get((int)(Math.random()*90));
     }
 
 

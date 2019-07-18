@@ -25,23 +25,22 @@
                 android:id="@+id/name_of_region"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/spaceport"
-                android:layout_gravity="start"
+                android:text="Spaceport"
+                android:layout_gravity="left"
                 android:textColor="#fff" />
             <TextView
                 android:id="@+id/NameOfShip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ship"
+                android:text="Ship"
                 android:layout_gravity="center"
                 android:textColor="#fff"/>
             <TextView
                 android:id="@+id/fuel_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fuel_0_0"
-                android:layout_gravity="end"
-                android:paddingLeft="10dp"
+                android:text="Fuel: 0/0"
+                android:layout_gravity="right"
                 android:paddingRight="10dp"
                 android:textColor="#fff"/>
         </androidx.appcompat.widget.Toolbar>

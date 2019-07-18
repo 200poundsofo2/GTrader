@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/select_a_saved_game"
+            android:text="Select a Saved Game"
             android:textSize="45sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -25,7 +24,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.222" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/saves_recycler_view"
@@ -52,7 +50,7 @@
             android:layout_marginBottom="30dp"
             android:background="#000000"
             android:onClick="backToWelcome"
-            android:text="@string/back"
+            android:text="Back"
             app:backgroundTint="#00000000"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"

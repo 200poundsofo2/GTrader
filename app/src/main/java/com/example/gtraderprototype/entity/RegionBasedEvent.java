@@ -14,7 +14,7 @@ enum RegionBasedEvent {
     PLAGUE(5),
     LACKOFWORKERS(6),
     NotApplicable(7);
-    private final int regionEvent;
+    private int regionEvent;
     RegionBasedEvent(int regionEvent){
         this.regionEvent = regionEvent;
     }

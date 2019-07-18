@@ -43,7 +43,7 @@ public class Character { //singleton design pattern: Player.getPlayer()
     /**
      * character
      */
-    Character(){}
+    public Character (){}
 
     /**
      * setting name of a character
@@ -60,57 +60,55 @@ public class Character { //singleton design pattern: Player.getPlayer()
     public String getName(){
         return name;
     }
+
     /**
      * getting piloting skill point
      * @return piloting skill point
      */
-    /*public int getPilotSkillPoints(){return pilotSkillPoints;}*/
-
+    public int getPilotSkillPoints(){return pilotSkillPoints;}
     /**
      * getting engineering skill point
      * @return engineering skill point
      */
-    /*public int getEngineerSkillPoints(){return  engineerSkillPoints;}*/
+    public int getEngineerSkillPoints(){return  engineerSkillPoints;}
     /**
      * getting fighting skill point
      * @return fighting skill point
      */
-    /*public int getFighterSkillPoints(){return fighterSkillPoints;}*/
+    public int getFighterSkillPoints(){return fighterSkillPoints;}
     /**
      * getting trading skill point
      * @return trading skill point
      */
-    /*public int getTraderSkillPoints(){return traderSkillPoints;}*/
-
+    public int getTraderSkillPoints(){return traderSkillPoints;}
 
     /**
      * setting piloting skill point
      * @param points pilot skill point
      */
-
-    /*public void setPilotSkillPoints(int points){this.pilotSkillPoints = points;}*/
+    public void setPilotSkillPoints(int points){this.pilotSkillPoints = points;}
     /**
      * setting engineering skill point
      * @param points engineering skill point
      */
-    /*public void setEngineerSkillPoints(int points){this.engineerSkillPoints = points;}*/
+    public void setEngineerSkillPoints(int points){this.engineerSkillPoints = points;}
     /**
      * setting fighting skill point
      * @param points fighting skill point
      */
-    /*public void setFighterSkillPoints(int points){this.fighterSkillPoints = points;}*/
+    public void setFighterSkillPoints(int points){this.fighterSkillPoints = points;}
     /**
      * setting trading skill point
      * @param points trading skill point
      */
-    /*public void setTraderSkillPoints(int points){this.traderSkillPoints = points;}*/
+    public void setTraderSkillPoints(int points){this.traderSkillPoints = points;}
 
     /**
      * getting ship that this character owns
      * @return ship
      */
     public Ship getSpaceShip(){ return spaceShip ; }
-
+      
     /**
      * setting ship for the player
      * @param spaceship the spaceship to set the player to

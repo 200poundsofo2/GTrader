@@ -4,12 +4,18 @@ import android.util.Log;
 /**
  * player class that initializes the user
  */
-public final class Player extends Character {
-    private static volatile Player player;
-    private Difficulty difficulty;
-    public Player(){
-        super("No Name", 0, 0, 0, 0, Ship.Gnatt);
-        difficulty = Difficulty.Beginner;
+public class Player extends Character {
+    public static volatile Player player = null;
+      /**
+     * initializing a player that has a default Gnatt ship
+     * @param name name of the player
+     * @param pilotPoints skill points of piloting
+     * @param engineerPoints skill points of engineering
+     * @param fighterPoints skill points of fighting
+     * @param traderPoints skill points of trading
+     */
+    public Player(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints){
+        super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, Ship.ShipType.GNATT);
         player = this;
 
     }
@@ -38,10 +44,10 @@ public final class Player extends Character {
      */
     public void setPirate(boolean pirate) {
         getPlayer().isPirate = pirate;
-    public String toString(){return "Player Name: "
-            + name + ", Pilot Skill Points: " + pilotSkillPoints +
-            ", Engineer Skill Points: " + engineerSkillPoints +
-            ", Fighter Skill Points: " + fighterSkillPoints +
+    }
+
+    public String toString(){return "Player Name: " + name + ", Pilot Skill Points: " + pilotSkillPoints +
+            ", Engineer Skill Points: " + engineerSkillPoints + ", Fighter Skill Points: " + fighterSkillPoints +
             ", Trader Skill Points: " + traderSkillPoints +
             ", Money: " + money + ", SpaceShip: "+ spaceShip.getName();}
 }

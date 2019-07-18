@@ -3,48 +3,46 @@ package com.example.gtraderprototype.entity;
 
 import android.util.Log;
 
-
 import com.example.gtraderprototype.model.Database;
 
 /**
- * game instance entity
+ * game instance reference
  */
 public class GameInstance {
-    //Game Instance Reference
-    private final String gameID;
+    private String gameID;
+
+
     private Difficulty difficulty;
     private Player player;
 
     /**
-     * get the game id
-     * @return a serialized value that represents the game
+     * getting the Game ID number
+     * @return Game ID
      */
     public String getGameID(){
         return gameID;
     }
-
     /**
-     * gets the game's set difficulty
-     * @return teh game's difficulty
+     * getting the difficulty level
+     * @return difficulty level
      */
     public Difficulty getDifficulty(){ return difficulty;}
 
     /**
-     * sets the game's set difficulty
-     * @param difficulty the desired game difficulty
+     * setting the difficulty level
+     * @param difficulty the difficulty level the user chose
      */
     public void setDifficulty(Difficulty difficulty){
         this.difficulty = difficulty;
     }
 
     /**
-     * a constructor for the current game instance
-     * @param difficulty the difficulty of the game
+     * getting the Player
+     * @return Player
      */
-    public GameInstance( Difficulty difficulty){
-        this.gameID = Database.getNewGameID();
-        this.difficulty = difficulty;
-        Log.d("GTrader", "Created Local Game Instance: " + this.toString());
+    public Player getPlayer() {
+        return player;
+    }
 
       /**
      * setting the instance player

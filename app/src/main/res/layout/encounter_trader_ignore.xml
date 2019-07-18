@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000"
-        tools:context=".views.MainActivity"
-        tools:keep="@layout/encounter_trader_ignore">
+        tools:context=".views.MainActivity">
 
         <TextView
             android:id="@+id/trader"
@@ -16,7 +14,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/generic_encounter_text2"
+            android:text="You have encountered a trader. The trader is ignoring you. What do you wish to do?"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -33,7 +31,7 @@
             android:layout_marginTop="80dp"
             android:layout_marginEnd="129dp"
             android:layout_marginBottom="1dp"
-            android:text="@string/attack"
+            android:text="Attack"
             android:textSize="17sp"
             app:backgroundTint="#00000000"
             app:cornerRadius="10dp"
@@ -55,7 +53,7 @@
             android:layout_marginEnd="129dp"
             android:layout_marginBottom="1dp"
             android:onClick="loadSavedGamesPage"
-            android:text="@string/flee"
+            android:text="Flee"
             android:textSize="17sp"
             app:backgroundTint="#00000000"
             app:cornerRadius="10dp"
@@ -76,7 +74,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="129dp"
             android:layout_marginBottom="120dp"
-            android:text="@string/skip"
+            android:text="Skip"
             android:textSize="17sp"
             app:backgroundTint="#00000000"
             app:cornerRadius="10dp"

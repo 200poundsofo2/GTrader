@@ -84,9 +84,9 @@ public class EncounterPirateActivity extends AppCompatActivity {
             //flee
             surrender.setEnabled(false);
             attack.setEnabled(false);
-            flee.setText(getString(R.string.back));
-            encounterText.setText(getString(R.string.flee_succeeded));
-            pirateText.setText(getString(R.string.see_you_nexttime));
+            flee.setText("Back");
+            encounterText.setText("Flee Succeeded!");
+            pirateText.setText("This isn't the end! Let's wait and see.");
             flee.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -94,22 +94,19 @@ public class EncounterPirateActivity extends AppCompatActivity {
                 }
             });
         } else{ //unable to flee, game over
-            startActivity(new Intent(EncounterPirateActivity.this,
-             GameOverActivity.class));
+            startActivity(new Intent(EncounterPirateActivity.this, GameOverActivity.class));
         }
     }
 
     private void attack(){
-        //I am still thinking about a good game :)
-        pirateText.setText(getString(R.string.lets_play));
+        pirateText.setText("Lets play game");
         surrender.setEnabled(false);
         flee.setEnabled(false);
         attack.setText("start game");
         attack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pirateGame=new Intent(EncounterPirateActivity.this,
-                 PirateGameActivity.class);
+                Intent pirateGame=new Intent(EncounterPirateActivity.this, PirateGameActivity.class);
                 startActivity(pirateGame);
             }
         });
@@ -119,9 +116,9 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
         attack.setEnabled(false);
         flee.setEnabled(false);
-        surrender.setText(getString(R.string.back));
-        pirateText.setText(getString(R.string.i_tooketh));
-        encounterText.setText(getString(R.string.you_lost_cargo));
+        surrender.setText("Back");
+        pirateText.setText("HA! I took some precious from you.");
+        encounterText.setText("You will lose part of your cargo");
 
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override

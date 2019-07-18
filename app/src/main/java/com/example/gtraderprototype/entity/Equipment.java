@@ -4,10 +4,10 @@ package com.example.gtraderprototype.entity;
  * equipment that can be equipped for the spaceship
  */
 public class Equipment {
-    private final int strength;
-    private final int health;
-    private final TypeOfEquipment type;
-    private final Item item;
+    private int strength;
+    private int health;
+    private TypeOfEquipment type;
+    private Item item;
 
     /**
      * initializing attributes of the equipment

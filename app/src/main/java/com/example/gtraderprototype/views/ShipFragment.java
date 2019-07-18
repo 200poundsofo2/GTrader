@@ -2,5 +2,5 @@ package com.example.gtraderprototype.views;
 
 import androidx.fragment.app.Fragment;
 
-class ShipFragment extends Fragment {
+public class ShipFragment extends Fragment {
 }

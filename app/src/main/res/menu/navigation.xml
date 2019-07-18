@@ -1,28 +1,29 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/skills"
         android:icon="@drawable/ic_skills"
-        android:title="@string/skills" />
+        android:title="skills" />
 
     <item
         android:id="@+id/ship"
         android:icon="@drawable/ic_ship"
-        android:title="@string/ship" />
+        android:title="ship" />
 
     <item
         android:id="@+id/travel"
         android:icon="@drawable/ic_travel"
-        android:title="@string/travel" />
+        android:title="travel" />
 
     <item
         android:id="@+id/market"
         android:icon="@drawable/ic_coins"
-        android:title="@string/market" />
+        android:title="market" />
 
     <item
         android:id="@+id/save"
         android:icon="@drawable/ic_save"
-        android:title="@string/save" />
+        android:title="save" />
 
 </menu>

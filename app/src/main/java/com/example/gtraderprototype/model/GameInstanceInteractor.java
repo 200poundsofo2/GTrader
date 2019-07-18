@@ -6,25 +6,18 @@ import android.util.Log;
 
 import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.GameInstance;
+import com.example.gtraderprototype.entity.Player;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Objects;
 
-/**
- * a connection between the database and the current instance of the game
- */
 public class GameInstanceInteractor extends Interactor{
 
-    private final String localStateFilename = "states";
-
-    /**
-     * a constructor for GameInstanceInteractor
-     * @param db the database
-     */
+    final String localStateFilename = "states";
+    private GameInstance gameInstance;
     public GameInstanceInteractor(Database db){
         super(db);
 
@@ -38,6 +31,7 @@ public class GameInstanceInteractor extends Interactor{
         return gameInstance.getDifficulty();
     }
     public ArrayList<String> getLocalGames(Context context){
+
         File file = new File(context.getFilesDir(), localStateFilename);
         ArrayList<String> gameIDs = new ArrayList<>();
         try{
@@ -45,7 +39,7 @@ public class GameInstanceInteractor extends Interactor{
             if(file.exists()){
                 Log.d("GTrader", "Retrieving games...");
                 BufferedReader br = new BufferedReader(new FileReader(file));
-                String temp;
+                String temp = "";
                 temp = br.readLine();
                 while(temp!=null){
                     gameIDs.add(temp);
@@ -58,16 +52,10 @@ public class GameInstanceInteractor extends Interactor{
         }
         return gameIDs;
     }
-
     public void setInstance(GameInstance instance){
         this.gameInstance = instance;
         Log.d("GTrader", instance.toString());
     }
-      /**
-     * create a new game
-     * @param difficulty the difficulty of the game
-     * @param context android stuff
-     */
     public void newGame(Difficulty difficulty, Player player, Context context){
         this.gameInstance = new GameInstance(difficulty, player);
         try{
@@ -79,19 +67,21 @@ public class GameInstanceInteractor extends Interactor{
         }catch (Exception e) {
             e.printStackTrace();
         }
-        Database.saveState(newinst);
+        Log.d("GTrader", "New instance: "+gameInstance.toString());
+        Database.saveState(gameInstance);
     }
 
-    void removeGame(GameInstance instance, Context context){
-        Iterable<String> currentsaves = getLocalGames(context);
+
+    public void removeGame(String gameID, Context context){
+        ArrayList<String> currentSaves = getLocalGames(context);
         File file = new File(context.getFilesDir(), localStateFilename);
         file.delete();
 
         try{
             FileOutputStream outputStream;
             outputStream = context.openFileOutput(localStateFilename, Context.MODE_APPEND);
-            for(String save: currentsaves){
-                if(!Objects.equals(save, instance.getGameID())){
+            for(String save: currentSaves){
+                if(!save.equals(gameID)){
                     outputStream.write((save+"\r\n").getBytes());
                 }
             }

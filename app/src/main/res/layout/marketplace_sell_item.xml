@@ -6,6 +6,7 @@
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp">
+    tools:context=".views.MarketFragment">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
                 android:id="@+id/item_name"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:text="@string/itemname"
+                android:text="ItemName"
                 android:textStyle="normal" />
 
             <LinearLayout
@@ -35,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight=".10"
-                    android:text="@string/price"
+                    android:text="Price:"
                     android:textStyle="normal" />
 
                 <TextView
@@ -43,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight=".10"
-                    android:text="@string/value"
+                    android:text="Value"
                     android:textStyle="normal" />
                 <!-- <LinearLayout
                     android:layout_width="match_parent"
@@ -71,10 +72,10 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/sell"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
+                android:layout_width="20dp"
                 android:layout_height="45dp"
                 android:layout_weight=".25"
-                android:text="@string/sell"
+                android:text="Sell"
                 app:cornerRadius="10dp"
                 app:rippleColor="#EAAA00"
                 app:strokeColor="#fff"
