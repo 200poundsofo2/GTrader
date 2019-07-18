@@ -43,7 +43,7 @@ public class PlayerInteractor extends Interactor {
      * @param fuelAmt amount of fuel to be subtracted
      */
     public void deductFuel(int fuelAmt){
-        player.getSpaceship().deductFuel(fuelAmt);
+        player.getSpaceShip().deductFuel(fuelAmt);
     }
 
     /**

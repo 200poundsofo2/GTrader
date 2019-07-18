@@ -27,8 +27,11 @@ class MarketFragment extends Fragment {
     private TextView moneyView;
     private MarketplaceBuyAdapter buyAdapter;
     private MarketplaceSellAdapter sellAdapter;
+    private RecyclerView.LayoutManager layoutManagerBuy;
+    private RecyclerView.LayoutManager layoutManagerSell;
     private final Player player = Player.getPlayer();
-    private Ship playerShip = player.getShip();
+    private Ship playerShip = player.getSpaceShip();
+    private ArrayList<Item> buyable = new ArrayList<>();
     private ArrayList<Item> sellable = new ArrayList<>();
     private Marketplace marketplace = new Marketplace(player);
 
@@ -60,7 +63,7 @@ class MarketFragment extends Fragment {
         buyAdapter = new MarketplaceBuyAdapter(buyable, new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                playerShip = player.getSpaceship();
+                playerShip = player.getSpaceShip();
                 Item item = buyAdapter.getItemAt(position);
                 if (player.getMoney() >= item.getRegionPrice()) {
                     if (playerShip.canAddCargo()) {
@@ -96,7 +99,7 @@ class MarketFragment extends Fragment {
         sellAdapter = new MarketplaceSellAdapter(sellable, new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                playerShip = player.getSpaceship();
+                playerShip = player.getSpaceShip();
                 Item item = sellAdapter.getItemAt(position);
                 Log.d("GTraderinv", playerShip.getCargo().toString());
 

@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.entity;
 
+
 import android.util.Log;
 
 
@@ -46,7 +47,7 @@ public class GameInstance {
         Log.d("GTrader", "Created Local Game Instance: " + this.toString());
 
       /**
-     * setting the difficulty level
+     * setting the instance player
      * @param player the game's player
      */
     public void setPlayer(Player player) {
@@ -59,6 +60,16 @@ public class GameInstance {
     public GameInstance(){
         this.gameID = Database.getNewGameID();
         this.difficulty = Difficulty.Beginner;
+    }
+
+    /**
+     * initialize a game instance
+     */
+    public GameInstance(Difficulty difficulty, Player player){
+        this.gameID = Database.getNewGameID();
+        this.difficulty = difficulty;
+        this.player = player;
+        Log.d("GTrader", "Created local game instance: "+ this.toString());
     }
     /**
      * printing out game Id and difficulty of the game of the user

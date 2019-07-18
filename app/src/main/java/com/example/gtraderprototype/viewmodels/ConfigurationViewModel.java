@@ -47,9 +47,9 @@ public class ConfigurationViewModel extends AndroidViewModel {
         playerInteractor.getPlayer()
                 .setRegion(universeInteractor.getRandomSystem().getRandomRegion());
         Item[] listOfItems = Item.values();
-        for(int i = 0; i< 10; i++){
+        for(int i = 0; i< playerInteractor.getPlayer().getSpaceShip().getNumberOfAvailableCargoBays(); i++){
             playerInteractor.getPlayer()
-                    .getShip().addCargo(listOfItems[(int)(Math.random() *listOfItems.length)]);
+                    .getSpaceShip().addCargo(listOfItems[(int)(Math.random() *listOfItems.length)]);
         }
         gameInteractor.newGame(difficulty, player, context);
     }

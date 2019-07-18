@@ -53,7 +53,7 @@ public class MapViewModel extends AndroidViewModel {
      * @return the player's fuel
      */
     public int getPlayerFuel() {
-        return playerInteractor.getPlayer().getSpaceship().getFuel();
+        return playerInteractor.getPlayer().getSpaceShip().getFuel();
     }
 
     /**
@@ -61,7 +61,7 @@ public class MapViewModel extends AndroidViewModel {
      * @return the player's ship range
      */
     public int getPlayerShipRange() {
-        return playerInteractor.getPlayer().getSpaceship().getFuelCapacity();
+        return playerInteractor.getPlayer().getSpaceShip().getFuelCapacity();
     }
 
     /**
@@ -69,7 +69,7 @@ public class MapViewModel extends AndroidViewModel {
      * @return the name of the player's ship
      */
     public String getPlayerShipName() {
-        return playerInteractor.getPlayer().getSpaceship().getName();
+        return playerInteractor.getPlayer().getSpaceShip().getName();
     }
 
     /**

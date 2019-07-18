@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Item;
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.Player;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.EncounterViewModel;
 import android.content.Intent;
 
@@ -36,6 +38,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
     private  TextView encounterText;
 
     private  Player player;
+    private Difficulty gameDifficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
         EncounterViewModel viewModel = ViewModelProviders.of(this).get(EncounterViewModel.class);
         player=viewModel.getPlayer();
-
+        gameDifficulty = Model.getInstance().getGameInstanceInteractor().getGameDifficulty();
 
         pirateText=findViewById(R.id.pirateText);
         encounterText=findViewById(R.id.encounterText);
@@ -75,7 +78,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
     }
     private void flee(){
-        double fleeProbability = 1.0 - (((player.getDifficultyLevel()
+        double fleeProbability = 1.0 - (((gameDifficulty.difficultyIndex()
                 + 1) * 2) / (double) 10); //0.8 for beginner, 0 for impossible
         if(Math.random() < fleeProbability){
             //flee
@@ -131,20 +134,20 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
     private void robPlayer(){
         Random random=new Random();
-        int moneyRobbed= (int) (((player.getDifficultyLevel() + 1.0) / 10) * player.getMoney());
+        int moneyRobbed= (int) (((gameDifficulty.difficultyIndex() + 1.0) / 10) * player.getMoney());
         player.setMoney(player.getMoney()-moneyRobbed);
 
-        Ship ship=player.getShip();
-        int numItem=(int) (((player.getDifficultyLevel()+1.0)/10)
-                *checkNumItems(ship.getCargo()));
+        Ship ship=player.getSpaceShip();
+        int numItem=(int) (((gameDifficulty.difficultyIndex()+1.0)/10)
+                *ship.getCargo().size());
         //10% for beginner 50% for impossible
 
         for(int i=0; i<numItem;i++){
-            int j=random.nextInt(ship.getCargo().length);
-            while (ship.getCargo()[j]== null){
-                j=random.nextInt(ship.getCargo().length);
+            int j=random.nextInt(ship.getCargo().size());
+            while (ship.getCargo().get(j)== null){
+                j=random.nextInt(ship.getCargo().size());
             }
-            ship.dropCargo(ship.getCargo()[j]);
+            ship.dropCargo(ship.getCargo().get(j));
         }
     }
 
@@ -161,15 +164,6 @@ public class EncounterPirateActivity extends AppCompatActivity {
      */
     public void setPlayer(Player player){
         this.player=player;
-    }
-    private int checkNumItems(Item[] cargo){
-        int num=0;
-        for(Item i:cargo){
-            if(i!=null){
-                num++;
-            }
-        }
-        return num;
     }
 
 
