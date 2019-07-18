@@ -22,7 +22,9 @@ import com.example.gtraderprototype.viewmodels.MarketViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * displays all of the players current games
+ */
 public class SavedGamesActivity extends AppCompatActivity {
     private RecyclerView saveRecyclerView;
     private SaveAdapter saveAdapter, removeAdapter;
@@ -58,6 +60,10 @@ public class SavedGamesActivity extends AppCompatActivity {
         saveRecyclerView.setAdapter(saveAdapter);
     }
 
+    /**
+     *  returns player to the main menu
+     * @param view android stuff
+     */
     public void backToWelcome(View view){
         startActivity(new Intent(SavedGamesActivity.this, MainActivity.class));
     }

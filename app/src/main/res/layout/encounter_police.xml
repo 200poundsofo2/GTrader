@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -12,7 +13,8 @@
         android:layout_marginBottom="404dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/pd"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        android:contentDescription="@string/cops" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -29,7 +31,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.788"
-        app:srcCompat="@drawable/gtpd" />
+        app:srcCompat="@drawable/gtpd"
+        android:contentDescription="@string/badge" />
 
     <TextView
         android:id="@+id/policeWord"
@@ -38,7 +41,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="184dp"
-        android:text="Hands up ! This is GTPD ! We are gonna search you."
+        android:text="@string/hands_up_this_is_gtpd_we_are_gonna_search_you"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -51,7 +54,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="108dp"
-        android:text="OK"
+        android:text="@string/ok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.456"
@@ -67,7 +70,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="No!"
+        android:text="@string/no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.456"

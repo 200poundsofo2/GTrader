@@ -18,6 +18,9 @@ import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * this activity switches between other fragments that is contained in the activity itself
+ */
 public class SpacePortActivity extends AppCompatActivity {
 
     private Fragment newFragment;
@@ -43,8 +46,10 @@ public class SpacePortActivity extends AppCompatActivity {
         //Set fleeText
         region.setText(mapviewmodel.getPlayerLocationName());
         shipName.setText(mapviewmodel.getPlayerShipName());
-        fuelAmount.setText("Fuel: " + mapviewmodel.getPlayerFuel()
-                + "/" + mapviewmodel.getPlayerShipRange());
+        fuelAmount.setText(new StringBuilder()
+                .append(getString(R.string.fuel))
+                .append(mapviewmodel.getPlayerFuel()).append("/")
+                .append(mapviewmodel.getPlayerShipRange()).toString());
 
         newFragment = new MarketFragment();
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -75,9 +80,12 @@ public class SpacePortActivity extends AppCompatActivity {
                                 newFragment = new MarketFragment();
                                 break;
                             case R.id.save:
+
                                 Log.d("GTrader", "Saving...");
-                                Model.getInstance().getGameInstanceInteractor().saveGameToDB();
-                                configurationViewModel.exitGame(SpacePortActivity.this);
+                                Model.getInstance().getGameInstanceInteractor()
+                                .saveGameToDB();
+                                configurationViewModel
+                                .exitGame(SpacePortActivity.this);
                                 break;
                         }
                         final FragmentTransaction transaction =

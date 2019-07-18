@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000">
@@ -8,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:paddingTop="10dp"
-        android:paddingRight="20dp">
+        android:paddingEnd="20dp">
 
         <TextView
             android:id="@+id/welcomePlayer"
@@ -19,7 +20,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Welcome playerName"
+            android:text="@string/welcome_playername"
             android:textStyle="bold"
             android:textSize="30sp"/>
 
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Skill Points" />
+            android:text="@string/skill_points" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="8dp"
-                android:text="Pilot: " />
+                android:text="@string/pilot" />
 
             <TextView
                 android:id="@+id/fighter"
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="8dp"
-                android:text="Fighter: " />
+                android:text="@string/fighter" />
 
             <TextView
                 android:id="@+id/trader"
@@ -62,14 +63,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="8dp"
-                android:text="Trader: " />
+                android:text="@string/trader" />
 
             <TextView
                 android:id="@+id/engineer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Engineer: " />
+                android:text="@string/engineer" />
         </LinearLayout>
 
         <TextView
@@ -77,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
-            android:text="Difficulty" />
+            android:text="@string/difficulty" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -14,7 +14,8 @@ public class NPC extends Character {
      * @param traderPoints skill points for trading
      * @param spaceship assigned spaceship
      */
-    public NPC(String name, int pilotPoints, int engineerPoints, int fighterPoints, int traderPoints, Ship.ShipType spaceship){
+    public NPC(String name, int pilotPoints, int engineerPoints,
+               int fighterPoints, int traderPoints, Ship spaceship){
         super(name, pilotPoints, engineerPoints, fighterPoints, traderPoints, spaceship);
     }
 }

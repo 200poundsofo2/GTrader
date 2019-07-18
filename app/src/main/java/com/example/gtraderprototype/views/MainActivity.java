@@ -8,9 +8,10 @@ import android.view.View;
 import com.example.gtraderprototype.R;
 //import com.example.gtraderprototype.model.GameInstanceInteractor;
 
-
+/**
+ * the title menu of the application
+ */
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,24 +19,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Loads the configuration page
-     * @param view of page
+     * a function that navigates to the configuration activity via button press
+     * @param view android stuff
      */
     public void loadConfigurationPage(View view) {
         startActivity(new Intent(MainActivity.this, ConfigurationActivity.class));
     }
 
     /**
-     * Loads the saved games page
-     * @param view of page
+     * a function that navigates to the configuration activity via button press
+     * @param view android stuff
      */
     public void loadSavedGamesPage(View view) {
         startActivity(new Intent(MainActivity.this, SavedGamesActivity.class));
     }
 
     /**
-     * Closes up when presses exit
-     * @param view of page
+     * a function that closes the application
+     * @param view android stuff
      */
     public void closeApp(View view) {
         finish();
