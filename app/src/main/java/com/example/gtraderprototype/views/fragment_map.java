@@ -83,16 +83,16 @@ class fragment_map extends Fragment
         button = mView.findViewById(R.id.button);
         Player player = Model.getInstance().getPlayerInteractor().getPlayer();
         fuel = player.getShip().getFuel();
-        fuelCapacity = player.getSpaceShip().getFuelCapacity();
+        fuelCapacity = player.getShip().getFuelCapacity();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                //Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
-                //startActivity(pirateIntent);
+                Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+                startActivity(pirateIntent);
 
-
+                /*
                 if(destination!=null){
                     if((fuel - fuelCost) < 0){
                         travelInfo.setText(getString(R.string.not_enough));
@@ -119,7 +119,7 @@ class fragment_map extends Fragment
                     }
                     destination=null;
                 }
-
+        */
 
             }
         });
@@ -259,8 +259,8 @@ class fragment_map extends Fragment
     }
 
     private void encounter(){ //trade, police, pirate
-        double pirateProbability = (Model.getInstance().getGameInstanceInteractor()
-                                    .getGameDifficulty().difficultyIndex() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
+        double pirateProbability = ((viewmodel
+                .getPlayer().getDifficultyLevel() + 1) * 2) / 10.0; //Beginner: 0.2, Impossible:1
         Random rand = new Random();
         if(Math.random() < pirateProbability){
             // encounter pirate

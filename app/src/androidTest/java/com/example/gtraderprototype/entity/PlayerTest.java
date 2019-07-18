@@ -7,28 +7,28 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 
-    private Player expectedPlayer = new Player("althea", 4, 5, 4, 4);
+    private Player expectedPlayer = new Player("althea", 4, 5, 4, 4, Difficulty.Easy);
     private Player newPlayer;
     @Before
     public void setUp() throws Exception {
-        newPlayer = new Player("althea", 4, 5, 4, 8);
+        newPlayer = new Player("althea", 4, 5, 4, 4, Difficulty.Hard);
     }
 
     @Test
     public void getPlayer() {
-        Player pl = new Player("althea", 4, 5, 4, 4);
+        Player pl = new Player("althea", 4, 5, 4, 4, Difficulty.Easy);
         assertEquals(expectedPlayer, pl);
     }
 
     @Test
-    public void setPoints() {
-        newPlayer.setTraderSkillPoints(4);
+    public void setDifficulty() {
+        newPlayer.setDifficulty(Difficulty.Easy);
         assertEquals(expectedPlayer, newPlayer);
     }
 
     @Test
-    public void getPoints() {
-        assertEquals(expectedPlayer.getTraderSkillPoints(), 4);
+    public void getDifficultyLevel() {
+        assertEquals(expectedPlayer.getDifficultyLevel(), Difficulty.Easy);
     }
 
     @Test
@@ -36,7 +36,6 @@ public class PlayerTest {
         newPlayer.setPirate(true);
         assertEquals(newPlayer.getIsPirate(), true);
     }
-    @Test
     public void playerIsNotPirate() {
         assertEquals(newPlayer.getIsPirate(), false);
     }

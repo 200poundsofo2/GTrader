@@ -25,13 +25,29 @@ public final class Player extends Character {
         if (player == null){
             synchronized (Player.class){
                 if(player == null){
-                    player = new Player("NoName", 0, 0, 0, 0);
+                    player = new Player();
                 }
             }
         }
         return player;
     }
-    
+
+    /**
+     * setting difficulty of the game which play choose to play
+     * @param d difficulty level
+     */
+    public void setDifficulty(Difficulty d){
+        difficulty = d;
+    }
+
+    /**
+     * getting the difficulty level the player choose to play
+     * @return difficulty level
+     */
+    public int getDifficultyLevel(){
+        return difficulty.difficultyIndex;
+    }
+
     /**
      * getting information of whether this character is a pirate or not
      * @return boolean indicating this character is a pirate or not
@@ -43,5 +59,5 @@ public final class Player extends Character {
             ", Engineer Skill Points: " + engineerSkillPoints +
             ", Fighter Skill Points: " + fighterSkillPoints +
             ", Trader Skill Points: " + traderSkillPoints +
-            ", Money: " + money + ", SpaceShip: "+ spaceShip.getName();}
+            ", Money: " + money + ", SpaceShip: "+ spaceship.getName();}
 }

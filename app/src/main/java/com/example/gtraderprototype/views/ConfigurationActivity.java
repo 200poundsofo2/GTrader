@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.entity.Difficulty;
-import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 
@@ -242,10 +241,21 @@ public class ConfigurationActivity extends AppCompatActivity {
             int pointsFighter = Integer.parseInt(fighterPoints.getText().toString());
             int pointsTrader = Integer.parseInt(traderPoints.getText().toString());
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
-            Player player = new Player((name.equals("")) ? "Default" : name, pointsPilot, pointsEngineer, pointsFighter, pointsTrader);
+
             Log.d("GTrader", "Setting up player |"+name+"|");
-            Model.getInstance().getPlayerInteractor().setPlayer(player);
-            viewModel.newGame(difficulty, Model.getInstance().getPlayerInteractor().getPlayer(), this);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setName(("".equals(name)) ? "Default" : name);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setEngineerSkillPoints(pointsEngineer);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setPilotSkillPoints(pointsPilot);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setFighterSkillPoints(pointsFighter);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setTraderSkillPoints(pointsTrader);
+            Model.getInstance().getPlayerInteractor()
+                    .getPlayer().setDifficulty(difficulty);
+            viewModel.newGame(difficulty, this);
             loadSpacePortPage();
         } else {
             Toast.makeText(ConfigurationActivity.this,

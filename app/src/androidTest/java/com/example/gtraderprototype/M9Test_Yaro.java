@@ -1,17 +1,16 @@
-package com.example.gtraderprototype;
 import org.junit.Before;
 import org.junit.Test;
 
-
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.Item;
 
 public class M9Test_Yaro {
-    private Ship expectedShip;
-    private Ship secondExpectedShip;
-    private Ship newShip;
+    private Ship expectedShip = Ship.Gnatt;
+    private Ship secondExpectedShip = Ship.Gnatt;
+    private Ship newShip = Ship.Gnatt;
 
     /* Ship */
     @Before

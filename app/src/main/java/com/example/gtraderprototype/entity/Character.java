@@ -16,7 +16,7 @@ public class Character { //singleton design pattern: Player.getPlayer()
     protected int traderSkillPoints;
     protected boolean isPirate;
     protected int money;
-    protected Ship spaceShip;
+    protected Ship spaceship;
     protected String currentLocationName;
 
     /**
@@ -36,8 +36,8 @@ public class Character { //singleton design pattern: Player.getPlayer()
         this.fighterSkillPoints = fighterPoints;
         this.traderSkillPoints = traderPoints;
         this.money = 1000;
-        this.spaceShip = new Ship(Ship.ShipType.GNATT);
-        this.spaceShip.shipType = spaceshiptype;
+        this.spaceship = new Ship(Ship.ShipType.GNATT);
+        this.spaceship.shipType = spaceshiptype;
     }
 
     /**
@@ -109,14 +109,14 @@ public class Character { //singleton design pattern: Player.getPlayer()
      * getting ship that this character owns
      * @return ship
      */
-    public Ship getSpaceShip(){ return spaceShip ; }
+    public Ship getSpaceShip(){ return spaceship ; }
 
     /**
      * setting ship for the player
      * @param spaceship the spaceship to set the player to
      */
-    public void setShapeShip(Ship spaceship){ this.spaceShip = spaceship;}
-      
+    public void setShapeship(Ship spaceship){ this.spaceship = spaceship;}
+
     /**
      * getting region that this character is at
      * @return region
@@ -128,7 +128,7 @@ public class Character { //singleton design pattern: Player.getPlayer()
      * @param location the location the character is going to
      */
     public void setRegionName(String location) {
-        this.currentLocationName = location;
+        currentLocation = location;
         Log.d("GTrader", "Updated location for "+name+" to "+location);
     }
 
