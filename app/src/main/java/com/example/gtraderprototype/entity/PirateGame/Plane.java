@@ -3,8 +3,6 @@ package com.example.gtraderprototype.entity.PirateGame;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 
-import com.example.gtraderprototype.views.GameOverActivity;
-
 public class Plane { //all the items that can fly: player, pirate and bullet
     public RectF position = new RectF();
     public int life;
@@ -52,7 +50,8 @@ class piratePlane extends Plane implements Runnable{
             } catch (InterruptedException ex) {
             }
             setY(position.top+2*GameVariables.ratio);
-            if(position.top >= GameVariables.height){ //out of the screen
+            if(position.top >= GameVariables.height){//out of the screen
+                GameVariables.alive=false;
                 break;
             }
         }
@@ -75,14 +74,18 @@ class playerPlane extends Plane implements Runnable{
     @Override
     public void run(){
         while(true){
+            for(int i=0;i<GameVariables.enemy.size();i++){
+                Plane curr=GameVariables.enemy.get(i);
+                if(collide(curr,30)){
+                    GameVariables.alive=false;
+                }
+            }
             try{
                 Thread.sleep(200);
             } catch (InterruptedException ex){
             }
             new bullet(this);
         }
-
-
 
     }
 }

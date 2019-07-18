@@ -83,8 +83,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         fuel = player.getSpaceShip().getFuel();
         fuelCapacity = player.getSpaceShip().getFuelCapacity();
 
-        Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
-        startActivity(pirateIntent);
+        //Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+       // startActivity(pirateIntent);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

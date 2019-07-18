@@ -1,5 +1,7 @@
 package com.example.gtraderprototype.entity.PirateGame;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,6 +9,9 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.views.GameOverActivity;
+import com.example.gtraderprototype.views.PirateGameActivity;
+import com.example.gtraderprototype.views.WinPirateActivity;
 
 
 import java.util.List;
@@ -18,6 +23,7 @@ public class Game extends View{
     private float y;
     private float planeX;
     private float planeY;
+    public static GameVariables GV;
 
     public Game(Context context){
         super(context);
@@ -43,7 +49,7 @@ public class Game extends View{
         });
 
         setBackgroundResource(R.drawable.bg);
-        GameVariables.player = BitmapFactory.decodeResource(getResources(),R.drawable.plane);//load pics
+        GameVariables.player = BitmapFactory.decodeResource(getResources(),R.drawable.plane);//load images
         GameVariables.pirate =BitmapFactory.decodeResource(getResources(),R.drawable.pirate);
         GameVariables.bullet =BitmapFactory.decodeResource(getResources(),R.drawable.bullet);
 
@@ -53,6 +59,14 @@ public class Game extends View{
     @Override
     protected void onDraw(Canvas canvas) { //draw all the objects on the screen
         super.onDraw(canvas);
+        if(!GameVariables.alive){
+            Activity activity=(Activity) getContext();
+            activity.startActivity(new Intent(activity, WinPirateActivity.class));
+        }
+        if( GameVariables.kill >= GameVariables.goal) {
+            Activity activity=(Activity) getContext();
+            activity.finish();
+        }
         for(int i=0;i<GameVariables.objects.size();i++){
             Plane h=GameVariables.objects.get(i);
             canvas.drawBitmap(h.image,null,h.position,paint);
@@ -98,7 +112,6 @@ public class Game extends View{
             }
         }
     }
-
 }
 
 
