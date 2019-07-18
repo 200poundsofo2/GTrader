@@ -46,7 +46,7 @@ public class Ship {
     private int fuel;
     private int fuelCapacity;
 
-    Ship(ShipType shipType) {
+    public Ship(ShipType shipType) {
         this.name = shipType.shipName;
         this.hullStrength = shipType.hullStrength;
         this.fuel = shipType.fuelCapacity;
