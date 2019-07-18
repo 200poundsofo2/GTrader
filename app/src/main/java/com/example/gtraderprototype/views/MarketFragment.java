@@ -25,29 +25,26 @@ import java.util.ArrayList;
 
 public class MarketFragment extends Fragment {
     private TextView moneyView;
-    private RecyclerView buyRecyclerView;
-    private RecyclerView sellRecyclerView;
     private MarketplaceBuyAdapter buyAdapter;
     private MarketplaceSellAdapter sellAdapter;
-    private RecyclerView.LayoutManager layoutManagerBuy;
-    private RecyclerView.LayoutManager layoutManagerSell;
     private Player player = Player.getPlayer();
     private Ship playerShip = player.getSpaceShip();
-    private ArrayList<Item> buyable = new ArrayList<>();
     private ArrayList<Item> sellable = new ArrayList<>();
     private Marketplace marketplace = new Marketplace(player);
-    private MarketViewModel viewmodel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d("GTrader", "view creating");
         View rootView = inflater.inflate(R.layout.fragment_market, container, false);
-        viewmodel = ViewModelProviders.of(this).get(MarketViewModel.class);
         player = Model.getInstance().getPlayerInteractor().getPlayer();
         Log.d("invv", player.toString());
         super.onCreate(savedInstanceState);
 
-
+        RecyclerView buyRecyclerView;
+        RecyclerView sellRecyclerView;
+        RecyclerView.LayoutManager layoutManagerBuy;
+        RecyclerView.LayoutManager layoutManagerSell;
+        ArrayList<Item> buyable;
         //Set views/fleeText
         moneyView = rootView.findViewById(R.id.money);
         buyRecyclerView = rootView.findViewById(R.id.buying_recycler_view);
