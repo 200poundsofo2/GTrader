@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.views;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -103,6 +104,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
         surrender.setEnabled(false);
         flee.setEnabled(false);
         attack.setText("start game");
+        encounterText.setText("kill 50 pirates without colliding them!");
         attack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +112,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
                 startActivity(pirateGame);
                 //back
                 pirateText.setText("OK.You win. Lets wait and see");
+                encounterText.setText("You beat the pirates!");
                 attack.setText("Go Back");
                 attack.setOnClickListener(new View.OnClickListener() {
                     @Override

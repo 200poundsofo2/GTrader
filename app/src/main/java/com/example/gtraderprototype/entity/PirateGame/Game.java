@@ -17,63 +17,68 @@ public class Game extends View{
     private float y;
     private float planeX;
     private float planeY;
-    public static GameVariables GV;
+    public  GameVariables GV;
+    public Thread refresh;
+    public Thread loadEnemy;
 
     public Game(Context context){
         super(context);
+        GV=new GameVariables();
         setOnTouchListener(new OnTouchListener(){
             @Override
             public boolean onTouch(View view, MotionEvent e){ //drag to move
                 if(e.getAction()==MotionEvent.ACTION_DOWN){
                     x=e.getX();
                     y=e.getY();
-                    planeX=GameVariables.playerPlane.position.left;
-                    planeY=GameVariables.playerPlane.position.top;
+                    planeX=GV.playerPlane.position.left;
+                    planeY=GV.playerPlane.position.top;
                 }
                 float xx=planeX+e.getX()-x;
                 float yy=planeY+e.getY()-y;
-                xx=xx<GameVariables.width-GameVariables.playerPlane.width/2?xx:GameVariables.width-GameVariables.playerPlane.width/2;
-                xx=xx>-GameVariables.playerPlane.width/2?xx:-GameVariables.playerPlane.width/2;
-                yy=yy<GameVariables.height-GameVariables.playerPlane.height/2?yy:GameVariables.height-GameVariables.playerPlane.height/2;
-                yy=yy>-GameVariables.playerPlane.height/2?yy:-GameVariables.playerPlane.height/2;
-                GameVariables.playerPlane.setX(xx);
-                GameVariables.playerPlane.setY(yy);
+                xx=xx<GV.width-GV.playerPlane.width/2?xx:GV.width-GV.playerPlane.width/2;
+                xx=xx>-GV.playerPlane.width/2?xx:-GV.playerPlane.width/2;
+                yy=yy<GV.height-GV.playerPlane.height/2?yy:GV.height-GV.playerPlane.height/2;
+                yy=yy>-GV.playerPlane.height/2?yy:-GV.playerPlane.height/2;
+                GV.playerPlane.setX(xx);
+                GV.playerPlane.setY(yy);
                 return true;
             }
         });
 
         setBackgroundResource(R.drawable.bg);
-        GameVariables.player = BitmapFactory.decodeResource(getResources(),R.drawable.plane);//load images
-        GameVariables.pirate =BitmapFactory.decodeResource(getResources(),R.drawable.pirate);
-        GameVariables.bullet =BitmapFactory.decodeResource(getResources(),R.drawable.bullet);
+        GV.player = BitmapFactory.decodeResource(getResources(),R.drawable.plane);//load images
+        GV.pirate =BitmapFactory.decodeResource(getResources(),R.drawable.pirate);
+        GV.bullet =BitmapFactory.decodeResource(getResources(),R.drawable.bullet);
 
-        new Thread(new refresh()).start();//repaint
-        new Thread(new loadEnemy()).start();
+        refresh=new Thread(new Refresh());
+        refresh.start();//repaint
+        loadEnemy=new Thread(new LoadEnemy());
+        loadEnemy.start();
     }
     @Override
     protected void onDraw(Canvas canvas) { //draw all the objects on the screen
         super.onDraw(canvas);
-        for(int i=0;i<GameVariables.objects.size();i++){
-            Plane h=GameVariables.objects.get(i);
+        for(int i=0;i<GV.objects.size();i++){
+            Plane h=GV.objects.get(i);
             canvas.drawBitmap(h.image,null,h.position,paint);
         }
-        canvas.drawText("kill："+GameVariables.kill,0,GameVariables.height-50,paint);
+        canvas.drawText("kill："+GV.kill,0,GV.height-50,paint);
 
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {//get the height and width of the screen
         super.onSizeChanged(w, h, oldw, oldh);
-        GameVariables.width=w;
-        GameVariables.height=h;
+        GV.width=w;
+        GV.height=h;
 
-        GameVariables.ratio= (float) (Math.sqrt(GameVariables.width * GameVariables.height)/ Math.sqrt(1920 * 1080));
-        paint.setTextSize(50*GameVariables.ratio);//set front
+        GV.ratio= (float) (Math.sqrt(GV.width * GV.height)/ Math.sqrt(1920 * 1080));
+        paint.setTextSize(50*GV.ratio);//set front
         paint.setColor(Color.WHITE);//set the color to be white
         //start game
-        GameVariables.playerPlane=new playerPlane();//initialize my plane
+        GV.playerPlane=new playerPlane(GV);//initialize my plane
     }
 
-    private class refresh implements Runnable{
+    private class Refresh implements Runnable{
         @Override
         public void run(){
             while(true){
@@ -82,19 +87,21 @@ public class Game extends View{
                 } catch (InterruptedException ex){
 
                 }
-                if(!GameVariables.alive){
+                if(!GV.alive){
                     Activity activity=(Activity) getContext();
                     activity.startActivity(new Intent(activity, GameOverActivity.class));
-                } else if( GameVariables.kill >= GameVariables.goal) {
+                    break;
+                } else if( GV.kill >= GV.goal) {
                     Activity activity=(Activity) getContext();
                     activity.finish();
+                    break;
                 } else{
                     postInvalidate();
                 }
             }
         }
     }
-    private class loadEnemy implements Runnable{
+    private class LoadEnemy implements Runnable{
         @Override
         public void run(){
             while(true){
@@ -102,7 +109,10 @@ public class Game extends View{
                     Thread.sleep(300);
                 } catch (InterruptedException ex){
                 }
-                new piratePlane();
+                if(!GV.alive || GV.kill >= GV.goal){
+                    break;
+                }
+                new piratePlane(GV);
             }
         }
     }
