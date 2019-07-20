@@ -10,12 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import com.example.gtraderprototype.R;
 import com.example.gtraderprototype.views.GameOverActivity;
-import com.example.gtraderprototype.views.PirateGameActivity;
-import com.example.gtraderprototype.views.WinPirateActivity;
-
-
-import java.util.List;
-import java.util.LinkedList;
 
 public class Game extends View{
     private Paint paint = new Paint();
@@ -59,14 +53,6 @@ public class Game extends View{
     @Override
     protected void onDraw(Canvas canvas) { //draw all the objects on the screen
         super.onDraw(canvas);
-        if(!GameVariables.alive){
-            Activity activity=(Activity) getContext();
-            activity.startActivity(new Intent(activity, WinPirateActivity.class));
-        }
-        if( GameVariables.kill >= GameVariables.goal) {
-            Activity activity=(Activity) getContext();
-            activity.finish();
-        }
         for(int i=0;i<GameVariables.objects.size();i++){
             Plane h=GameVariables.objects.get(i);
             canvas.drawBitmap(h.image,null,h.position,paint);
@@ -96,7 +82,15 @@ public class Game extends View{
                 } catch (InterruptedException ex){
 
                 }
-                postInvalidate();
+                if(!GameVariables.alive){
+                    Activity activity=(Activity) getContext();
+                    activity.startActivity(new Intent(activity, GameOverActivity.class));
+                } else if( GameVariables.kill >= GameVariables.goal) {
+                    Activity activity=(Activity) getContext();
+                    activity.finish();
+                } else{
+                    postInvalidate();
+                }
             }
         }
     }

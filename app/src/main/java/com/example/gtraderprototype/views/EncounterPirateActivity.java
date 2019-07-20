@@ -108,7 +108,6 @@ public class EncounterPirateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent pirateGame=new Intent(EncounterPirateActivity.this, PirateGameActivity.class);
                 startActivity(pirateGame);
-
                 //back
                 pirateText.setText("OK.You win. Lets wait and see");
                 attack.setText("Go Back");

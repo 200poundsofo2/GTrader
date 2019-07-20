@@ -71,9 +71,6 @@
         <activity
             android:name=".views.PirateGameActivity"
             android:label="@string/app_name" />
-        <activity
-            android:name=".views.WinPirateActivity"
-            android:label="@string/app_name" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
