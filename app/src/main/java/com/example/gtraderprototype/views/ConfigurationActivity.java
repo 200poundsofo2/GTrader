@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.views;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,18 @@ public class ConfigurationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_configuration);
+
+        //this section activates the background gif
+        ImageView imgView = findViewById(R.id.backgroundImageConfig);
+
+        if (imgView != null) {
+            AnimationDrawable progressAnimation = (AnimationDrawable) imgView.getBackground();
+            progressAnimation.start();
+        } else {
+            System.out.println("Img view is null");
+        }
+
+
         playerName = findViewById(R.id.playerName);
         remainingPoints = findViewById(R.id.remainingPoints);
         pilotPoints = findViewById(R.id.pilotPoints);

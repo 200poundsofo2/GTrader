@@ -4,6 +4,8 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.graphics.drawable.AnimationDrawable;
 
 import com.example.gtraderprototype.R;
 //import com.example.gtraderprototype.model.GameInstanceInteractor;
@@ -15,6 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView imgView = findViewById(R.id.backgroundImage);
+
+        if (imgView != null) {
+            AnimationDrawable progressAnimation = (AnimationDrawable) imgView.getBackground();
+            progressAnimation.start();
+        } else {
+            System.out.println("Img view is null");
+        }
     }
 
     /**
