@@ -27,4 +27,13 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="mainTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="mainTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="mainTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

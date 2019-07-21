@@ -1,22 +1,25 @@
 package com.example.gtraderprototype.model;
 import androidx.annotation.NonNull;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.gtraderprototype.entity.GameInstance;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.System;
 import com.example.gtraderprototype.entity.Universe;
+import com.example.gtraderprototype.views.SpacePortActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
-    static ArrayList<String> names = new ArrayList<>();
+    static List<String> names;
     /*
         This class communicates with the firebase database
      */
@@ -26,7 +29,6 @@ public class Database {
     public Database(){
 
     }
-
     public static String getNewGameID(){
 
                 String tempID;
@@ -49,25 +51,36 @@ public class Database {
         DatabaseReference ref = database.getReference("Save States");
         ref.child(instance.getGameID()).removeValue();
     }
+    public static void removeState(String gameID){
+        DatabaseReference ref = database.getReference("Save States");
+        ref.child(gameID).removeValue();
+    }
 
-    public static void retrieveGameFromDB(String gameID){
+    public static void retrieveGameFromDB(String gameID, final Context context){
         DatabaseReference ref = database.getReference("Save States/"+gameID);
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 /*
                 Post post = dataSnapshot.getValue(Post.class);
                 System.out.println(post);
                  */
-                Log.d("GTraderDB", "DB Change: "+dataSnapshot.toString());
+                Log.d("GTraderDB", "Retrieved save from DB: "+dataSnapshot.toString());
+                GameInstance instance = dataSnapshot.getValue(GameInstance.class);
+                Model.getInstance().getGameInstanceInteractor().setInstance(instance);
+                Model.getInstance().getPlayerInteractor().setPlayer(instance.getPlayer());
+                Intent myIntent = new Intent(context, SpacePortActivity.class);
+                context.startActivity(myIntent);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                //System.out.println("The read failed: " + databaseError.getCode());
+                Log.d("GTraderDB", "Unable to retrieve save from DB: "+databaseError.toString());
             }
         });
     }
+
     public void getGlobalUniverse(){
         DatabaseReference ref = database.getReference("INDEX/SYSTEMS");
 
@@ -98,6 +111,7 @@ public class Database {
                     //Log Universe
                     Log.d("GTrader", Model.getInstance().getUniverseInteractor().getUniverse().toString());
                 }else{
+
 
                     /*-- TODO
                     Universe universe = dataSnapshot.getValue(Universe.class);

@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.gtraderprototype.R;
-import com.example.gtraderprototype.entity.Difficulty;
 import com.example.gtraderprototype.entity.Player;
 import com.example.gtraderprototype.entity.Region;
 import com.example.gtraderprototype.entity.Universe;
@@ -15,17 +13,14 @@ import com.example.gtraderprototype.model.GameInstanceInteractor;
 import com.example.gtraderprototype.model.Model;
 import com.example.gtraderprototype.model.PlayerInteractor;
 import com.example.gtraderprototype.model.UniverseInteractor;
-import com.example.gtraderprototype.views.SpacePortActivity;
 
 public class MapViewModel extends AndroidViewModel {
 
-    private GameInstanceInteractor gameInteractor;
     private UniverseInteractor universeInteractor;
     private PlayerInteractor playerInteractor;
 
     public MapViewModel(@NonNull Application application) {
         super(application);
-        gameInteractor = Model.getInstance().getGameInstanceInteractor();
         universeInteractor = Model.getInstance().getUniverseInteractor();
         playerInteractor = Model.getInstance().getPlayerInteractor();
     }
@@ -39,24 +34,21 @@ public class MapViewModel extends AndroidViewModel {
     }
 
     public int getPlayerFuel() {
-        return playerInteractor.getPlayer().getShip().getFuel();
+        return playerInteractor.getPlayer().getSpaceShip().getFuel();
     }
 
     public int getPlayerShipRange() {
-        return playerInteractor.getPlayer().getShip().getTravelRange();
+        return playerInteractor.getPlayer().getSpaceShip().getFuelCapacity();
     }
 
     public String getPlayerShipName() {
-        return playerInteractor.getPlayer().getShip().getName();
+        return playerInteractor.getPlayer().getSpaceShip().getName();
     }
 
     public String getPlayerLocationName() {
         return playerInteractor.getLocation().regionName;
     }
 
-    public int getPlayerMoney() {
-        return playerInteractor.getPlayer().getMoney();
-    }
 
     public void travelToRegion(String regionname, int fuelCost) {
         Region region = universeInteractor.getRegionByName(regionname);
@@ -65,6 +57,9 @@ public class MapViewModel extends AndroidViewModel {
             playerInteractor.deductFuel(fuelCost);
             Log.d("GTrader", "Entered region: " + region.toString());
         }
+    }
+    public Player getPlayer() {
+        return playerInteractor.getPlayer();
     }
 
 

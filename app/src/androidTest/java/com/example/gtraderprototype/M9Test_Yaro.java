@@ -1,16 +1,18 @@
+package com.example.gtraderprototype;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import com.example.gtraderprototype.entity.Ship;
 import com.example.gtraderprototype.entity.Item;
 
 public class M9Test_Yaro {
-    private Ship expectedShip = Ship.Gnatt;
-    private Ship secondExpectedShip = Ship.Gnatt;
-    private Ship newShip = Ship.Gnatt;
+    private Ship expectedShip = new Ship(Ship.ShipType.GNATT);
+    private Ship secondExpectedShip = new Ship(Ship.ShipType.GNATT);
+    private Ship newShip = new Ship(Ship.ShipType.GNATT);
 
     /* Ship */
     @Before
@@ -28,25 +30,25 @@ public class M9Test_Yaro {
     @Test
     public void addCargoNotMoreThanInventory() {
         expectedShip.addCargo(Item.Games);
-        assertEquals(expectedShip, secondExpectedShip);
+        assertNotEquals(expectedShip.getCargo(), secondExpectedShip.getCargo());
     }
 
     @Test
     public void addCargo() {
         newShip.addCargo(Item.Firearms);
-        assertEquals(expectedShip, newShip);
+        assertEquals(expectedShip.getCargo(), newShip.getCargo());
     }
 
     @Test
     public void removeCargoDoesNotExist() {
         expectedShip.dropCargo(Item.Games);
-        assertEquals(expectedShip, secondExpectedShip);
+        assertEquals(expectedShip.getCargo(), secondExpectedShip.getCargo());
     }
 
     @Test
     public void removeCargoExists() {
         expectedShip.dropCargo(Item.Firearms);
-        assertEquals(expectedShip, newShip);
+        assertEquals(expectedShip.getCargo(), newShip.getCargo());
     }
 
 }

@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/blanklayout.xml" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.model.Database gameIDListRef" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.fragment_map fuelCapacity" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.fragment_map playerShip" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.fragment_map region" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.fragment_map regions" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.entity.GameInstance system" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MapViewModel gameInteractor" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MarketViewModel gameInteractor" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.viewmodels.MarketViewModel universeInteractor" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.MarketplaceSellAdapter.MarketplaceViewHolder numberOwned" />
+      <entry_point TYPE="field" FQNAME="com.example.gtraderprototype.views.MarketplaceBuyAdapter.MarketplaceViewHolder numberOwned" />
+    </entry_points>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

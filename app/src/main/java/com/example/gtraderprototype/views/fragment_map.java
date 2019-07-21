@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class fragment_map extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener{
 
@@ -60,6 +62,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
     int fuel;
     int fuelCapacity;
     Marker destination = null;
+    private final double ENCOUNTER_PROB = 1.0;
 
 
     private TextView region;
@@ -77,8 +80,12 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         travelInfo =  mView.findViewById(R.id.travel);
         button = mView.findViewById(R.id.button);
         player = Model.getInstance().getPlayerInteractor().getPlayer();
-        fuel = player.getShip().getFuel();
-        fuelCapacity = player.getShip().getFuelCapacity();
+        fuel = player.getSpaceShip().getFuel();
+        fuelCapacity = player.getSpaceShip().getFuelCapacity();
+
+        //Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+       // startActivity(pirateIntent);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,11 +95,21 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                     } else {
                         viewmodel.travelToRegion(selectedMarker.getTitle(), fuelCost);
                         fuel = fuel - fuelCost;
+
                         spacePort.setText(selectedMarker.getTitle());
                         fuelAmount.setText(fuel+"/"+viewmodel.getPlayerShipRange());
                         travelInfo.setText("Arrived");
+
+                        //generate random event encounter
+                        if(Math.random() < 1.0){
+                            encounter();
+                            Log.d("encounter", viewmodel.getPlayerLocationName());
+                        }
+
                         Log.d("GTrader", viewmodel.getPlayerFuel()+" fuel remaining");
                         button.setEnabled(false);
+
+
                     }
                     destination=null;
                 }
@@ -159,14 +176,14 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
             systems.put(sys.getSystemName(), sys);
             //setMarker(sys.getSystemName(), sys.coordinates[0], sys.coordinates[1], false);
             for(Region reg: sys.getRegions()){
-                LatLng curr = new LatLng(reg.coordinates[0], reg.coordinates[1]);
+                LatLng curr = new LatLng(reg.coordinates.get(0), reg.coordinates.get(1));
                 markersList.add(curr);
                 places.put(reg.regionName,curr);
                 if(reg.regionName.equals(viewmodel.getPlayerLocationName())){
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(curr));
-                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], true);
+                    setMarker(reg.regionName, reg.coordinates.get(0), reg.coordinates.get(1), true);
                 }else{
-                    setMarker(reg.regionName, reg.coordinates[0], reg.coordinates[1], false);
+                    setMarker(reg.regionName, reg.coordinates.get(0), reg.coordinates.get(1), false);
                 }
             }
         }
@@ -220,6 +237,27 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         Log.w("Click", marker.getTitle());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 17.0f));
         marker.showInfoWindow();
+    }
+
+    private void encounter(){ //trade, police, pirate
+        double pirateProbability = (Model.getInstance().getGameInstanceInteractor().getGameDifficulty().difficultyIndex() + 1)*2/10.0; //Beginner: 0.2, Impossible:1
+        Random rand = new Random();
+        if(Math.random() < pirateProbability){
+            // encounter pirate
+            Intent pirateIntent = new Intent(getActivity(), EncounterPirateActivity.class);
+            startActivity(pirateIntent);
+        }else{
+            if(rand.nextBoolean()){
+                //encounter trader
+                Intent traderIntent=new Intent(getActivity(),EncounterTraderActivity.class);
+                startActivity(traderIntent);
+            }else{
+                //encounter police
+                Intent policeIntent=new Intent(getActivity(), EncounterPoliceActivity.class);
+                startActivity(policeIntent);
+            }
+        }
+
     }
 
 
