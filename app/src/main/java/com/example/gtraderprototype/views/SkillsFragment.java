@@ -29,7 +29,6 @@ public class SkillsFragment extends Fragment {
         player = ViewModelProviders.of(this).get(SkillsViewModel.class);
 
         TextView playerName = v.findViewById(R.id.welcomePlayer);
-        TextView skillPoints = v.findViewByID(R.id.skillPoints);
         playerName.setText("Welcome " + player.getName());
 
         return v;
