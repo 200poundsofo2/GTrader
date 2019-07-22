@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.model;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.gtraderprototype.entity.Difficulty;
@@ -16,11 +17,20 @@ import java.util.ArrayList;
 public class GameInstanceInteractor extends Interactor{
 
     final String localStateFilename = "states";
+    private GameInstance gameInstance;
     public GameInstanceInteractor(Database db){
         super(db);
 
     }
-    private ArrayList<String> getLocalGames(Context context){
+
+    public GameInstance getGameInstance(){
+        return gameInstance;
+    }
+
+    public Difficulty getGameDifficulty(){
+        return gameInstance.getDifficulty();
+    }
+    public ArrayList<String> getLocalGames(Context context){
 
         File file = new File(context.getFilesDir(), localStateFilename);
         ArrayList<String> gameIDs = new ArrayList<>();
@@ -34,7 +44,6 @@ public class GameInstanceInteractor extends Interactor{
                 while(temp!=null){
                     gameIDs.add(temp);
                     temp = br.readLine();
-                    Database.retrieveGameFromDB(temp);
                 }
                 Log.d("GTrader", gameIDs.toString());
             }
@@ -43,38 +52,47 @@ public class GameInstanceInteractor extends Interactor{
         }
         return gameIDs;
     }
-    public GameInstance newGame(Difficulty difficulty, Context context){
-        GameInstance newinst = new GameInstance(difficulty);
+    public void setInstance(GameInstance instance){
+        this.gameInstance = instance;
+        Log.d("GTrader", instance.toString());
+    }
+    public void newGame(Difficulty difficulty, Player player, Context context){
+        this.gameInstance = new GameInstance(difficulty, player);
         try{
             FileOutputStream outputStream;
-            String fileContents = newinst.getGameID();
+            String fileContents = gameInstance.getGameID();
             outputStream = context.openFileOutput(localStateFilename, Context.MODE_APPEND);
             outputStream.write((fileContents+"\r\n").getBytes());
             outputStream.close();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        Database.saveState(newinst);
-        return newinst;
+        Log.d("GTrader", "New instance: "+gameInstance.toString());
+        Database.saveState(gameInstance);
     }
 
-    void removeGame(GameInstance instance, Context context){
-        ArrayList<String> currentsaves = getLocalGames(context);
+
+    public void removeGame(String gameID, Context context){
+        ArrayList<String> currentSaves = getLocalGames(context);
         File file = new File(context.getFilesDir(), localStateFilename);
         file.delete();
 
         try{
             FileOutputStream outputStream;
             outputStream = context.openFileOutput(localStateFilename, Context.MODE_APPEND);
-            for(String save: currentsaves){
-                if(save!=instance.getGameID()){
+            for(String save: currentSaves){
+                if(!save.equals(gameID)){
                     outputStream.write((save+"\r\n").getBytes());
                 }
             }
             outputStream.close();
-            Database.removeState(instance);
+            Database.removeState(gameID);
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+    public void saveGameToDB(){
+        Database.saveState(this.gameInstance);
     }
 }

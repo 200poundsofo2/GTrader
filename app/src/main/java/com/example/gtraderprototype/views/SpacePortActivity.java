@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gtraderprototype.R;
+import com.example.gtraderprototype.model.Model;
+import com.example.gtraderprototype.viewmodels.ConfigurationViewModel;
 import com.example.gtraderprototype.viewmodels.MapViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,12 +24,15 @@ public class SpacePortActivity extends AppCompatActivity {
 
     private Fragment newFragment;
     private int oldFragment = R.id.main;
+    private ConfigurationViewModel configurationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("GTrader", "creating activity fragment");
         super.onCreate(savedInstanceState);
         MapViewModel mapviewmodel = ViewModelProviders.of(this).get(MapViewModel.class);
+        final ConfigurationViewModel configurationViewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+
 
         setContentView(R.layout.activity_spaceport);
         ImageView imgView = findViewById(R.id.backgroundImageConfig);
@@ -36,10 +41,10 @@ public class SpacePortActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         TextView region = findViewById(R.id.name_of_region);
-        TextView shipName = findViewById(R.id.nameofShip);
+        TextView shipName = findViewById(R.id.NameOfShip);
         TextView fuelAmount = findViewById(R.id.fuel_amount);
 
-        //Set text
+        //Set fleeText
         region.setText(mapviewmodel.getPlayerLocationName());
         shipName.setText(mapviewmodel.getPlayerShipName());
         fuelAmount.setText("Fuel: " + mapviewmodel.getPlayerFuel()
@@ -74,7 +79,9 @@ public class SpacePortActivity extends AppCompatActivity {
                                 newFragment = new MarketFragment();
                                 break;
                             case R.id.save:
-                                //TODO: save game implementation
+                                Log.d("GTrader", "Saving...");
+                                Model.getInstance().getGameInstanceInteractor().saveGameToDB();
+                                configurationViewModel.exitGame(SpacePortActivity.this);
                                 break;
                         }
                         final FragmentTransaction transaction =

@@ -25,7 +25,7 @@ import java.util.Arrays;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
-    private ConfigurationViewModel viewmodel;
+    private ConfigurationViewModel viewModel;
 
     private TextView remainingPoints;
     private EditText playerName;
@@ -69,7 +69,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
 
-        viewmodel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
     public void decrementSkillPointsForPilot(View view) {
@@ -201,14 +201,10 @@ public class ConfigurationActivity extends AppCompatActivity {
             int pointsFighter = Integer.parseInt(fighterPoints.getText().toString());
             int pointsTrader = Integer.parseInt(traderPoints.getText().toString());
             Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
-
+            Player player = new Player((name.equals("")) ? "Default" : name, pointsPilot, pointsEngineer, pointsFighter, pointsTrader);
             Log.d("GTrader", "Setting up player |"+name+"|");
-            Model.getInstance().getPlayerInteractor().getPlayer().setName((name.equals("")) ? "Default" : name);
-            Model.getInstance().getPlayerInteractor().getPlayer().setEngineerSkillPoints(pointsEngineer);
-            Model.getInstance().getPlayerInteractor().getPlayer().setPilotSkillPoints(pointsPilot);
-            Model.getInstance().getPlayerInteractor().getPlayer().setFighterSkillPoints(pointsFighter);
-            Model.getInstance().getPlayerInteractor().getPlayer().setTraderSkillPoints(pointsTrader);
-            viewmodel.newGame(difficulty, this);
+            Model.getInstance().getPlayerInteractor().setPlayer(player);
+            viewModel.newGame(difficulty, Model.getInstance().getPlayerInteractor().getPlayer(), this);
             loadSpacePortPage();
         } else {
             Toast.makeText(ConfigurationActivity.this,

@@ -18,13 +18,11 @@ public class UniverseInteractor extends Interactor {
 
 
     public void addSystem(System system){
-
         universe.addSystem(system);
 
     }
     public void setUniverse(Universe universe){
         this.universe = universe;
-        //addSystems(10);
         Universe.universe = universe;
     }
 

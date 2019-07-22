@@ -22,7 +22,6 @@ public class Universe {
         StringBuilder strb = new StringBuilder(str);
         for(System sys: systems){
             strb.append(" system: "+sys.toString());
-
         }
         return strb.toString();
     }

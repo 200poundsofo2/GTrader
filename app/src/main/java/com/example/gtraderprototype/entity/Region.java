@@ -1,14 +1,12 @@
 package com.example.gtraderprototype.entity;
 
-import com.example.gtraderprototype.model.Database;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.HashSet;
 
 enum TechLevel{
     PRE_AGRICULTURE(0), AGRICULTURE(1), MEDIEVAL(2), RENAISSANCE(3), EARLY_INDUSTRIAL(4), INDUSTRIAL(5), POST_INDUSTRIAL(6), HI_TECH(7);
@@ -25,52 +23,88 @@ enum TechLevel{
     }
 }
 public class Region {
+    /**
+     * gets the name of the region
+     * @return gets the name of the region
+     */
     public String getRegionName() {
         return regionName;
     }
 
+    /**
+     * sets the region's name
+     * @param regionName the desired name of the region
+     */
     public void setRegionName(String regionName) {
         this.regionName = regionName;
     }
 
-    public double[] getCoordinates() {
+    /**
+     * the coordinates of the region
+     * @return the coordinate of the region
+     */
+    public List<Double> getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(double[] coordinates) {
+    /**
+     * sets the coordinates of the region
+     * @param coordinates the desired location of the region
+     */
+    public void setCoordinates(List<Double> coordinates) {
         this.coordinates = coordinates;
     }
 
+    /**
+     * gets the tech level of the region
+     * @return the tech level of the region
+     */
     public TechLevel getTechLevel() {
         return techLevel;
     }
 
+    /**
+     * sets the tech level of the region
+     * @param techLevel desired tech level
+     */
     public void setTechLevel(TechLevel techLevel) {
         this.techLevel = techLevel;
     }
 
+    /**
+     * the resource type of the region
+     * @return the resource type
+     */
     public Resources getResources() {
         return resources;
     }
 
+    /**
+     * sets the resource type
+     * @param resources desired resource type
+     */
     public void setResources(Resources resources) {
         this.resources = resources;
     }
 
-    //public Police[] police;
-    //public Trader[] traders;
     public String regionName;
-    public double[] coordinates;
-    public TechLevel techLevel;
+    public List<Double> coordinates = new ArrayList<>();
+    private TechLevel techLevel;
     public Resources resources;
-    public RegionBasedEvent regionBasedEvent;
+    private RegionBasedEvent regionBasedEvent;
     public ArrayList<Item> sellableItems = new ArrayList<>();
     public ArrayList<Item> buyableItems = new ArrayList<>();
-    public Marketplace marketplace;
 
+    /**
+     * constructor for a region
+     * @param name name of region
+     * @param lat latitude for a region
+     * @param lng longitude for a region
+     */
     public Region(String name, double lat, double lng){
         this.regionName = name;
-        this.coordinates = new double[]{lat,lng};
+        this.coordinates.add(lat);
+        this.coordinates.add(lng);
         this.techLevel = TechLevel.getRandomLevel();
         this.regionBasedEvent = RegionBasedEvent.getRandomRegionEvent();
         this.resources = Resources.getRandomResources();
@@ -90,8 +124,12 @@ public class Region {
         }
     }
 
+    /**
+     * a string representation of a region and it contents
+     * @return a string representation of a region and it contents
+     */
     public String toString(){
-        return "REGION "+this.regionName+"("+coordinates[0]+","+coordinates[1]+") tech:"+this.techLevel+",rsc:"+this.resources+", Sellable: "+sellableItems.toString()+ ", Buyable: "+buyableItems.toString();
+        return "REGION "+this.regionName+"("+coordinates.get(0)+","+coordinates.get(0)+") tech:"+this.techLevel+",rsc:"+this.resources+", Sellable: "+sellableItems.toString()+ ", Buyable: "+buyableItems.toString();
     }
 
 }
