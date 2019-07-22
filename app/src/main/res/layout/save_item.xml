@@ -5,34 +5,39 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp">
+    android:layout_marginEnd="8dp"
+    android:background="#000">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="#000">
 
         <LinearLayout
             android:id="@+id/save_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/ic_border">
 
             <TextView
                 android:id="@+id/player_name"
-                android:layout_width="181dp"
+                android:layout_width="160dp"
                 android:layout_height="match_parent"
                 android:text="PlayerName"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:paddingRight="15dp"/>
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/delete_save"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_weight=".25"
                 android:text="DELETE"
+                app:backgroundTint="#00000000"
                 app:cornerRadius="10dp"
                 app:rippleColor="#EAAA00"
                 app:strokeColor="#fff"
@@ -41,10 +46,11 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/open_save"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_weight=".25"
                 android:text="OPEN"
+                app:backgroundTint="#00000000"
                 app:cornerRadius="10dp"
                 app:rippleColor="#EAAA00"
                 app:strokeColor="#fff"

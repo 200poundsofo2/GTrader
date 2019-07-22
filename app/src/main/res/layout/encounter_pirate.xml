@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -20,8 +21,9 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/pirate" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/attack"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -34,10 +36,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.639" />
+        app:layout_constraintVertical_bias="0.639"
+        app:backgroundTint="#00000000"
+        app:cornerRadius="10dp"
+        app:rippleColor="#EAAA00"
+        app:strokeColor="#fff"
+        app:strokeWidth="2dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/flee"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -50,10 +58,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.772"
+        app:backgroundTint="#00000000"
+        app:cornerRadius="10dp"
+        app:rippleColor="#EAAA00"
+        app:strokeColor="#fff"
+        app:strokeWidth="2dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/surrender"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -65,7 +79,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.893"
+        app:backgroundTint="#00000000"
+        app:cornerRadius="10dp"
+        app:rippleColor="#EAAA00"
+        app:strokeColor="#fff"
+        app:strokeWidth="2dp"/>
 
     <TextView
         android:id="@+id/encounterText"

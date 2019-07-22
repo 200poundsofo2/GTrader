@@ -84,7 +84,9 @@ public class EncounterPirateActivity extends AppCompatActivity {
         if(Math.random() < fleeProbability){
             //flee
             surrender.setEnabled(false);
+            surrender.setVisibility(View.GONE);
             attack.setEnabled(false);
+            attack.setVisibility(View.GONE);
             flee.setText("Back");
             encounterText.setText("Flee Succeeded!");
             pirateText.setText("This isn't the end! Let's wait and see.");
@@ -102,7 +104,9 @@ public class EncounterPirateActivity extends AppCompatActivity {
     private void attack(){
         pirateText.setText("Lets play game");
         surrender.setEnabled(false);
+        surrender.setVisibility(View.GONE);
         flee.setEnabled(false);
+        flee.setVisibility(View.GONE);
         attack.setText("start game");
         encounterText.setText("kill 50 pirates without colliding them!");
         attack.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +131,9 @@ public class EncounterPirateActivity extends AppCompatActivity {
     private void surrender(){
 
         attack.setEnabled(false);
+        attack.setVisibility(View.GONE);
         flee.setEnabled(false);
+        flee.setVisibility(View.GONE);
         surrender.setText("Back");
         pirateText.setText("HA! I took some precious from you.");
         encounterText.setText("You will lose part of your cargo");
