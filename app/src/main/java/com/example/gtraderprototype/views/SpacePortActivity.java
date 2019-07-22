@@ -1,8 +1,10 @@
 package com.example.gtraderprototype.views;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,8 @@ public class SpacePortActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_spaceport);
+        ImageView imgView = findViewById(R.id.backgroundImageConfig);
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         FragmentManager fragmentManager = getSupportFragmentManager();
 
