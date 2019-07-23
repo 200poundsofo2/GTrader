@@ -36,10 +36,12 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     private int penalty;
     private int bribe;
     private List<Item> illegalItems;
-    MediaPlayer policemusic= MediaPlayer.create(this ,R.raw.downbeat);
+    MediaPlayer policemusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        policemusic = MediaPlayer.create(this ,R.raw.downbeat);
+
         policemusic.setLooping(true);
         policemusic.start();
         super.onCreate(savedInstanceState);

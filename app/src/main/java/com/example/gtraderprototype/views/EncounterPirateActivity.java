@@ -41,12 +41,12 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
     private  Player player;
     private Difficulty gameDifficulty;
-    MediaPlayer mapmusic= MediaPlayer.create(this ,R.raw.map);
+    MediaPlayer mapmusic;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        mapmusic= MediaPlayer.create(getApplicationContext() ,R.raw.map);
         mapmusic.setLooping(true);
         mapmusic.start();
         super.onCreate(savedInstanceState);
