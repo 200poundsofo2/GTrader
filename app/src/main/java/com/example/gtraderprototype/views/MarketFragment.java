@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.views;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +55,10 @@ public class MarketFragment extends Fragment {
         layoutManagerSell = new LinearLayoutManager(getActivity());
         sellRecyclerView.setLayoutManager(layoutManagerSell);
         moneyView.setText("Money: $"+player.getMoney());
+        MediaPlayer marketmusic= MediaPlayer.create(getActivity() ,R.raw.marketplace);
+        marketmusic.setLooping(true);
+        marketmusic.start();
+
 
 
 

@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.views;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlay;
@@ -163,7 +165,19 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
         LatLng upperRightBoundary = new LatLng(33.782586, -84.385312);
         LatLngBounds CampusBounds = new LatLngBounds(lowerLeftBoundary, upperRightBoundary);
         mMap.setLatLngBoundsForCameraTarget(CampusBounds);
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            getActivity(), R.raw.style_json));
 
+            if (!success) {
+                Log.e("GTrader", "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e("GTrader", "Can't find style. Error: ", e);
+        }
        //LatLng centerCampus = new LatLng(33.777129, -84.398231);
         //mMap.addMarker(new MarkerOptions().position(centerCampus).title("Center of campus"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(centerCampus));
@@ -220,7 +234,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Google
                             Math.sin(dLong / 2) * Math.sin(dLong / 2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             double d = R * c;
-            this.fuelCost = (int)(d/10);
+            this.fuelCost = (int)(d/30);
             String text = "fuel cost:" + fuelCost;
             if(fuelCost>fuel){
                 button.setEnabled(false);

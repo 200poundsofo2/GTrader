@@ -3,6 +3,7 @@ package com.example.gtraderprototype.entity;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -100,7 +101,6 @@ public class Ship {
     }
 
     public boolean canAddCargo() {
-        Log.d("GTraderinv", "Avail:"+this.numberOfAvailableCargoBays);
         return (this.numberOfAvailableCargoBays>0);
     }
 
@@ -121,6 +121,63 @@ public class Ship {
         this.numberOfUsedCargoBays--;
         this.numberOfAvailableCargoBays++;
         Log.d("INV", "removed "+numberOfAvailableCargoBays);
+    }
+
+    public int getNumberOfUsedCrewQuarters() {
+        return numberOfUsedCrewQuarters;
+    }
+
+    public int getNumberOfAvailableCrewQuarters(){
+        return this.numberOfAvailableCrewQuarters;
+    }
+
+    public List<NPC> getCrewQuarters() {
+        return this.crewQuarters;
+    }
+
+    public void setCrewQuarters(ArrayList<NPC> crew){
+        this.crewQuarters.addAll(crew);
+    }
+
+    public boolean canAddCrew() {
+        return (this.numberOfAvailableCrewQuarters>0);
+    }
+
+    public boolean hasCrew() {
+        return (numberOfUsedCrewQuarters > 0);
+    }
+
+    public void addCrew(NPC crew) {
+        this.crewQuarters.add(crew);
+        this.numberOfUsedCrewQuarters++;
+        this.numberOfAvailableCrewQuarters--;
+    }
+
+    public void removeCrew(NPC crew) {
+        this.crewQuarters.remove(crew);
+        this.numberOfUsedCrewQuarters--;
+        this.numberOfAvailableCrewQuarters++;
+    }
+
+    public HashMap<String, Integer> getShipSkills(){
+        int pilotPoints = 0;
+        int engineerPoints = 0;
+        int fighterPoints = 0;
+        int traderPoints = 0;
+
+        for(NPC crewMember: this.crewQuarters){
+            pilotPoints += crewMember.pilotSkillPoints;
+            engineerPoints += crewMember.engineerSkillPoints;
+            fighterPoints += crewMember.fighterSkillPoints;
+            traderPoints += crewMember.traderSkillPoints;
+        }
+        HashMap<String, Integer> skillMap = new HashMap<>();
+        skillMap.put("Pilot", pilotPoints);
+        skillMap.put("Engineer", engineerPoints);
+        skillMap.put("Fighter", fighterPoints);
+        skillMap.put("Trader", traderPoints);
+
+        return skillMap;
     }
 
     public List<Equipment> getWeapons() {
