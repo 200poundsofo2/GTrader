@@ -1,5 +1,6 @@
 package com.example.gtraderprototype.views;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -35,10 +36,12 @@ public class EncounterPoliceActivity extends AppCompatActivity {
     private int penalty;
     private int bribe;
     private List<Item> illegalItems;
-
+    MediaPlayer policemusic= MediaPlayer.create(getApplicationContext() ,R.raw.downbeat);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        policemusic.setLooping(true);
+        policemusic.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.encounter_police);
         words=findViewById(R.id.policeWord);
@@ -103,6 +106,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if((player.getMoney() - penalty) > 0){
                     player.setMoney(player.getMoney()-penalty);
+                    policemusic.stop();
                     finish();
                 } else {
 
@@ -118,6 +122,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if((player.getMoney() - bribe) > 0){
                     player.setMoney(player.getMoney()-bribe);
+                    policemusic.stop();
                     finish();
                 }else{
                     startActivity(new Intent(EncounterPoliceActivity.this, GameOverActivity.class));
@@ -133,6 +138,7 @@ public class EncounterPoliceActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                policemusic.stop();
                 finish();
             }
         });

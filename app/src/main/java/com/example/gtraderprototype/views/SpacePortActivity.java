@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.views;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -55,7 +56,6 @@ public class SpacePortActivity extends AppCompatActivity {
         transaction.replace(oldFragment, newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
-
         navigation.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -77,6 +77,7 @@ public class SpacePortActivity extends AppCompatActivity {
                                 break;
                             case R.id.market:
                                 newFragment = new MarketFragment();
+                                //Music
                                 break;
                             case R.id.save:
                                 Log.d("GTrader", "Saving...");

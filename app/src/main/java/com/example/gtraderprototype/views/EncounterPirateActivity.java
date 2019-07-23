@@ -1,6 +1,7 @@
 package com.example.gtraderprototype.views;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,9 +41,14 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
     private  Player player;
     private Difficulty gameDifficulty;
+    MediaPlayer mapmusic= MediaPlayer.create(getApplicationContext() ,R.raw.map);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mapmusic.setLooping(true);
+        mapmusic.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.encounter_pirate);
 
@@ -93,7 +99,9 @@ public class EncounterPirateActivity extends AppCompatActivity {
             flee.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mapmusic.stop();
                     finish();
+
                 }
             });
         } else{ //unable to flee, game over
@@ -121,6 +129,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
                 attack.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mapmusic.stop();
                         finish();
                     }
                 });
@@ -141,6 +150,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mapmusic.stop();
                 robPlayer();
                 finish();
             }
