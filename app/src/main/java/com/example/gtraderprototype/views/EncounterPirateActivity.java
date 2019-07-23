@@ -41,7 +41,7 @@ public class EncounterPirateActivity extends AppCompatActivity {
 
     private  Player player;
     private Difficulty gameDifficulty;
-    MediaPlayer mapmusic= MediaPlayer.create(getApplicationContext() ,R.raw.map);
+    MediaPlayer mapmusic= MediaPlayer.create(this ,R.raw.map);
 
 
     @Override
